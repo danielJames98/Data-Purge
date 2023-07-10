@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 18
   m_ValidKeywords:
   - _EMISSION
+  - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0

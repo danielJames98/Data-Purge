@@ -127,7 +127,6 @@ public class playerController : baseCharacter
             currentXP= currentXP+1;
             xpGain = xpGain - 1; 
             xpBar.GetComponent<Slider>().value = currentXP / maxXP;
-            Debug.Log(currentXP / maxXP);
             if (currentXP==maxXP)
             {
                 currentXP = 0;
