@@ -59,9 +59,10 @@ public class uiManagerScript : MonoBehaviour
         toolTipText = toolTip.transform.Find("toolTipText").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
         toolTip.SetActive(false);
         toolTipActive= false;
+
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("c"))

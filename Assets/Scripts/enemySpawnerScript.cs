@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class enemySpawnerScript : MonoBehaviour
 {
-    void Start()
+    public void spawn()
     {
-        GameObject enemy = Instantiate(Resources.Load<GameObject>("baseEnemy"), new Vector3(this.transform.position.x, 1.5f, this.transform.position.z), Quaternion.identity);
+        GameObject enemy = Instantiate (Resources.Load<GameObject>("baseEnemy"), new Vector3(this.transform.position.x, this.transform.position.y + 2, this.transform.position.z), Quaternion.identity);
     }
 }

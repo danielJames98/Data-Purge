@@ -180,7 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 1
-  level: 500
+  gameManager: {fileID: 0}
+  level: 1
   currentHealth: 100
   maxHealth: 100
   moveSpeed: 10
@@ -205,8 +206,10 @@ MonoBehaviour:
   abilityScript3: {fileID: 0}
   abilityScript4: {fileID: 0}
   targetCharacter: {fileID: 0}
+  overHeadCanvas: {fileID: 0}
   healthBar: {fileID: 0}
   castBar: {fileID: 0}
+  xpBar: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   castingAbility: {fileID: 0}
   navMeshAgent: {fileID: 0}
@@ -224,6 +227,7 @@ MonoBehaviour:
   castStartTime: 0
   movingToRange: 0
   charactersInRange: []
+  boss: 0
 --- !u!135 &1114126243516928412
 SphereCollider:
   m_ObjectHideFlags: 0

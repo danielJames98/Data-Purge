@@ -8,13 +8,14 @@ public class enemyController : baseCharacter
 {
     public List<GameObject> charactersInRange;
 
+    
     void Start()
     {
         navMeshAgent = this.GetComponent<NavMeshAgent>();
 
         frontFirePoint = transform.Find("frontFirePoint").gameObject;
 
-        GameObject overHeadCanvas = Instantiate(Resources.Load("overHeadCanvas", typeof(GameObject)), new Vector3(this.transform.position.x, this.transform.position.y + 2, this.transform.position.z), Quaternion.identity) as GameObject;
+        overHeadCanvas = Instantiate(Resources.Load("overHeadCanvas", typeof(GameObject)), new Vector3(this.transform.position.x, this.transform.position.y + 2, this.transform.position.z), Quaternion.identity) as GameObject;
         healthBar = overHeadCanvas.transform.Find("healthBar").gameObject;
         overHeadCanvas.GetComponent<overHeadCanvasScript>().parentCharacter = this.gameObject;
         healthBar.SetActive(false);
@@ -36,9 +37,12 @@ public class enemyController : baseCharacter
         abilityScript2 = ability2.GetComponent<baseAbilityScript>();
         abilityScript3 = ability3.GetComponent<baseAbilityScript>();
         abilityScript4 = ability4.GetComponent<baseAbilityScript>();
+
+        gameManager = GameObject.Find("gameManager").GetComponent<gameManagerScript>();
+        levelManager = gameManager.activeLevel.GetComponent<levelManagerScript>();
+        levelManager.enemyReady(this.gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(charactersInRange.Count > 0)
@@ -161,5 +165,19 @@ public class enemyController : baseCharacter
                 activateAbility(abilityScript4);
             }
         }
+    }
+
+    public void promoteToBoss()
+    {
+        boss = true;
+
+        int i = 0;
+        while(i<10)
+        {
+            levelUp();
+            i++;
+        }
+
+        this.transform.localScale = new Vector3(2f, 2f, 2f);
     }
 }

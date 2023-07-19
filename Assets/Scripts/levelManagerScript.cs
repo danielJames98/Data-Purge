@@ -7,21 +7,46 @@ public class levelManagerScript : MonoBehaviour
 {
     public bool objectiveComplete=false;
     public List<GameObject> firewalls;
+    public List<enemySpawnerScript> enemySpawners;
+    public List<GameObject> enemyList;
     public Material openDoorMat;
     public Material closedDoorMat;
+    public string objective;
+    public GameObject objectiveText;
+    public int enemies;
+    public gameManagerScript gameManager;
+    public int direction;
+    public bool directionSelected;
+    public bool rotationDone;
+    public Quaternion targetRotation;
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("gameManager").gameObject.GetComponent<gameManagerScript>();
+        turnNewLevel();
+    }
+
+    private void Update()
+    {
+        if (rotationDone == false && directionSelected == true && (this.transform.rotation==targetRotation || direction==0))
+        {
+            rotationDone=true;
+            spawnEnemies();
+        }
+    }
 
     public void completeObjective()
     {
         if(objectiveComplete==false) 
         {
             objectiveComplete = true;
+            objectiveText.GetComponent<TMPro.TextMeshProUGUI>().text = "Objective Complete";
 
             var overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x + 52, this.transform.position.y, this.transform.position.z), 1);
 
             if(overlaps.Length==0)
             {
                 GameObject newLevel0 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 4).ToString()), new Vector3(this.transform.position.x + 100, this.transform.position.y, this.transform.position.z), Quaternion.identity);
-                turnNewLevel(newLevel0);
             }
 
             overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x - 52, this.transform.position.y, this.transform.position.z), 1);
@@ -29,7 +54,6 @@ public class levelManagerScript : MonoBehaviour
             if (overlaps.Length == 0)
             {
                 GameObject newLevel1 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 4).ToString()), new Vector3(this.transform.position.x - 100, this.transform.position.y, this.transform.position.z), Quaternion.identity);
-                turnNewLevel(newLevel1);
             }
 
             overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 52), 1);
@@ -37,7 +61,6 @@ public class levelManagerScript : MonoBehaviour
             if (overlaps.Length == 0)
             {
                 GameObject newLevel2 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 4).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 100), Quaternion.identity);
-                turnNewLevel(newLevel2);
             }
 
             overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 52), 1);
@@ -45,7 +68,6 @@ public class levelManagerScript : MonoBehaviour
             if (overlaps.Length == 0)
             {
                 GameObject newLevel3 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 4).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 100), Quaternion.identity);
-                turnNewLevel(newLevel3);
             }
 
             foreach (GameObject firewall in firewalls)
@@ -60,6 +82,7 @@ public class levelManagerScript : MonoBehaviour
         if (collision.gameObject.tag=="Player" && objectiveComplete==false)
         {
             lockDown();
+            startObjective();
         }
     }
 
@@ -74,21 +97,83 @@ public class levelManagerScript : MonoBehaviour
         }
     }
 
-    public void turnNewLevel(GameObject levelToTurn)
+    public void spawnEnemies()
     {
-        int direction = Random.Range(0, 4);
+        foreach (enemySpawnerScript spawner in enemySpawners)
+        {
+            spawner.spawn();
+        }
+    }
+
+    public void startObjective()
+    {
+        gameManager.activeLevel = this.gameObject;
+        objectiveText = GameObject.Find("objectiveText");
+        
+        int objectiveInt = Random.Range(0,2);
+
+        if(objectiveInt == 0)
+        {
+            objective = "Annihilation";
+            objectiveText.GetComponent<TMPro.TextMeshProUGUI>().text = objective + ":" + " Destroy " + enemies + " enemies";
+        }
+        else if (objectiveInt == 1)
+        {
+            objective = "Assassination";
+            objectiveText.GetComponent<TMPro.TextMeshProUGUI>().text = objective + ":" + " Destroy " + "the boss";
+            int enemyToPromote = Random.Range(0, enemyList.Count);
+            Debug.Log(enemyToPromote);
+            enemyList[enemyToPromote].GetComponent<enemyController>().promoteToBoss();
+        }
+        else if(objectiveInt == 2)
+        {
+
+        }
+        else if (objectiveInt==3)
+        {
+
+        }
+    }
+
+    public void updateAnnihilation()
+    {
+        enemies--;
+        objectiveText.GetComponent<TMPro.TextMeshProUGUI>().text = objective + ":" + " Destroy " + enemies + " enemies";
+        if ( enemies == 0 )
+        {            
+            completeObjective();
+        }
+    }
+
+    public void turnNewLevel()
+    {
+        direction = Random.Range(0, 4);
+        directionSelected = true;
 
         if (direction == 1)
         {
-            levelToTurn.transform.Rotate(0, 90, 0, 0);
+            targetRotation = new Quaternion(0, 90, 0, 0);
+            this.transform.Rotate(0, 90, 0, 0);
         }
         else if (direction == 2)
         {
-            levelToTurn.transform.Rotate(0, 180, 0, 0);
+            targetRotation = new Quaternion(0, 180, 0, 0);
+            this.transform.Rotate(0, 180, 0, 0);
         }
         else if (direction == 3)
         {
-            levelToTurn.transform.Rotate(0, 270, 0, 0);
+            targetRotation = new Quaternion(0, 270, 0, 0);
+            this.transform.Rotate(0, 270, 0, 0);
+        }      
+    }
+
+    public void enemyReady(GameObject enemy)
+    {
+        enemies++;
+        enemyList.Add(enemy);
+        if(enemies==10)
+        {
+            startObjective();
         }
     }
 }

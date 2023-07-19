@@ -149,13 +149,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: projectile
-  targeting: direction
-  baseDamage: 10
+  type: pointAndClick
+  targeting: pointAndClick
+  baseDamage: 500
   baseHealing: 0
-  baseRange: 10
+  baseRange: 50
   baseAoeRadius: 0
-  baseCastTime: 1
+  baseCastTime: 0
   baseCooldown: 0
   cam: {fileID: 0}
   appliesEffect: 0
@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 1
+  gameManager: {fileID: 0}
   level: 1
   currentHealth: 100
   maxHealth: 100
@@ -324,8 +325,10 @@ MonoBehaviour:
   abilityScript3: {fileID: 0}
   abilityScript4: {fileID: 0}
   targetCharacter: {fileID: 0}
+  overHeadCanvas: {fileID: 0}
   healthBar: {fileID: 0}
   castBar: {fileID: 0}
+  xpBar: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   castingAbility: {fileID: 0}
   navMeshAgent: {fileID: 0}
@@ -343,7 +346,7 @@ MonoBehaviour:
   castStartTime: 0
   movingToRange: 0
   cam: {fileID: 0}
-  xpBar: {fileID: 0}
+  ui: {fileID: 0}
 --- !u!136 &4683389479978228793
 CapsuleCollider:
   m_ObjectHideFlags: 0

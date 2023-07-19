@@ -9,6 +9,9 @@ public class baseCharacter : MonoBehaviour
 {
     public bool alive = true;
 
+    public gameManagerScript gameManager;
+    public levelManagerScript levelManager;
+
     public int level;
     public float currentHealth;
     public float maxHealth;
@@ -25,6 +28,7 @@ public class baseCharacter : MonoBehaviour
     public float currentXP;
     public float maxXP;
 
+    public bool boss;
 
     public GameObject ability0;
     public GameObject ability1;
@@ -39,9 +43,10 @@ public class baseCharacter : MonoBehaviour
     public baseAbilityScript abilityScript4;
 
     public GameObject targetCharacter;
-
+    public GameObject overHeadCanvas;
     public GameObject healthBar;
     public GameObject castBar;
+    public GameObject xpBar;
 
     public Vector3 targetPosition;
 
@@ -69,7 +74,6 @@ public class baseCharacter : MonoBehaviour
     public float timeSinceCastStart;
     public float castStartTime;
     public bool movingToRange;
-
 
     public void takeDamage(float damage)
     {
@@ -128,8 +132,20 @@ public class baseCharacter : MonoBehaviour
         if(gameObject.tag=="Enemy")
         {
             GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().gainXP(level);
+
+            if(levelManager.objective=="Annihilation")
+            {
+                levelManager.updateAnnihilation();
+            }
+            else if(levelManager.objective == "Assassination" && boss==true)
+            {
+                levelManager.completeObjective();
+            }
+            
+            Destroy(overHeadCanvas);
         }
         alive = false;
+        
         Destroy(gameObject);
     }
 
@@ -219,5 +235,83 @@ public class baseCharacter : MonoBehaviour
             timeSinceCastStart = 0;
             castStartTime = 0;
         }       
+    }
+
+    public void gainXP(float xpGain)
+    {
+        while (xpGain > 0)
+        {
+            currentXP = currentXP + 1;
+            xpGain = xpGain - 1;
+
+            if(tag=="Player")
+            {
+                xpBar.GetComponent<Slider>().value = currentXP / maxXP;
+            }
+            
+            if (currentXP == maxXP)
+            {
+                levelUp();
+            }
+        }
+    }
+
+    public void levelUp()
+    {
+        currentXP = 0;
+        level++;
+        maxXP = level * 100;
+
+        int statToBuff = Random.Range(0, 10);
+
+        if(statToBuff==0)
+        {
+            maxHealth++;
+        }
+        else if (statToBuff == 1)
+        {
+            moveSpeed = moveSpeed + 1;
+        }
+        else if (statToBuff == 2)
+        {
+            attackSpeed = attackSpeed + 1;
+        }
+        else if(statToBuff == 3)
+        {
+            cooldownReduction = cooldownReduction + 1;
+        }
+        else if(statToBuff == 4)
+        {
+            armour = armour + 1;
+        }
+        else if(statToBuff == 5)
+        {
+            power = power + 1;
+        }
+        else if(statToBuff == 6)
+        {
+            bonusRange = bonusRange + 1;
+        }
+        else if(statToBuff == 7)
+        {
+            bonusArea = bonusArea + 1;
+        }
+        else if(statToBuff == 8)
+        {
+            bonusProjectileSpeed = bonusProjectileSpeed + 1;
+        }
+        else if(statToBuff == 9)
+        {
+            bonusDuration = bonusDuration + 1;
+        }
+
+        currentHealth = maxHealth;
+
+        if (tag == "Player")
+        {
+            xpBar.GetComponent<Slider>().value = currentXP / maxXP;
+        }
+
+        healthBar.GetComponent<Slider>().value = currentHealth / maxHealth;
     }
 }

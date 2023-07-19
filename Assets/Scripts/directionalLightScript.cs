@@ -28,8 +28,12 @@ public class directionalLightScript : MonoBehaviour
 
     public void setVariables()
     {
-        this.transform.eulerAngles = new Vector3(UnityEngine.Random.Range(minAngle, maxAngle), UnityEngine.Random.Range(minAngle, maxAngle), UnityEngine.Random.Range(-minAngle, maxAngle));
-        lightComponent.color = new Color32(System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 255);
+        this.transform.eulerAngles = new Vector3(UnityEngine.Random.Range(minAngle, maxAngle), 
+            UnityEngine.Random.Range(minAngle, maxAngle), 
+            UnityEngine.Random.Range(-minAngle, maxAngle));
+        lightComponent.color = new Color32(System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 
+            System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 
+            System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 255);
         lightComponent.intensity = UnityEngine.Random.Range(intensityMin, intensityMax);
         lightComponent.shadowStrength = UnityEngine.Random.Range(shadowStrengthMin, shadowStrengthMax);
     }
@@ -41,7 +45,9 @@ public class directionalLightScript : MonoBehaviour
         while (true)
         {
             var startColor = lightComponent.color;
-            var endColor = new Color32(System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 255);
+            var endColor = new Color32(System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 
+                System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 
+                System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 255);
 
             float t = 0;
             while (t < 1)
@@ -53,8 +59,6 @@ public class directionalLightScript : MonoBehaviour
 
             yield return new WaitForSeconds(pauseTime);
         }
-
-
     }
 
     private IEnumerator RotationChangeRoutine()
@@ -74,8 +78,6 @@ public class directionalLightScript : MonoBehaviour
 
             yield return new WaitForSeconds(pauseTime);
         }
-
-
     }
 
     private IEnumerator IntensityChangeRoutine()
