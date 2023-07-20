@@ -22,13 +22,17 @@ public class levelManagerScript : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameObject.Find("gameManager").gameObject.GetComponent<gameManagerScript>();
+        if(gameManager==null)
+        {
+            gameManager = GameObject.Find("gameManager").gameObject.GetComponent<gameManagerScript>();
+        }
+        
         turnNewLevel();
     }
 
     private void Update()
     {
-        if (rotationDone == false && directionSelected == true && (this.transform.rotation==targetRotation || direction==0))
+        if (rotationDone == false && directionSelected == true && (this.transform.rotation==targetRotation || direction==0) && gameManager.activeLevel==this.gameObject)
         {
             rotationDone=true;
             spawnEnemies();
@@ -82,19 +86,25 @@ public class levelManagerScript : MonoBehaviour
         if (collision.gameObject.tag=="Player" && objectiveComplete==false)
         {
             lockDown();
-            startObjective();
         }
     }
 
     public void lockDown()
     {
+        if (gameManager == null)
+        {
+            gameManager = GameObject.Find("gameManager").gameObject.GetComponent<gameManagerScript>();
+        }
+
+        gameManager.activeLevel = this.gameObject;
+
         this.GetComponent<BoxCollider>().enabled = false;
 
         foreach(GameObject firewall in firewalls)
         {
             firewall.GetComponent<NavMeshLink>().enabled = false;
             firewall.GetComponent<Renderer>().material = closedDoorMat;
-        }
+        }      
     }
 
     public void spawnEnemies()
@@ -106,8 +116,7 @@ public class levelManagerScript : MonoBehaviour
     }
 
     public void startObjective()
-    {
-        gameManager.activeLevel = this.gameObject;
+    {       
         objectiveText = GameObject.Find("objectiveText");
         
         int objectiveInt = Random.Range(0,2);
@@ -122,7 +131,6 @@ public class levelManagerScript : MonoBehaviour
             objective = "Assassination";
             objectiveText.GetComponent<TMPro.TextMeshProUGUI>().text = objective + ":" + " Destroy " + "the boss";
             int enemyToPromote = Random.Range(0, enemyList.Count);
-            Debug.Log(enemyToPromote);
             enemyList[enemyToPromote].GetComponent<enemyController>().promoteToBoss();
         }
         else if(objectiveInt == 2)

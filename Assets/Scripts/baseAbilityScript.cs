@@ -83,11 +83,11 @@ public class baseAbilityScript : MonoBehaviour
             {
                 direction();
             }
-            else if(targeting ==  "ground")
+            else if(targeting == "ground")
             {
                 groundTarget();
             }
-            else if(targeting=="self")
+            else if(targeting == "self")
             {
                 selfTarget();
             }

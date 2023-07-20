@@ -131,7 +131,7 @@ public class baseCharacter : MonoBehaviour
     {
         if(gameObject.tag=="Enemy")
         {
-            GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().gainXP(level);
+            GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().gainXP(10);
 
             if(levelManager.objective=="Annihilation")
             {
@@ -185,6 +185,19 @@ public class baseCharacter : MonoBehaviour
 
             combatTextComponent.text = Mathf.Round(quantity).ToString() + " " + textType;
         }
+    }
+
+    public void spawnLevelUpText(float quantity, string textType)
+    {
+        GameObject combatText = Instantiate(Resources.Load("combatTextCanvas", typeof(GameObject)),
+        new Vector3(this.transform.position.x + Random.Range(-2.5f, 2.5f), this.transform.position.y + Random.Range(2.5f, 5f), this.transform.position.z),
+        Quaternion.identity) as GameObject;
+        TMPro.TextMeshProUGUI combatTextComponent = combatText.transform.Find("combatText").GetComponent<TMPro.TextMeshProUGUI>();
+
+
+        combatTextComponent.color = Color.green;
+        combatTextComponent.text = "Level " + quantity.ToString() + "!" + " +1% " + textType;
+
     }
 
     IEnumerator hideHealthBar()
@@ -251,12 +264,12 @@ public class baseCharacter : MonoBehaviour
             
             if (currentXP == maxXP)
             {
-                levelUp();
+                levelUp(1);
             }
         }
     }
 
-    public void levelUp()
+    public void levelUp(int levelsToAdd)
     {
         currentXP = 0;
         level++;
@@ -267,42 +280,52 @@ public class baseCharacter : MonoBehaviour
         if(statToBuff==0)
         {
             maxHealth++;
+            spawnLevelUpText(level, "Health");
         }
         else if (statToBuff == 1)
         {
             moveSpeed = moveSpeed + 1;
+            spawnLevelUpText(level, "Move Speed");
         }
         else if (statToBuff == 2)
         {
             attackSpeed = attackSpeed + 1;
+            spawnLevelUpText(level, "Attack Speed");
         }
         else if(statToBuff == 3)
         {
             cooldownReduction = cooldownReduction + 1;
+            spawnLevelUpText(level, "CDR");
         }
         else if(statToBuff == 4)
         {
             armour = armour + 1;
+            spawnLevelUpText(level, "Armour");
         }
         else if(statToBuff == 5)
         {
             power = power + 1;
+            spawnLevelUpText(level, "Power");
         }
         else if(statToBuff == 6)
         {
             bonusRange = bonusRange + 1;
+            spawnLevelUpText(level, "Range");
         }
         else if(statToBuff == 7)
         {
             bonusArea = bonusArea + 1;
+            spawnLevelUpText(level, "AoE");
         }
         else if(statToBuff == 8)
         {
             bonusProjectileSpeed = bonusProjectileSpeed + 1;
+            spawnLevelUpText(level, "Projectile Speed");
         }
         else if(statToBuff == 9)
         {
             bonusDuration = bonusDuration + 1;
+            spawnLevelUpText(level, "Duration");
         }
 
         currentHealth = maxHealth;
@@ -313,5 +336,12 @@ public class baseCharacter : MonoBehaviour
         }
 
         healthBar.GetComponent<Slider>().value = currentHealth / maxHealth;
+
+        int levelsLeftToAdd = levelsToAdd - 1;
+
+        if (levelsLeftToAdd > 0)
+        {
+            levelUp(levelsLeftToAdd);
+        }
     }
 }

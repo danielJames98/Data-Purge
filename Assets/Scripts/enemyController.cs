@@ -38,6 +38,8 @@ public class enemyController : baseCharacter
         abilityScript3 = ability3.GetComponent<baseAbilityScript>();
         abilityScript4 = ability4.GetComponent<baseAbilityScript>();
 
+        levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level);
+
         gameManager = GameObject.Find("gameManager").GetComponent<gameManagerScript>();
         levelManager = gameManager.activeLevel.GetComponent<levelManagerScript>();
         levelManager.enemyReady(this.gameObject);
@@ -171,12 +173,7 @@ public class enemyController : baseCharacter
     {
         boss = true;
 
-        int i = 0;
-        while(i<10)
-        {
-            levelUp();
-            i++;
-        }
+        levelUp(10);
 
         this.transform.localScale = new Vector3(2f, 2f, 2f);
     }

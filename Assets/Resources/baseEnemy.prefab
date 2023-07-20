@@ -181,20 +181,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: 1
   gameManager: {fileID: 0}
-  level: 1
+  levelManager: {fileID: 0}
+  level: 0
   currentHealth: 100
   maxHealth: 100
   moveSpeed: 10
-  attackSpeed: 1
-  cooldownReduction: 1
-  armour: 1
-  power: 1
-  bonusRange: 1
-  bonusArea: 1
-  bonusProjectileSpeed: 1
-  bonusDuration: 1
+  attackSpeed: 0
+  cooldownReduction: 0
+  armour: 0
+  power: 0
+  bonusRange: 0
+  bonusArea: 0
+  bonusProjectileSpeed: 0
+  bonusDuration: 0
   currentXP: 0
   maxXP: 0
+  boss: 0
   ability0: {fileID: 0}
   ability1: {fileID: 0}
   ability2: {fileID: 0}
@@ -227,7 +229,6 @@ MonoBehaviour:
   castStartTime: 0
   movingToRange: 0
   charactersInRange: []
-  boss: 0
 --- !u!135 &1114126243516928412
 SphereCollider:
   m_ObjectHideFlags: 0

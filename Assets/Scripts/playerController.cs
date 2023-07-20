@@ -45,7 +45,7 @@ public class playerController : baseCharacter
         abilityScript3 = ability3.GetComponent<baseAbilityScript>();
         abilityScript4 = ability4.GetComponent<baseAbilityScript>();
 
-        maxXP = level * 100;
+        levelUp(1);
     }
 
     void Update()
