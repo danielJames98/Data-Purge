@@ -149,11 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: pointAndClick
-  targeting: pointAndClick
-  baseDamage: 500
+  type: 
+  targeting: 
+  baseDamage: 0
   baseHealing: 0
-  baseRange: 50
+  baseRange: 0
   baseAoeRadius: 0
   baseCastTime: 0
   baseCooldown: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   appliesEffect: 0
   dotDamage: 0
   hotHealing: 0
-  effectDuration: 5
+  effectDuration: 0
   stackingEffect: 0
   parentCharacter: {fileID: 0}
   parentCharacterScript: {fileID: 0}
@@ -185,12 +185,12 @@ MonoBehaviour:
   flatAoeMod: 0
   flatProjSpeedMod: 0
   flatDurationMod: 0
-  projectileSpeed: 10
+  projectileSpeed: 0
   piercing: 0
   frontFirePoint: {fileID: 0}
-  projectileSize: 1
+  projectileSize: 0
   aoeDuration: 0
-  offensive: 1
+  offensive: 0
   stun: 0
 --- !u!1 &3506257751177481393
 GameObject:
@@ -670,11 +670,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: pointAndClick
-  targeting: pointAndClick
+  type: 
+  targeting: 
   baseDamage: 0
-  baseHealing: 10
-  baseRange: 10
+  baseHealing: 0
+  baseRange: 0
   baseAoeRadius: 0
   baseCastTime: 0
   baseCooldown: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
   frontFirePoint: {fileID: 0}
   projectileSize: 0
   aoeDuration: 0
-  offensive: 1
+  offensive: 0
   stun: 0
 --- !u!1 &9217937408879356233
 GameObject:
@@ -757,20 +757,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: pointAndClick
-  targeting: self
+  type: 
+  targeting: 
   baseDamage: 0
-  baseHealing: 5
+  baseHealing: 0
   baseRange: 0
   baseAoeRadius: 0
   baseCastTime: 0
   baseCooldown: 0
   cam: {fileID: 0}
-  appliesEffect: 1
+  appliesEffect: 0
   dotDamage: 0
   hotHealing: 0
-  effectDuration: 5
-  stackingEffect: 1
+  effectDuration: 0
+  stackingEffect: 0
   parentCharacter: {fileID: 0}
   parentCharacterScript: {fileID: 0}
   parentCharacterNav: {fileID: 0}
@@ -778,7 +778,7 @@ MonoBehaviour:
   percentArmourMod: 0
   percentPowerMod: 0
   percentAttackSpeedMod: 0
-  percentMoveSpeedMod: 25
+  percentMoveSpeedMod: 0
   percentCdrMod: 0
   percentRangeMod: 0
   percentAoeMod: 0

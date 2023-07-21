@@ -59,8 +59,6 @@ public class uiManagerScript : MonoBehaviour
         toolTipText = toolTip.transform.Find("toolTipText").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
         toolTip.SetActive(false);
         toolTipActive= false;
-
-        
     }
 
     void Update()

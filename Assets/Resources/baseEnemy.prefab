@@ -430,14 +430,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Attack
-  targeting: pointAndClick
+  type: 
+  targeting: 
   baseDamage: 0
   baseHealing: 0
   baseRange: 3
   baseAoeRadius: 0
   baseCastTime: 0
-  baseCooldown: 10000
+  baseCooldown: 0
   cam: {fileID: 0}
   appliesEffect: 0
   dotDamage: 0
@@ -447,7 +447,7 @@ MonoBehaviour:
   parentCharacter: {fileID: 0}
   parentCharacterScript: {fileID: 0}
   parentCharacterNav: {fileID: 0}
-  onCooldown: 1
+  onCooldown: 0
   percentArmourMod: 0
   percentPowerMod: 0
   percentAttackSpeedMod: 0
@@ -517,19 +517,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: pointAndClick
-  targeting: pointAndClick
-  baseDamage: 1
+  type: 
+  targeting: 
+  baseDamage: 0
   baseHealing: 0
-  baseRange: 3
+  baseRange: 0
   baseAoeRadius: 0
-  baseCastTime: 1
-  baseCooldown: 10
+  baseCastTime: 0
+  baseCooldown: 0
   cam: {fileID: 0}
-  appliesEffect: 1
+  appliesEffect: 0
   dotDamage: 0
   hotHealing: 0
-  effectDuration: 5
+  effectDuration: 0
   stackingEffect: 0
   parentCharacter: {fileID: 0}
   parentCharacterScript: {fileID: 0}
@@ -558,8 +558,8 @@ MonoBehaviour:
   frontFirePoint: {fileID: 0}
   projectileSize: 0
   aoeDuration: 0
-  offensive: 1
-  stun: 1
+  offensive: 0
+  stun: 0
 --- !u!1 &4851815531287825810
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,14 +604,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Attack
-  targeting: pointAndClick
-  baseDamage: 10
+  type: 
+  targeting: 
+  baseDamage: 0
   baseHealing: 0
-  baseRange: 3
+  baseRange: 0
   baseAoeRadius: 0
   baseCastTime: 0
-  baseCooldown: 1e+10
+  baseCooldown: 0
   cam: {fileID: 0}
   appliesEffect: 0
   dotDamage: 0
@@ -621,7 +621,7 @@ MonoBehaviour:
   parentCharacter: {fileID: 0}
   parentCharacterScript: {fileID: 0}
   parentCharacterNav: {fileID: 0}
-  onCooldown: 1
+  onCooldown: 0
   percentArmourMod: 0
   percentPowerMod: 0
   percentAttackSpeedMod: 0
@@ -691,14 +691,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Attack
-  targeting: pointAndClick
+  type: 
+  targeting: 
   baseDamage: 0
   baseHealing: 0
-  baseRange: 3
+  baseRange: 0
   baseAoeRadius: 0
   baseCastTime: 0
-  baseCooldown: 10000
+  baseCooldown: 0
   cam: {fileID: 0}
   appliesEffect: 0
   dotDamage: 0
@@ -708,7 +708,7 @@ MonoBehaviour:
   parentCharacter: {fileID: 0}
   parentCharacterScript: {fileID: 0}
   parentCharacterNav: {fileID: 0}
-  onCooldown: 1
+  onCooldown: 0
   percentArmourMod: 0
   percentPowerMod: 0
   percentAttackSpeedMod: 0
@@ -778,14 +778,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Attack
-  targeting: pointAndClick
+  type: 
+  targeting: 
   baseDamage: 0
   baseHealing: 0
-  baseRange: 3
+  baseRange: 0
   baseAoeRadius: 0
   baseCastTime: 0
-  baseCooldown: 10000
+  baseCooldown: 0
   cam: {fileID: 0}
   appliesEffect: 0
   dotDamage: 0
@@ -795,7 +795,7 @@ MonoBehaviour:
   parentCharacter: {fileID: 0}
   parentCharacterScript: {fileID: 0}
   parentCharacterNav: {fileID: 0}
-  onCooldown: 1
+  onCooldown: 0
   percentArmourMod: 0
   percentPowerMod: 0
   percentAttackSpeedMod: 0

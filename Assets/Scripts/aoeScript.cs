@@ -17,6 +17,26 @@ public class aoeScript : MonoBehaviour
     public void readyToActivate()
     {
         rb = GetComponent<Rigidbody>();
+        if(charsInAoe.Count > 0 )
+        {
+            foreach (baseCharacter character in charsInAoe)
+            {
+                if (damage > 0)
+                {
+                    character.takeDamage(damage);
+                }
+
+                if (healing > 0)
+                {
+                    character.GetComponent<baseCharacter>().takeHealing(healing);
+                }
+
+                if (abilityAppliedBy.appliesEffect)
+                {
+                    abilityAppliedBy.createEffect(character.gameObject);
+                }
+            }
+        }
         StartCoroutine("applyEffects");
     }
 
@@ -44,16 +64,6 @@ public class aoeScript : MonoBehaviour
     {
         foreach (baseCharacter character in charsInAoe)
         {
-            if (damage > 0)
-            {
-                character.takeDamage(damage);
-            }
-
-            if (healing > 0)
-            {
-                character.GetComponent<baseCharacter>().takeHealing(healing);
-            }
-
             if (abilityAppliedBy.appliesEffect)
             {
                 abilityAppliedBy.createEffect(character.gameObject);
