@@ -45,6 +45,12 @@ public class playerController : baseCharacter
         abilityScript3 = ability3.GetComponent<baseAbilityScript>();
         abilityScript4 = ability4.GetComponent<baseAbilityScript>();
 
+        generateAbility(abilityScript0);
+        generateAbility(abilityScript1);
+        generateAbility(abilityScript2);
+        generateAbility(abilityScript3);
+        generateAbility(abilityScript4);
+
         levelUp(1);
     }
 
