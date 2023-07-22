@@ -17,27 +17,10 @@ public class aoeScript : MonoBehaviour
     public void readyToActivate()
     {
         rb = GetComponent<Rigidbody>();
-        if(charsInAoe.Count > 0 )
-        {
-            foreach (baseCharacter character in charsInAoe)
-            {
-                if (damage > 0)
-                {
-                    character.takeDamage(damage);
-                }
 
-                if (healing > 0)
-                {
-                    character.GetComponent<baseCharacter>().takeHealing(healing);
-                }
-
-                if (abilityAppliedBy.appliesEffect)
-                {
-                    abilityAppliedBy.createEffect(character.gameObject);
-                }
-            }
-        }
+        StartCoroutine("durationTimer");
         StartCoroutine("applyEffects");
+        StartCoroutine("impact");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,6 +43,29 @@ public class aoeScript : MonoBehaviour
         }
     }
 
+    IEnumerator impact()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        if (charsInAoe.Count > 0)
+        {
+            foreach (baseCharacter character in charsInAoe)
+            {
+                if (damage > 0)
+                {
+                    character.takeDamage(damage);
+                }
+
+                if (healing > 0)
+                {
+                    character.GetComponent<baseCharacter>().takeHealing(healing);
+                }
+            }
+        }
+
+
+    }
+
     IEnumerator applyEffects()
     {
         foreach (baseCharacter character in charsInAoe)
@@ -68,11 +74,9 @@ public class aoeScript : MonoBehaviour
             {
                 abilityAppliedBy.createEffect(character.gameObject);
             }
-        }
+        }      
 
-        StartCoroutine("durationTimer");
-
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
 
         StartCoroutine("applyEffects");
     }

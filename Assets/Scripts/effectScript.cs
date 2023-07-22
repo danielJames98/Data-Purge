@@ -68,8 +68,8 @@ public class effectScript : MonoBehaviour
         flatProjSpeedMod = abilityAppliedBy.flatProjSpeedMod * (1 + (charAppliedBy.power / 100));
         flatDurationMod = abilityAppliedBy.flatDurationMod * (1 + (charAppliedBy.power / 100));
 
-        damage = (abilityAppliedBy.dotDamage * (charAppliedBy.power / duration)) / 10;
-        healing= (abilityAppliedBy.hotHealing * (charAppliedBy.power / duration)) / 10;
+        damage = (abilityAppliedBy.dotDamage * (charAppliedBy.power / duration)) / 2;
+        healing= (abilityAppliedBy.hotHealing * (charAppliedBy.power / duration)) / 2;
         stun = abilityAppliedBy.stun;
 
         modStats();
@@ -90,14 +90,14 @@ public class effectScript : MonoBehaviour
     IEnumerator DoT()
     {
         charAppliedTo.takeDamage(damage);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine("DoT");
     }
 
     IEnumerator HoT()
     {
         charAppliedTo.takeHealing(healing);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine("HoT");
     }
 

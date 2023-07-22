@@ -348,12 +348,12 @@ public class baseCharacter : MonoBehaviour
     public void generateAbility(baseAbilityScript ability)
     {
         //select if offensive or supportive
-        int offenseInt = Random.Range(0, 2);
-        if(offenseInt==0)
+        int offenseInt = Random.Range(0, 20);
+        if(offenseInt<19)
         {
             ability.offensive = true;
         }
-        else if(offenseInt==1)
+        else if(offenseInt==19)
         {
             ability.offensive = false;
         }
@@ -382,8 +382,8 @@ public class baseCharacter : MonoBehaviour
             }
 
             //set projectile size and speed
-            ability.projectileSpeed=Random.Range(1f, 100f);
-            ability.projectileSize = Random.Range(0.1f, 10f);
+            ability.projectileSpeed=Random.Range(1, 100);
+            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 2f)*10)*0.1f;
         }
         else if(targetingInt == 2)
         {
@@ -418,29 +418,33 @@ public class baseCharacter : MonoBehaviour
         //sets the aoe size and duration
         if(ability.type=="aoe")
         {
-            ability.aoeDuration = Random.Range(0.1f, 10f);
-            ability.baseAoeRadius = Random.Range(1f, 10);
+            ability.aoeDuration = Random.Range(1, 10);
+            ability.baseAoeRadius = Random.Range(5, 20);
         }
 
         //adds damage if offensive or healing if supportive
         if(ability.offensive==true)
         {
-            ability.baseDamage = Random.Range(0f, 100f);
+            ability.baseDamage = Random.Range(0, 50);
         }
         else if (ability.offensive==false)
         {
-            ability.baseHealing = Random.Range(0f, 100f);
+            ability.baseHealing = Random.Range(0, 50);
         }
 
         //adds a range value if not self-targeted
         if(ability.targeting!="self")
         {
-            ability.baseRange = Random.Range(3f, 50f);
+            ability.baseRange = Random.Range(10, 50);
+            if(ability.targeting=="pointAndClick")
+            {
+                ability.baseRange = ability.baseRange / 4;
+            }
         }
 
         //assign cast time and cooldown
-        ability.baseCastTime = Random.Range(0f, 2f);
-        ability.baseCooldown = Random.Range(0f, 10f);
+        ability.baseCastTime = Mathf.Round(Random.Range(0f, 2f)*10)*0.1f;
+        ability.baseCooldown = Random.Range(0, 10);
 
         //decide how many effects this applies
         int effectsToAdd = Random.Range(0, 3);
@@ -448,10 +452,13 @@ public class baseCharacter : MonoBehaviour
         if(effectsToAdd > 0)
         {
             ability.appliesEffect = true;
-        }
+
+            //determines effect duration
+            ability.effectDuration = Random.Range(1, 10);
+        }    
 
         //adds effects if any
-        while(effectsToAdd>0)
+        while (effectsToAdd>0)
         {
             int effectInt=Random.Range(0, 20);
 
@@ -459,139 +466,139 @@ public class baseCharacter : MonoBehaviour
             {
                 if(ability.offensive== true && ability.dotDamage==0)
                 {
-                    ability.dotDamage = Random.Range(10f, 100f);
+                    ability.dotDamage = Random.Range(10, 25);
                     effectsToAdd--;
                 }
                 else if(ability.offensive==false && ability.hotHealing==0)
                 {
-                    ability.hotHealing= Random.Range(10f, 100f);
+                    ability.hotHealing= Random.Range(10, 25);
                     effectsToAdd--;
                 }
             }
             else if(effectInt == 1 && ability.percentArmourMod==0)
             {
                 
-                if(ability.offensive == true) { ability.percentArmourMod = Random.Range(-10f, -100f); }
-                else if(ability.offensive == false) { ability.percentArmourMod = Random.Range(10f, 100f); }
+                if(ability.offensive == true) { ability.percentArmourMod = Random.Range(-10, -50); }
+                else if(ability.offensive == false) { ability.percentArmourMod = Random.Range(10, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 2 && ability.percentPowerMod == 0)
             {
 
-                if (ability.offensive == true) { ability.percentPowerMod = Random.Range(-10f, -100f); }
-                else if (ability.offensive == false) { ability.percentPowerMod = Random.Range(10f, 100f); }
+                if (ability.offensive == true) { ability.percentPowerMod = Random.Range(-10, -50); }
+                else if (ability.offensive == false) { ability.percentPowerMod = Random.Range(10, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 3 && ability.percentAttackSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.percentAttackSpeedMod = Random.Range(-10f, -100f); }
-                else if (ability.offensive == false) { ability.percentAttackSpeedMod = Random.Range(10f, 100f); }
+                if (ability.offensive == true) { ability.percentAttackSpeedMod = Random.Range(-10, -50); }
+                else if (ability.offensive == false) { ability.percentAttackSpeedMod = Random.Range(10, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 4 && ability.percentMoveSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.percentMoveSpeedMod = Random.Range(-10f, -100f); }
-                else if (ability.offensive == false) { ability.percentMoveSpeedMod = Random.Range(10f, 100f); }
+                if (ability.offensive == true) { ability.percentMoveSpeedMod = Random.Range(-10, -50); }
+                else if (ability.offensive == false) { ability.percentMoveSpeedMod = Random.Range(10, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 5 && ability.percentCdrMod == 0)
             {
 
-                if (ability.offensive == true) { ability.percentCdrMod = Random.Range(-10f, -100f); }
-                else if (ability.offensive == false) { ability.percentCdrMod = Random.Range(10f, 100f); }
+                if (ability.offensive == true) { ability.percentCdrMod = Random.Range(-10, -50); }
+                else if (ability.offensive == false) { ability.percentCdrMod = Random.Range(10, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 6 && ability.percentRangeMod == 0)
             {
 
-                if (ability.offensive == true) { ability.percentRangeMod = Random.Range(-10f, -100f); }
-                else if (ability.offensive == false) { ability.percentRangeMod = Random.Range(10f, 100f); }
+                if (ability.offensive == true) { ability.percentRangeMod = Random.Range(-10, -50); }
+                else if (ability.offensive == false) { ability.percentRangeMod = Random.Range(10, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 7 && ability.percentAoeMod == 0)
             {
 
-                if (ability.offensive == true) { ability.percentAoeMod = Random.Range(-10f, -100f); }
-                else if (ability.offensive == false) { ability.percentAoeMod = Random.Range(10f, 100f); }
+                if (ability.offensive == true) { ability.percentAoeMod = Random.Range(-10, -50); }
+                else if (ability.offensive == false) { ability.percentAoeMod = Random.Range(10, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 8 && ability.percentProjSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.percentProjSpeedMod = Random.Range(-10f, -100f); }
-                else if (ability.offensive == false) { ability.percentProjSpeedMod = Random.Range(10f, 100f); }
+                if (ability.offensive == true) { ability.percentProjSpeedMod = Random.Range(-10, -50); }
+                else if (ability.offensive == false) { ability.percentProjSpeedMod = Random.Range(10, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 9 && ability.percentDurationMod == 0)
             {
 
-                if (ability.offensive == true) { ability.percentDurationMod = Random.Range(-10f, -100f); }
-                else if (ability.offensive == false) { ability.percentDurationMod = Random.Range(10f, 100f); }
+                if (ability.offensive == true) { ability.percentDurationMod = Random.Range(-10, -50); }
+                else if (ability.offensive == false) { ability.percentDurationMod = Random.Range(10, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 10 && ability.flatArmourMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatArmourMod = Random.Range(-1f, -100f); }
-                else if (ability.offensive == false) { ability.flatArmourMod = Random.Range(1f, 100f); }
+                if (ability.offensive == true) { ability.flatArmourMod = Random.Range(-1, -50); }
+                else if (ability.offensive == false) { ability.flatArmourMod = Random.Range(1, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 11 && ability.flatPowerMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatPowerMod = Random.Range(-1f, -100f); }
-                else if (ability.offensive == false) { ability.flatPowerMod = Random.Range(1f, 100f); }
+                if (ability.offensive == true) { ability.flatPowerMod = Random.Range(-1, -50); }
+                else if (ability.offensive == false) { ability.flatPowerMod = Random.Range(1, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 12 && ability.flatAttackSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatAttackSpeedMod = Random.Range(-1f, -100f); }
-                else if (ability.offensive == false) { ability.flatAttackSpeedMod = Random.Range(1f, 100f); }
+                if (ability.offensive == true) { ability.flatAttackSpeedMod = Random.Range(-1, -50); }
+                else if (ability.offensive == false) { ability.flatAttackSpeedMod = Random.Range(1, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 13 && ability.flatMoveSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatMoveSpeedMod = Random.Range(-1f, -100f); }
-                else if (ability.offensive == false) { ability.flatMoveSpeedMod = Random.Range(1f, 100f); }
+                if (ability.offensive == true) { ability.flatMoveSpeedMod = Random.Range(-1, -50); }
+                else if (ability.offensive == false) { ability.flatMoveSpeedMod = Random.Range(1f, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 14 && ability.flatCdrMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatCdrMod = Random.Range(-1f, -100f); }
-                else if (ability.offensive == false) { ability.flatCdrMod = Random.Range(1f, 100f); }
+                if (ability.offensive == true) { ability.flatCdrMod = Random.Range(-1, -50); }
+                else if (ability.offensive == false) { ability.flatCdrMod = Random.Range(1, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 15 && ability.flatRangeMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatRangeMod = Random.Range(-1f, -100f); }
-                else if (ability.offensive == false) { ability.flatRangeMod = Random.Range(1f, 100f); }
+                if (ability.offensive == true) { ability.flatRangeMod = Random.Range(-1, -50); }
+                else if (ability.offensive == false) { ability.flatRangeMod = Random.Range(1, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 16 && ability.flatAoeMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatAoeMod = Random.Range(-1f, -100f); }
-                else if (ability.offensive == false) { ability.flatAoeMod = Random.Range(1f, 100f); }
+                if (ability.offensive == true) { ability.flatAoeMod = Random.Range(-1, -50); }
+                else if (ability.offensive == false) { ability.flatAoeMod = Random.Range(1, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 17 && ability.flatProjSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatProjSpeedMod = Random.Range(-1f, -100f); }
-                else if (ability.offensive == false) { ability.flatProjSpeedMod = Random.Range(1f, 100f); }
+                if (ability.offensive == true) { ability.flatProjSpeedMod = Random.Range(-1, -50); }
+                else if (ability.offensive == false) { ability.flatProjSpeedMod = Random.Range(1, 50); }
                 effectsToAdd--;
             }
             else if (effectInt == 18 && ability.flatDurationMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatDurationMod = Random.Range(-1f, -100f); }
-                else if (ability.offensive == false) { ability.flatDurationMod = Random.Range(1f, 100f); }
+                if (ability.offensive == true) { ability.flatDurationMod = Random.Range(-1, -50); }
+                else if (ability.offensive == false) { ability.flatDurationMod = Random.Range(1, 50); }
                 effectsToAdd--;
             }
             else if(effectInt==19)
@@ -599,12 +606,10 @@ public class baseCharacter : MonoBehaviour
                 if (ability.offensive == true && ability.stun == false)
                 {
                     ability.stun = true;
+                    ability.effectDuration = ability.effectDuration / 2;
                     effectsToAdd--;
                 }
             }
-
-            //determines effect duration and if they stack
-            ability.effectDuration = Random.Range(1f, 10f);
 
             int stackInt = Random.Range(0, 2);
             if(stackInt==0)
@@ -614,6 +619,7 @@ public class baseCharacter : MonoBehaviour
             else if(stackInt == 1)
             {
                 ability.stackingEffect = true;
+                ability.effectDuration = ability.effectDuration / 2;
             }
         }
     }
