@@ -19,7 +19,10 @@ public class aoeScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         StartCoroutine("durationTimer");
-        StartCoroutine("applyEffects");
+        if (abilityAppliedBy.appliesEffect&& abilityAppliedBy.stun==false)
+        {
+            StartCoroutine("applyEffects");
+        }
         StartCoroutine("impact");
     }
 
@@ -51,14 +54,22 @@ public class aoeScript : MonoBehaviour
         {
             foreach (baseCharacter character in charsInAoe)
             {
-                if (damage > 0)
+                if (character!=null)
                 {
-                    character.takeDamage(damage);
-                }
+                    if (damage > 0)
+                    {
+                        character.takeDamage(damage);
+                    }
 
-                if (healing > 0)
-                {
-                    character.GetComponent<baseCharacter>().takeHealing(healing);
+                    if (healing > 0)
+                    {
+                        character.GetComponent<baseCharacter>().takeHealing(healing);
+                    }
+
+                    if (abilityAppliedBy.stun == true)
+                    {
+                        abilityAppliedBy.createEffect(character.gameObject);
+                    }
                 }
             }
         }
@@ -70,10 +81,10 @@ public class aoeScript : MonoBehaviour
     {
         foreach (baseCharacter character in charsInAoe)
         {
-            if (abilityAppliedBy.appliesEffect)
+            if (character != null)
             {
                 abilityAppliedBy.createEffect(character.gameObject);
-            }
+            }      
         }      
 
         yield return new WaitForSeconds(0.5f);

@@ -38,9 +38,11 @@ public class enemyController : baseCharacter
 
         generateAbility(abilityScript0);
         generateAbility(abilityScript1);
+        /*
         generateAbility(abilityScript2);
         generateAbility(abilityScript3);
         generateAbility(abilityScript4);
+        */
 
         levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level);
 
@@ -80,9 +82,9 @@ public class enemyController : baseCharacter
         if (targetCharacter != null && casting == false && stunned == false && castingAbility!=null)
         {       
 
-            if (navMeshAgent.destination != (transform.position - targetCharacter.transform.position).normalized * (castingAbility.baseRange * bonusRange) + targetCharacter.transform.position)
+            if (navMeshAgent.destination != targetCharacter.transform.position)
             {
-                navMeshAgent.destination = (transform.position - targetCharacter.transform.position).normalized * (castingAbility.baseRange * bonusRange) + targetCharacter.transform.position;               
+                navMeshAgent.destination = targetCharacter.transform.position;               
             }   
             
             if(targetPosition!=targetCharacter.transform.position)
@@ -93,15 +95,15 @@ public class enemyController : baseCharacter
 
         if (castingAbility != null && casting == false && stunned == false && movingToRange == true)
         {
-            if (navMeshAgent.destination == new Vector3(transform.position.x, transform.position.y-1, transform.position.z))
+            if (Vector3.Distance(gameObject.transform.position, targetCharacter.transform.position) <= (castingAbility.baseRange * (1 + (bonusRange / 100))))
             {
-                if(castingAbility.targeting=="pointAndClick")
+                if (castingAbility.targeting=="pointAndClick")
                 {
                     castingAbility.StartCoroutine("applyPointandClickEffect");
                 }
                 else if (castingAbility.targeting=="direction")
                 {
-                    castingAbility.StartCoroutine("applyPointandClickEffect");
+                    castingAbility.StartCoroutine("spawnProjectile");
                 }
                 else if (castingAbility.targeting == "ground")
                 {
@@ -109,6 +111,7 @@ public class enemyController : baseCharacter
                 }
 
                 movingToRange = false;
+                navMeshAgent.destination = transform.position;
             }
         }
 
@@ -120,6 +123,10 @@ public class enemyController : baseCharacter
         if (casting==true)
         {
             castBarUpdate();
+            if(targetCharacter!=null)
+            {
+                transform.forward = targetCharacter.transform.position - transform.position;
+            }         
         }
         else if (casting == false && castBarActive == true)
         {
@@ -177,8 +184,9 @@ public class enemyController : baseCharacter
     {
         boss = true;
 
-        levelUp(10);
+        levelUp(5);
 
         this.transform.localScale = new Vector3(2f, 2f, 2f);
+        this.gameObject.GetComponent<SphereCollider>().radius = 7.5f;
     }
 }

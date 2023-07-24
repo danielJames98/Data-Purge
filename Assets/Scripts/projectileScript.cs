@@ -50,11 +50,6 @@ public class projectileScript : MonoBehaviour
             {
                 abilityAppliedBy.createEffect(other.gameObject);
             }
-
-            if (piercing == false)
-            {
-                destroySelf();
-            }
         }
 
         else if (offensive == false && other.tag == charAppliedBy.tag && other.gameObject.GetComponent<baseCharacter>() != null)
@@ -73,11 +68,11 @@ public class projectileScript : MonoBehaviour
             {
                 abilityAppliedBy.createEffect(other.gameObject);
             }
+        }
 
-            if (piercing == false)
-            {
-                destroySelf();
-            }
+        if (piercing == false&& other.gameObject.layer==3)
+        {
+            destroySelf();
         }
     }
 

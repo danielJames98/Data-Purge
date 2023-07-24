@@ -13,15 +13,18 @@ public class camController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //player = GameObject.Find("playerCharacter");
+        player = GameObject.Find("playerCharacter(Clone)");
         cam = this.GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 15f, player.transform.position.z - 9f);
-
+        if(player!= null) 
+        {
+            this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 15f, player.transform.position.z - 9f);
+        }
+        
         if((Input.GetAxis("Mouse ScrollWheel") > 0) && cam.fieldOfView > minFOV)
         {
             cam.fieldOfView = cam.fieldOfView - zoomSpeed;

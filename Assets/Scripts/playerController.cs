@@ -98,9 +98,9 @@ public class playerController : baseCharacter
 
         if (castingAbility != null && movingToRange==true)
         {
-            if (navMeshAgent.destination == new Vector3(transform.position.x, transform.position.y-1, transform.position.z))
+            if (Vector3.Distance(gameObject.transform.position,targetPosition) < (castingAbility.baseRange * (1 + (bonusRange / 100))))
             {
-                if(castingAbility.targeting=="pointAndClick")
+                if (castingAbility.targeting=="pointAndClick")
                 {
                     castingAbility.StartCoroutine("applyPointandClickEffect");
                 }
@@ -109,13 +109,14 @@ public class playerController : baseCharacter
                     castingAbility.StartCoroutine("spawnAoe");
                 }
 
+                navMeshAgent.destination = transform.position;
                 movingToRange = false;
             }
         }
 
         if (targetCharacter != null && castingAbility != null && movingToRange == true)
         {
-            navMeshAgent.destination = (transform.position - targetCharacter.transform.position).normalized * (castingAbility.baseRange * (1+(bonusRange/100))) + targetCharacter.transform.position;
+           // navMeshAgent.destination = targetCharacter.transform.position;
         }
 
         if(navMeshAgent.speed!=moveSpeed)
@@ -126,6 +127,10 @@ public class playerController : baseCharacter
         if(casting == true)
         {
             castBarUpdate();
+            if (targetCharacter != null)
+            {
+                transform.forward = targetCharacter.transform.position - transform.position;
+            }
         }
     }
 

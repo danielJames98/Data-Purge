@@ -114,7 +114,6 @@ public class baseAbilityScript : MonoBehaviour
         {
             if (offensive==true && hit.transform.gameObject.tag == "Enemy")
             {
-
                 if (Vector3.Distance(parentCharacter.transform.position, hit.transform.position) <= (baseRange * (1 + (parentCharacterScript.bonusRange / 100))))
                 {
                     parentCharacterScript.targetCharacter = hit.transform.gameObject;
@@ -170,9 +169,8 @@ public class baseAbilityScript : MonoBehaviour
         }
         else
         {
-            targetCharacter = parentCharacterScript.aggroTarget.transform.gameObject;
+            targetCharacter = parentCharacterScript.aggroTarget.transform.gameObject;    
         }
-
 
         if (baseDamage>0)
         {
@@ -188,8 +186,12 @@ public class baseAbilityScript : MonoBehaviour
         {
             targetCharacter.transform.gameObject.GetComponent<baseCharacter>().takeHealing(baseHealing * (1 + (parentCharacterScript.power / 100)));
         }
+
+        if(targetCharacter!=parentCharacter)
+        {
+            parentCharacter.transform.forward = targetCharacter.transform.position - parentCharacter.transform.position;
+        }
         
-        parentCharacter.transform.forward = targetCharacter.transform.position - parentCharacter.transform.position;
         parentCharacterScript.castingCoroutine = null;
         parentCharacterScript.casting = false;
         parentCharacterScript.castingAbility = null;
@@ -243,16 +245,16 @@ public class baseAbilityScript : MonoBehaviour
     {
         parentCharacterScript.targetCharacter = targetCharacter;
         parentCharacterScript.castingAbility = this;
-        parentCharacterScript.movingToRange=true;
-        parentCharacterNav.destination = (parentCharacter.transform.position - targetCharacter.transform.position).normalized * (baseRange * (1 + (parentCharacterScript.bonusRange / 100))) + targetCharacter.transform.position;
+        parentCharacterScript.movingToRange= true;
+        parentCharacterNav.destination = targetCharacter.transform.position;
     }
 
     public void moveIntoRangeOfPoint(Vector3 point)
     {
+        parentCharacterNav.destination = point;
         parentCharacterScript.targetPosition = point;
         parentCharacterScript.castingAbility = this;
-        parentCharacterScript.movingToRange = true;
-        parentCharacterNav.destination = (parentCharacter.transform.position - point).normalized * (baseRange * (1+(parentCharacterScript.bonusRange/100))) + point;
+        parentCharacterScript.movingToRange = true;       
     }
 
     public void direction()
@@ -297,10 +299,6 @@ public class baseAbilityScript : MonoBehaviour
         }
     }
 
-
-
-
-
     IEnumerator spawnProjectile()
     {
         parentCharacterScript.castingCoroutine = "spawnProjectile";
@@ -321,7 +319,7 @@ public class baseAbilityScript : MonoBehaviour
         projectileScriptRef.offensive = offensive;
         projectileScriptRef.readyToFire();
         parentCharacterScript.castingCoroutine = null;
-
+        parentCharacterScript.castingAbility = null;
         StartCoroutine("cooldown");
     }
 
@@ -364,7 +362,10 @@ public class baseAbilityScript : MonoBehaviour
         point = new Vector3(parentCharacterScript.targetPosition.x, 0.6f, parentCharacterScript.targetPosition.z);               
         parentCharacterScript.castingCoroutine = "spawnAoe";
         parentCharacterScript.castingAbility = this;
-        parentCharacter.transform.LookAt(point);
+        if(targeting!="self")
+        {
+            parentCharacter.transform.LookAt(point);
+        }
         parentCharacterScript.casting = true;
         yield return new WaitForSeconds(baseCastTime / (1 + (parentCharacterScript.attackSpeed / 100)));
         parentCharacterScript.casting = false;
@@ -379,6 +380,7 @@ public class baseAbilityScript : MonoBehaviour
         aoeScriptRef.offensive = offensive;
         aoeScriptRef.readyToActivate();
         parentCharacterScript.castingCoroutine = null;
+        parentCharacterScript.castingAbility = null;
         StartCoroutine("cooldown");
     }
 

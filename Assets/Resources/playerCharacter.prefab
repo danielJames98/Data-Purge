@@ -302,17 +302,17 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   levelManager: {fileID: 0}
   level: 0
-  currentHealth: 100
-  maxHealth: 100
+  currentHealth: 500
+  maxHealth: 500
   moveSpeed: 10
-  attackSpeed: 0
-  cooldownReduction: 0
-  armour: 0
-  power: 0
-  bonusRange: 0
-  bonusArea: 0
-  bonusProjectileSpeed: 0
-  bonusDuration: 0
+  attackSpeed: 10
+  cooldownReduction: 10
+  armour: 10
+  power: 10
+  bonusRange: 10
+  bonusArea: 10
+  bonusProjectileSpeed: 10
+  bonusDuration: 10
   currentXP: 0
   maxXP: 0
   boss: 0
