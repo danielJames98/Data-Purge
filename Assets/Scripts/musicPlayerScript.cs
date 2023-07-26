@@ -10,7 +10,7 @@ public class musicPlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         audioSource= this.GetComponent<AudioSource>();
         audioSource.clip= songs[Random.Range(0, songs.Count)];
         audioSource.Play();

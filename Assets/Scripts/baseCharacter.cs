@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class baseCharacter : MonoBehaviour
 {
@@ -156,6 +157,7 @@ public class baseCharacter : MonoBehaviour
         if(gameObject.tag=="Player")
         {
             GameObject.Find("Main Camera(Clone)").GetComponent<camController>().player = null;
+            SceneManager.LoadScene("generatedScene");
         }
 
         alive = false;
