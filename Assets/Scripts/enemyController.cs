@@ -12,7 +12,7 @@ public class enemyController : baseCharacter
         navMeshAgent = this.GetComponent<NavMeshAgent>();
 
         frontFirePoint = transform.Find("frontFirePoint").gameObject;
-
+        animator = transform.Find("Robot Kyle").GetComponent<Animator>();
         overHeadCanvas = Instantiate(Resources.Load("overHeadCanvas", typeof(GameObject)), new Vector3(this.transform.position.x, this.transform.position.y + 2, this.transform.position.z), Quaternion.identity) as GameObject;
         healthBar = overHeadCanvas.transform.Find("healthBar").gameObject;
         overHeadCanvas.GetComponent<overHeadCanvasScript>().parentCharacter = this.gameObject;
@@ -21,7 +21,7 @@ public class enemyController : baseCharacter
         castBar = overHeadCanvas.transform.Find("castBar").gameObject;
         castBar.SetActive(false);
         castBarActive = false;
-
+        audioSource = GetComponent<AudioSource>();
         rb = this.GetComponent<Rigidbody>();
 
         ability0 = transform.Find("ability0").gameObject;
@@ -118,6 +118,23 @@ public class enemyController : baseCharacter
         if (navMeshAgent.speed != moveSpeed)
         {
             navMeshAgent.speed = moveSpeed;
+        }
+
+        if (animator.GetFloat("velocity") != navMeshAgent.velocity.magnitude)
+        {
+            animator.SetFloat("velocity", navMeshAgent.velocity.magnitude);
+        }
+
+        if (navMeshAgent.velocity.magnitude > 0)
+        {
+            if (animator.speed != 1 * (navMeshAgent.velocity.magnitude / 10))
+            {
+                animator.speed = 1 * (navMeshAgent.velocity.magnitude / 10);
+            }
+        }
+        else if (navMeshAgent.velocity.magnitude == 0)
+        {
+            animator.speed = 1;
         }
 
         if (casting==true)

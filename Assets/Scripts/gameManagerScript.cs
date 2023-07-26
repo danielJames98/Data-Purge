@@ -7,6 +7,7 @@ public class gameManagerScript : MonoBehaviour
     public GameObject startingLevel;
     public GameObject player;
     public GameObject activeLevel;
+
     void Start()
     {
         startingLevel = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 4).ToString()));

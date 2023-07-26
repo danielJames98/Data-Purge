@@ -9,6 +9,7 @@ public class baseCharacter : MonoBehaviour
 {
     public bool alive = true;
 
+    public Animator animator;
 
     public gameManagerScript gameManager;
     public levelManagerScript levelManager;
@@ -75,6 +76,13 @@ public class baseCharacter : MonoBehaviour
     public float timeSinceCastStart;
     public float castStartTime;
     public bool movingToRange;
+
+    public AudioSource audioSource;
+    public List<AudioClip> walkSounds;
+    public bool walkSoundPlaying;
+    public int currentWalkSound;
+    public float walkSoundDelay;
+    public bool walking;
 
     public void takeDamage(float damage)
     {

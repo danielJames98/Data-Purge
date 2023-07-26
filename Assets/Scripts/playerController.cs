@@ -18,6 +18,7 @@ public class playerController : baseCharacter
         GameObject camObject = Instantiate(Resources.Load<GameObject>("Main Camera"));
         camObject.GetComponent<camController>().player = this.gameObject;
         cam = camObject.GetComponent<Camera>();       
+        animator= transform.Find("Robot Kyle").GetComponent<Animator>();
 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         ui = Instantiate(Resources.Load<GameObject>("inGameUI"));
@@ -28,7 +29,7 @@ public class playerController : baseCharacter
         castBarActive = true;
         gameManager = GameObject.Find("gameManager").GetComponent<gameManagerScript>();
         gameManager.startingLevel.GetComponent<levelManagerScript>().objectiveText = ui.transform.Find("objectiveText").gameObject;
-
+        audioSource = GetComponent<AudioSource>();
         frontFirePoint = transform.Find("frontFirePoint").gameObject;
 
         rb=this.GetComponent<Rigidbody>();
@@ -123,6 +124,26 @@ public class playerController : baseCharacter
         {
             navMeshAgent.speed = moveSpeed;
         }
+
+
+        if (animator.GetFloat("velocity")!= navMeshAgent.velocity.magnitude)
+        {
+            animator.SetFloat("velocity", navMeshAgent.velocity.magnitude);
+        }
+
+        if(navMeshAgent.velocity.magnitude>0)
+        {
+            if(animator.speed != 1 * (navMeshAgent.velocity.magnitude / 10))
+            {
+                animator.speed = 1 * (navMeshAgent.velocity.magnitude / 10);
+            }
+        }
+        else if(navMeshAgent.velocity.magnitude==0)
+        {
+            animator.speed = 1;
+        }
+
+        
 
         if(casting == true)
         {

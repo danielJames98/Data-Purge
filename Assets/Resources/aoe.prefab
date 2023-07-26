@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6ec94fb0c67a8bf4cb15f36d6db269ce, type: 2}
+  - {fileID: 2100000, guid: 976b31720675c1a47be763ebf89dc566, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,5 +153,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   duration: 0
   damage: 0
+  healing: 0
   charsInAoe: []
   offensive: 0
