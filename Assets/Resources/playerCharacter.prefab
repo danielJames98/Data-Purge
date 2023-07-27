@@ -1,5 +1,167 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &304082706314649371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3198373787064354710}
+  - component: {fileID: 128737043256137146}
+  m_Layer: 0
+  m_Name: inventorySlot16
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3198373787064354710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304082706314649371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &128737043256137146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304082706314649371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &620713826464239188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9150195265394417366}
+  - component: {fileID: 5998013703598184513}
+  m_Layer: 0
+  m_Name: inventorySlot15
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9150195265394417366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620713826464239188}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5998013703598184513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620713826464239188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
 --- !u!1 &1238010420492979326
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +267,232 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1309592631806735206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7808128716834276198}
+  - component: {fileID: 4232332240733764666}
+  m_Layer: 0
+  m_Name: inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7808128716834276198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309592631806735206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5997607418805276128}
+  - {fileID: 947407059898910410}
+  - {fileID: 4107804550125535557}
+  - {fileID: 1733531875076137096}
+  - {fileID: 3676899491526371437}
+  - {fileID: 7535356370322148745}
+  - {fileID: 1615251535363707139}
+  - {fileID: 2826101569145045336}
+  - {fileID: 2080918296291581566}
+  - {fileID: 4660064065795324105}
+  - {fileID: 4689763096392782206}
+  - {fileID: 5386900071262646164}
+  - {fileID: 7796441083730288659}
+  - {fileID: 7104985667174234051}
+  - {fileID: 1720779456683264338}
+  - {fileID: 9150195265394417366}
+  - {fileID: 3198373787064354710}
+  - {fileID: 1224807065728794287}
+  - {fileID: 3244737947766654132}
+  - {fileID: 3887781180117023404}
+  m_Father: {fileID: 8469441896723429078}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4232332240733764666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309592631806735206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95c21d15f48ec3469e18e3463c87472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1330257025689189276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3676899491526371437}
+  - component: {fileID: 9075039828143195410}
+  m_Layer: 0
+  m_Name: inventorySlot4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3676899491526371437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330257025689189276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9075039828143195410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330257025689189276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &1586622973404580568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2826101569145045336}
+  - component: {fileID: 5806557829654439755}
+  m_Layer: 0
+  m_Name: inventorySlot7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2826101569145045336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586622973404580568}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5806557829654439755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586622973404580568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
 --- !u!1 &1758190778316929052
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +580,168 @@ MonoBehaviour:
   aoeDuration: 0
   offensive: 0
   stun: 0
+--- !u!1 &2525611325534827666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 947407059898910410}
+  - component: {fileID: 2688317780542847336}
+  m_Layer: 0
+  m_Name: inventorySlot1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &947407059898910410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525611325534827666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2688317780542847336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525611325534827666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &3302974726794195963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1733531875076137096}
+  - component: {fileID: 7059708560567332582}
+  m_Layer: 0
+  m_Name: inventorySlot3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1733531875076137096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302974726794195963}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7059708560567332582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302974726794195963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
 --- !u!1 &3506257751177481393
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +785,7 @@ Transform:
   - {fileID: 4817099542435780227}
   - {fileID: 1983328728237592491}
   - {fileID: 6118995888694922669}
+  - {fileID: 7808128716834276198}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -361,6 +912,28 @@ MonoBehaviour:
   walking: 0
   cam: {fileID: 0}
   ui: {fileID: 0}
+  inventoryItems:
+  - {fileID: 6399264095406801085}
+  - {fileID: 2688317780542847336}
+  - {fileID: 2195829316861963259}
+  - {fileID: 7059708560567332582}
+  - {fileID: 9075039828143195410}
+  - {fileID: 8634267014360946008}
+  - {fileID: 1980079720226204075}
+  - {fileID: 5806557829654439755}
+  - {fileID: 3072705583838839164}
+  - {fileID: 2320385438893374385}
+  - {fileID: 5340351362277018715}
+  - {fileID: 4149890186276265043}
+  - {fileID: 484483030669875047}
+  - {fileID: 6747911607798249721}
+  - {fileID: 4156550142876451688}
+  - {fileID: 5998013703598184513}
+  - {fileID: 128737043256137146}
+  - {fileID: 2197176913371518044}
+  - {fileID: 4457986589957122987}
+  - {fileID: 5932213717757582032}
+  firstEmptyInventorySlot: 0
 --- !u!136 &4683389479978228793
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -529,6 +1102,330 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4146626979927752146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7535356370322148745}
+  - component: {fileID: 8634267014360946008}
+  m_Layer: 0
+  m_Name: inventorySlot5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7535356370322148745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146626979927752146}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8634267014360946008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146626979927752146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &4715084883421355475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1224807065728794287}
+  - component: {fileID: 2197176913371518044}
+  m_Layer: 0
+  m_Name: inventorySlot17
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1224807065728794287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715084883421355475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2197176913371518044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715084883421355475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &5542006829917678933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1615251535363707139}
+  - component: {fileID: 1980079720226204075}
+  m_Layer: 0
+  m_Name: inventorySlot6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1615251535363707139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542006829917678933}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1980079720226204075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542006829917678933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &5803313448381602782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4660064065795324105}
+  - component: {fileID: 2320385438893374385}
+  m_Layer: 0
+  m_Name: inventorySlot9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4660064065795324105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5803313448381602782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2320385438893374385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5803313448381602782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
 --- !u!1 &5887483177471492839
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +1457,249 @@ Transform:
   m_Father: {fileID: 8469441896723429078}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5992032752196659208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7796441083730288659}
+  - component: {fileID: 484483030669875047}
+  m_Layer: 0
+  m_Name: inventorySlot12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7796441083730288659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992032752196659208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &484483030669875047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992032752196659208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &6697749914915674478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4107804550125535557}
+  - component: {fileID: 2195829316861963259}
+  m_Layer: 0
+  m_Name: inventorySlot2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4107804550125535557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697749914915674478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2195829316861963259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697749914915674478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &6851426085473316441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080918296291581566}
+  - component: {fileID: 3072705583838839164}
+  m_Layer: 0
+  m_Name: inventorySlot8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2080918296291581566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851426085473316441}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3072705583838839164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851426085473316441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
 --- !u!1 &6902490759089474468
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +1783,87 @@ MonoBehaviour:
   projectileSpeed: 0
   piercing: 0
   frontFirePoint: {fileID: 0}
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &6976141939301830641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7104985667174234051}
+  - component: {fileID: 6747911607798249721}
+  m_Layer: 0
+  m_Name: inventorySlot13
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7104985667174234051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6976141939301830641}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6747911607798249721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6976141939301830641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
   projectileSize: 0
   aoeDuration: 0
   offensive: 0
@@ -734,6 +1955,249 @@ MonoBehaviour:
   aoeDuration: 0
   offensive: 0
   stun: 0
+--- !u!1 &7065871384505687766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3244737947766654132}
+  - component: {fileID: 4457986589957122987}
+  m_Layer: 0
+  m_Name: inventorySlot18
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3244737947766654132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7065871384505687766}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4457986589957122987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7065871384505687766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &7179713639233591547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1720779456683264338}
+  - component: {fileID: 4156550142876451688}
+  m_Layer: 0
+  m_Name: inventorySlot14
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1720779456683264338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7179713639233591547}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4156550142876451688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7179713639233591547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &7731535993805441038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5386900071262646164}
+  - component: {fileID: 4149890186276265043}
+  m_Layer: 0
+  m_Name: inventorySlot11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5386900071262646164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731535993805441038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4149890186276265043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731535993805441038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
 --- !u!1 &7924696040963100470
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,6 +2281,249 @@ MonoBehaviour:
   projectileSpeed: 0
   piercing: 0
   frontFirePoint: {fileID: 0}
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &8022172766556968580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3887781180117023404}
+  - component: {fileID: 5932213717757582032}
+  m_Layer: 0
+  m_Name: inventorySlot19
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3887781180117023404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8022172766556968580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5932213717757582032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8022172766556968580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &8227573667730724459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4689763096392782206}
+  - component: {fileID: 5340351362277018715}
+  m_Layer: 0
+  m_Name: inventorySlot10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4689763096392782206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227573667730724459}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5340351362277018715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227573667730724459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+--- !u!1 &8759030319764382577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5997607418805276128}
+  - component: {fileID: 6399264095406801085}
+  m_Layer: 0
+  m_Name: inventorySlot0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5997607418805276128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759030319764382577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7808128716834276198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6399264095406801085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759030319764382577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
   projectileSize: 0
   aoeDuration: 0
   offensive: 0

@@ -28,9 +28,7 @@ public class directionalLightScript : MonoBehaviour
 
     public void setVariables()
     {
-        this.transform.eulerAngles = new Vector3(UnityEngine.Random.Range(minAngle, maxAngle), 
-            UnityEngine.Random.Range(minAngle, maxAngle), 
-            UnityEngine.Random.Range(-minAngle, maxAngle));
+        this.transform.eulerAngles = new Vector3(UnityEngine.Random.Range(minAngle, maxAngle), 0, UnityEngine.Random.Range(-minAngle, maxAngle));
         lightComponent.color = new Color32(System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 
             System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 
             System.Convert.ToByte(UnityEngine.Random.Range(colourMin, colourMax)), 255);
@@ -66,7 +64,7 @@ public class directionalLightScript : MonoBehaviour
         while (true)
         {
             var startRot = this.transform.eulerAngles;
-            var endRot = new Vector3(UnityEngine.Random.Range(minAngle, maxAngle), UnityEngine.Random.Range(minAngle, maxAngle), UnityEngine.Random.Range(minAngle, maxAngle));
+            var endRot = new Vector3(UnityEngine.Random.Range(minAngle, maxAngle), 0, UnityEngine.Random.Range(minAngle, maxAngle));
 
             float t = 0;
             while (t < 1)

@@ -434,6 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentCharacter: {fileID: 0}
+  yOffset: 0
 --- !u!1 &5938409508959284887
 GameObject:
   m_ObjectHideFlags: 0

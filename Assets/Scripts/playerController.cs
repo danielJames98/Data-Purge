@@ -12,6 +12,9 @@ public class playerController : baseCharacter
     
     public GameObject ui;
 
+    public List<inventorySlotScript> inventoryItems;
+    public int firstEmptyInventorySlot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +22,6 @@ public class playerController : baseCharacter
         camObject.GetComponent<camController>().player = this.gameObject;
         cam = camObject.GetComponent<Camera>();       
         animator= transform.Find("Robot Kyle").GetComponent<Animator>();
-
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         ui = Instantiate(Resources.Load<GameObject>("inGameUI"));
         healthBar = GameObject.Find("playerHealthBar");
@@ -31,8 +33,9 @@ public class playerController : baseCharacter
         gameManager.startingLevel.GetComponent<levelManagerScript>().objectiveText = ui.transform.Find("objectiveText").gameObject;
         audioSource = GetComponent<AudioSource>();
         frontFirePoint = transform.Find("frontFirePoint").gameObject;
-
+        firstEmptyInventorySlot = 0;
         rb=this.GetComponent<Rigidbody>();
+
 
         ability0 = transform.Find("ability0").gameObject;
         ability1 = transform.Find("ability1").gameObject;
@@ -61,14 +64,24 @@ public class playerController : baseCharacter
         {
             if(navMeshAgent.enabled==true && casting ==false &&stunned==false)
             {
+                
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable")))
+                
+                Ray lootRay = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit lootHit;
+
+                if (Physics.Raycast(lootRay, out lootHit, 100) && lootHit.transform.gameObject.tag == "loot" && Vector3.Distance(this.transform.position, lootHit.point)<10)
+                {
+                    lootHit.transform.gameObject.GetComponent<lootScript>().pickUp(this, inventoryItems[firstEmptyInventorySlot]);
+                }
+                else if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable")))
                 {
                     targetCharacter = null;
                     castingAbility = null;
                     navMeshAgent.destination = hit.point;
                 }
+                
             }
         }
 
