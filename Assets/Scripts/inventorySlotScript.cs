@@ -49,15 +49,5 @@ public class inventorySlotScript : MonoBehaviour
     public bool offensive;
     public bool stun;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

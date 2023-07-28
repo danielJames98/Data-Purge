@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class playerController : baseCharacter
@@ -60,7 +61,7 @@ public class playerController : baseCharacter
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)&& EventSystem.current.IsPointerOverGameObject()==false)
         {
             if(navMeshAgent.enabled==true && casting ==false &&stunned==false)
             {

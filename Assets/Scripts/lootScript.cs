@@ -115,6 +115,7 @@ public class lootScript : MonoBehaviour
         slot.offensive = offensive;
         slot.stun = stun;
         pc.firstEmptyInventorySlot++;
+        pc.ui.GetComponent<uiManagerScript>().fillInventoryUI();
         Destroy(canvas);
         Destroy(this.gameObject);
     }

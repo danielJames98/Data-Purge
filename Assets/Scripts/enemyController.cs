@@ -14,6 +14,7 @@ public class enemyController : baseCharacter
         frontFirePoint = transform.Find("frontFirePoint").gameObject;
         animator = transform.Find("Robot Kyle").GetComponent<Animator>();
         overHeadCanvas = Instantiate(Resources.Load("overHeadCanvas", typeof(GameObject)), new Vector3(this.transform.position.x, this.transform.position.y + 2, this.transform.position.z), Quaternion.identity) as GameObject;
+        overHeadCanvas.GetComponent<overHeadCanvasScript>().yOffset = 2;
         healthBar = overHeadCanvas.transform.Find("healthBar").gameObject;
         overHeadCanvas.GetComponent<overHeadCanvasScript>().parentCharacter = this.gameObject;
         healthBar.SetActive(false);

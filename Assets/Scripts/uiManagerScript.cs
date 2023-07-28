@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -29,8 +30,40 @@ public class uiManagerScript : MonoBehaviour
     public TMPro.TextMeshProUGUI durationNum;
     public TMPro.TextMeshProUGUI projectileSpeedNum;
 
+    public GameObject inventoryUI;
+    public bool inventoryUIActive;
 
-    // Start is called before the first frame update
+    public GameObject inventorySlotUI0;
+    public GameObject inventorySlotUI1;
+    public GameObject inventorySlotUI2;
+    public GameObject inventorySlotUI3;
+    public GameObject inventorySlotUI4;
+    public GameObject inventorySlotUI5;
+    public GameObject inventorySlotUI6;
+    public GameObject inventorySlotUI7;
+    public GameObject inventorySlotUI8;
+    public GameObject inventorySlotUI9;
+    public GameObject inventorySlotUI10;
+    public GameObject inventorySlotUI11;
+    public GameObject inventorySlotUI12;
+    public GameObject inventorySlotUI13;
+    public GameObject inventorySlotUI14;
+    public GameObject inventorySlotUI15;
+    public GameObject inventorySlotUI16;
+    public GameObject inventorySlotUI17;
+    public GameObject inventorySlotUI18;
+    public GameObject inventorySlotUI19;
+
+    public GameObject tempAbility;
+    public inventorySlotScript tempAbilityScript;
+
+    public bool abilitySelected;
+
+    public baseAbilityScript selectedAbilityScript;
+    public inventorySlotScript selectedAbilityScriptInv;
+    public baseAbilityScript targetAbilityScript;
+    public inventorySlotScript targetAbilityScriptInv;
+
     void Start()
     {
         player = GameObject.Find("playerCharacter(Clone)");
@@ -59,6 +92,16 @@ public class uiManagerScript : MonoBehaviour
         toolTipText = toolTip.transform.Find("toolTipText").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
         toolTip.SetActive(false);
         toolTipActive= false;
+
+        inventoryUI = transform.Find("inventory").gameObject;
+
+
+        inventoryUI.SetActive(false);
+        inventoryUIActive=false;
+
+        tempAbility = transform.Find("tempAbility").gameObject;
+        tempAbilityScript = tempAbility.GetComponent<inventorySlotScript>();
+
     }
 
     void Update()
@@ -77,14 +120,277 @@ public class uiManagerScript : MonoBehaviour
                 statPage.SetActive(false);
             }
         }
+
+        if (Input.GetButtonDown("i"))
+        {
+            if (inventoryUIActive == false)
+            {
+                inventoryUIActive = true;
+                inventoryUI.SetActive(true);
+                fillInventoryUI();
+            }
+            else if (inventoryUIActive == true)
+            {
+                inventoryUIActive = false;
+                inventoryUI.SetActive(false);
+            }
+        }
     }
 
-    public void showToolTip(int abilityNum)
+    public void fillInventoryUI()
     {
-        toolTipActive = true;
-        toolTip.SetActive(true);
-        toolTipTitle.text = "Ability" + abilityNum.ToString();
-        baseAbilityScript abilityScript= player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
+        int i = 0;
+
+        foreach(inventorySlotScript item in player.GetComponent<playerController>().inventoryItems)
+        {
+            if (item.type == "") 
+            {
+                inventoryUI.transform.Find("inventorySlot" + i).gameObject.GetComponent<Image>().color = Color.grey;
+            }
+            else if(item.type!="")
+            {
+                inventoryUI.transform.Find("inventorySlot" + i).gameObject.GetComponent<Image>().color = Color.white;
+            }
+            i++;
+        }       
+    }
+
+    public void showToolTip(int abilityNum,bool equipped)
+    {
+        if(equipped==true)
+        {
+            if(player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>().type!="")
+            {
+                toolTipActive = true;
+                toolTip.SetActive(true);
+                toolTipTitle.text = "Ability" + abilityNum.ToString();
+                fillToolTipEquipped(abilityNum);
+            }          
+        }
+        else if (equipped==false)
+        {
+            if(player.transform.Find("inventory").transform.Find("inventorySlot" + abilityNum.ToString()).gameObject.GetComponent<inventorySlotScript>().type!="")
+            {
+                toolTipActive = true;
+                toolTip.SetActive(true);
+                toolTipTitle.text = "Ability" + abilityNum.ToString();
+                fillToolTipInventory(abilityNum);
+            }            
+        }       
+    }
+    public void fillToolTipInventory(int abilityNum)
+    {
+        inventorySlotScript abilityScript = player.transform.Find("inventory").transform.Find("inventorySlot"+abilityNum.ToString()).gameObject.GetComponent<inventorySlotScript>();
+
+        toolTipText.text = "Type: " + abilityScript.type + "<br>";
+        toolTipText.text = toolTipText.text + "Targeting: " + abilityScript.targeting + "<br>";
+
+        
+        if (abilityScript.baseDamage > 0)
+        {
+            toolTipText.text = toolTipText.text + "Damage: " + abilityScript.baseDamage + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.baseHealing > 0)
+        {
+            toolTipText.text = toolTipText.text + "Healing: " + abilityScript.baseHealing + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.baseRange > 0)
+        {
+            toolTipText.text = toolTipText.text + "Range: " + abilityScript.baseRange + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.baseAoeRadius > 0)
+        {
+            toolTipText.text = toolTipText.text + "AoE: " + abilityScript.baseAoeRadius + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.aoeDuration > 0)
+        {
+            toolTipText.text = toolTipText.text + "AoE Duration: " + abilityScript.aoeDuration + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.baseCastTime > 0)
+        {
+            toolTipText.text = toolTipText.text + "Cast Time: " + abilityScript.baseCastTime + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.baseCooldown > 0)
+        {
+            toolTipText.text = toolTipText.text + "Cooldown: " + abilityScript.baseCooldown + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.appliesEffect == true)
+        {
+            toolTipText.text = toolTipText.text + "Applies Effect: " + "Yes" + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.stackingEffect == true)
+        {
+            toolTipText.text = toolTipText.text + "Stacking Effect: " + "Yes" + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.dotDamage > 0)
+        {
+            toolTipText.text = toolTipText.text + "DoT: " + abilityScript.dotDamage + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.hotHealing > 0)
+        {
+            toolTipText.text = toolTipText.text + "HoT: " + abilityScript.hotHealing + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.effectDuration > 0)
+        {
+            toolTipText.text = toolTipText.text + "Effect Duration: " + abilityScript.effectDuration + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.percentArmourMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% Armour Mod: " + abilityScript.percentArmourMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.percentPowerMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% Power Mod: " + abilityScript.percentPowerMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.percentAttackSpeedMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% Attack Speed Mod: " + abilityScript.percentAttackSpeedMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.percentCdrMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% CDR Mod: " + abilityScript.percentCdrMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.percentMoveSpeedMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% Move Speed Mod: " + abilityScript.percentMoveSpeedMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.percentRangeMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% Range Mod: " + abilityScript.percentRangeMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.percentAoeMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% AoE Mod: " + abilityScript.percentAoeMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.percentProjSpeedMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% Projectile Speed Mod: " + abilityScript.percentProjSpeedMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.percentDurationMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% Duration Mod: " + abilityScript.percentDurationMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatArmourMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "Armour Mod: " + abilityScript.flatArmourMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatPowerMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "Power Mod: " + abilityScript.flatPowerMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatAttackSpeedMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "Attack Speed Mod: " + abilityScript.flatAttackSpeedMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatCdrMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "CDR Mod: " + abilityScript.flatCdrMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatMoveSpeedMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "Move Speed Mod: " + abilityScript.flatMoveSpeedMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatRangeMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "Range Mod: " + abilityScript.flatRangeMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatAoeMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "AoE Mod: " + abilityScript.flatAoeMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatProjSpeedMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "Flat Projectile Speed Mod: " + abilityScript.flatProjSpeedMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatDurationMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "flat Duration Mod: " + abilityScript.flatDurationMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.projectileSize > 0)
+        {
+            toolTipText.text = toolTipText.text + "Projectile Size: " + abilityScript.projectileSize + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.projectileSpeed > 0)
+        {
+            toolTipText.text = toolTipText.text + "Projectile Speed: " + abilityScript.projectileSpeed + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.piercing == true)
+        {
+            toolTipText.text = toolTipText.text + "Piercing Projectile: " + "Yes" + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+    }
+    public void fillToolTipEquipped(int abilityNum)
+    {
+        
+
+        baseAbilityScript abilityScript = player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
+
+        
         toolTipText.text = "Type: "+ abilityScript.type + "<br>";
         toolTipText.text = toolTipText.text + "Targeting: " + abilityScript.targeting + "<br>";
 
@@ -202,6 +508,18 @@ public class uiManagerScript : MonoBehaviour
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
+        if (abilityScript.percentProjSpeedMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% Projectile Speed Mod: " + abilityScript.percentProjSpeedMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.percentDurationMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "% Duration Mod: " + abilityScript.percentDurationMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
         if (abilityScript.flatArmourMod > 0)
         {
             toolTipText.text = toolTipText.text + "Armour Mod: " + abilityScript.flatArmourMod + "<br>";
@@ -241,6 +559,18 @@ public class uiManagerScript : MonoBehaviour
         if (abilityScript.flatAoeMod > 0)
         {
             toolTipText.text = toolTipText.text + "AoE Mod: " + abilityScript.flatAoeMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatProjSpeedMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "Flat Projectile Speed Mod: " + abilityScript.flatProjSpeedMod + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.flatDurationMod > 0)
+        {
+            toolTipText.text = toolTipText.text + "flat Duration Mod: " + abilityScript.flatDurationMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
@@ -284,5 +614,308 @@ public class uiManagerScript : MonoBehaviour
         areaNum.text = "+" + playerScript.bonusArea.ToString() + "%";
         durationNum.text = "+" + playerScript.bonusDuration.ToString() + "%";
         projectileSpeedNum.text = "+" + playerScript.bonusProjectileSpeed.ToString() + "%";
+    }
+
+    public void selectAbility(int abilityNum, bool equipped)
+    {
+        if(abilitySelected==false)
+        {
+            abilitySelected = true;
+            if (equipped == true)
+            {
+                selectedAbilityScript = player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
+
+                tempAbilityScript.type = selectedAbilityScript.type;
+                tempAbilityScript.targeting = selectedAbilityScript.targeting;
+                tempAbilityScript.baseDamage = selectedAbilityScript.baseDamage;
+                tempAbilityScript.baseHealing = selectedAbilityScript.baseHealing;
+                tempAbilityScript.baseRange = selectedAbilityScript.baseRange;
+                tempAbilityScript.baseAoeRadius = selectedAbilityScript.baseAoeRadius;
+                tempAbilityScript.baseCastTime = selectedAbilityScript.baseCastTime;
+                tempAbilityScript.baseCooldown = selectedAbilityScript.baseCooldown;
+                tempAbilityScript.appliesEffect = selectedAbilityScript.appliesEffect;
+                tempAbilityScript.dotDamage = selectedAbilityScript.dotDamage;
+                tempAbilityScript.hotHealing = selectedAbilityScript.hotHealing;
+                tempAbilityScript.effectDuration = selectedAbilityScript.effectDuration;
+                tempAbilityScript.stackingEffect = selectedAbilityScript.stackingEffect;
+                tempAbilityScript.percentArmourMod = selectedAbilityScript.percentArmourMod;
+                tempAbilityScript.percentPowerMod = selectedAbilityScript.percentPowerMod;
+                tempAbilityScript.percentAttackSpeedMod = selectedAbilityScript.percentAttackSpeedMod;
+                tempAbilityScript.percentMoveSpeedMod = selectedAbilityScript.percentMoveSpeedMod;
+                tempAbilityScript.percentCdrMod = selectedAbilityScript.percentCdrMod;
+                tempAbilityScript.percentRangeMod = selectedAbilityScript.percentRangeMod;
+                tempAbilityScript.percentAoeMod = selectedAbilityScript.percentAoeMod;
+                tempAbilityScript.percentProjSpeedMod = selectedAbilityScript.percentProjSpeedMod;
+                tempAbilityScript.percentDurationMod = selectedAbilityScript.percentDurationMod;
+                tempAbilityScript.flatArmourMod = selectedAbilityScript.flatArmourMod;
+                tempAbilityScript.flatPowerMod = selectedAbilityScript.flatPowerMod;
+                tempAbilityScript.flatAttackSpeedMod = selectedAbilityScript.flatAttackSpeedMod;
+                tempAbilityScript.flatMoveSpeedMod = selectedAbilityScript.flatMoveSpeedMod;
+                tempAbilityScript.flatCdrMod = selectedAbilityScript.flatCdrMod;
+                tempAbilityScript.flatRangeMod = selectedAbilityScript.flatRangeMod;
+                tempAbilityScript.flatAoeMod = selectedAbilityScript.flatAoeMod;
+                tempAbilityScript.flatProjSpeedMod = selectedAbilityScript.flatProjSpeedMod;
+                tempAbilityScript.flatDurationMod = selectedAbilityScript.flatDurationMod;
+                tempAbilityScript.projectileSpeed = selectedAbilityScript.projectileSpeed;
+                tempAbilityScript.piercing = selectedAbilityScript.piercing;
+                tempAbilityScript.projectileSize = selectedAbilityScript.projectileSize;
+                tempAbilityScript.aoeDuration = selectedAbilityScript.aoeDuration;
+                tempAbilityScript.offensive = selectedAbilityScript.offensive;
+                tempAbilityScript.stun = selectedAbilityScript.stun;
+
+            }
+            else if (equipped == false)
+            {
+                selectedAbilityScriptInv = player.transform.Find("inventory").transform.Find("inventorySlot" + abilityNum.ToString()).gameObject.GetComponent<inventorySlotScript>();
+
+                tempAbilityScript.type = selectedAbilityScriptInv.type;
+                tempAbilityScript.targeting = selectedAbilityScriptInv.targeting;
+                tempAbilityScript.baseDamage = selectedAbilityScriptInv.baseDamage;
+                tempAbilityScript.baseHealing = selectedAbilityScriptInv.baseHealing;
+                tempAbilityScript.baseRange = selectedAbilityScriptInv.baseRange;
+                tempAbilityScript.baseAoeRadius = selectedAbilityScriptInv.baseAoeRadius;
+                tempAbilityScript.baseCastTime = selectedAbilityScriptInv.baseCastTime;
+                tempAbilityScript.baseCooldown = selectedAbilityScriptInv.baseCooldown;
+                tempAbilityScript.appliesEffect = selectedAbilityScriptInv.appliesEffect;
+                tempAbilityScript.dotDamage = selectedAbilityScriptInv.dotDamage;
+                tempAbilityScript.hotHealing = selectedAbilityScriptInv.hotHealing;
+                tempAbilityScript.effectDuration = selectedAbilityScriptInv.effectDuration;
+                tempAbilityScript.stackingEffect = selectedAbilityScriptInv.stackingEffect;
+                tempAbilityScript.percentArmourMod = selectedAbilityScriptInv.percentArmourMod;
+                tempAbilityScript.percentPowerMod = selectedAbilityScriptInv.percentPowerMod;
+                tempAbilityScript.percentAttackSpeedMod = selectedAbilityScriptInv.percentAttackSpeedMod;
+                tempAbilityScript.percentMoveSpeedMod = selectedAbilityScriptInv.percentMoveSpeedMod;
+                tempAbilityScript.percentCdrMod = selectedAbilityScriptInv.percentCdrMod;
+                tempAbilityScript.percentRangeMod = selectedAbilityScriptInv.percentRangeMod;
+                tempAbilityScript.percentAoeMod = selectedAbilityScriptInv.percentAoeMod;
+                tempAbilityScript.percentProjSpeedMod = selectedAbilityScriptInv.percentProjSpeedMod;
+                tempAbilityScript.percentDurationMod = selectedAbilityScriptInv.percentDurationMod;
+                tempAbilityScript.flatArmourMod = selectedAbilityScriptInv.flatArmourMod;
+                tempAbilityScript.flatPowerMod = selectedAbilityScriptInv.flatPowerMod;
+                tempAbilityScript.flatAttackSpeedMod = selectedAbilityScriptInv.flatAttackSpeedMod;
+                tempAbilityScript.flatMoveSpeedMod = selectedAbilityScriptInv.flatMoveSpeedMod;
+                tempAbilityScript.flatCdrMod = selectedAbilityScriptInv.flatCdrMod;
+                tempAbilityScript.flatRangeMod = selectedAbilityScriptInv.flatRangeMod;
+                tempAbilityScript.flatAoeMod = selectedAbilityScriptInv.flatAoeMod;
+                tempAbilityScript.flatProjSpeedMod = selectedAbilityScriptInv.flatProjSpeedMod;
+                tempAbilityScript.flatDurationMod = selectedAbilityScriptInv.flatDurationMod;
+                tempAbilityScript.projectileSpeed = selectedAbilityScriptInv.projectileSpeed;
+                tempAbilityScript.piercing = selectedAbilityScriptInv.piercing;
+                tempAbilityScript.projectileSize = selectedAbilityScriptInv.projectileSize;
+                tempAbilityScript.aoeDuration = selectedAbilityScriptInv.aoeDuration;
+                tempAbilityScript.offensive = selectedAbilityScriptInv.offensive;
+                tempAbilityScript.stun = selectedAbilityScriptInv.stun;
+            }
+        }
+        else if (abilitySelected==true)
+        {
+            abilitySelected=false;
+            if (equipped == true)
+            {
+                targetAbilityScript = player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
+
+                selectedAbilityScript.type = targetAbilityScript.type;
+                selectedAbilityScript.targeting = targetAbilityScript.targeting;
+                selectedAbilityScript.baseDamage = targetAbilityScript.baseDamage;
+                selectedAbilityScript.baseHealing = targetAbilityScript.baseHealing;
+                selectedAbilityScript.baseRange = targetAbilityScript.baseRange;
+                selectedAbilityScript.baseAoeRadius = targetAbilityScript.baseAoeRadius;
+                selectedAbilityScript.baseCastTime = targetAbilityScript.baseCastTime;
+                selectedAbilityScript.baseCooldown = targetAbilityScript.baseCooldown;
+                selectedAbilityScript.appliesEffect = targetAbilityScript.appliesEffect;
+                selectedAbilityScript.dotDamage = targetAbilityScript.dotDamage;
+                selectedAbilityScript.hotHealing = targetAbilityScript.hotHealing;
+                selectedAbilityScript.effectDuration = targetAbilityScript.effectDuration;
+                selectedAbilityScript.stackingEffect = targetAbilityScript.stackingEffect;
+                selectedAbilityScript.percentArmourMod = targetAbilityScript.percentArmourMod;
+                selectedAbilityScript.percentPowerMod = targetAbilityScript.percentPowerMod;
+                selectedAbilityScript.percentAttackSpeedMod = targetAbilityScript.percentAttackSpeedMod;
+                selectedAbilityScript.percentMoveSpeedMod = targetAbilityScript.percentMoveSpeedMod;
+                selectedAbilityScript.percentCdrMod = targetAbilityScript.percentCdrMod;
+                selectedAbilityScript.percentRangeMod = targetAbilityScript.percentRangeMod;
+                selectedAbilityScript.percentAoeMod = targetAbilityScript.percentAoeMod;
+                selectedAbilityScript.percentProjSpeedMod = targetAbilityScript.percentProjSpeedMod;
+                selectedAbilityScript.percentDurationMod = targetAbilityScript.percentDurationMod;
+                selectedAbilityScript.flatArmourMod = targetAbilityScript.flatArmourMod;
+                selectedAbilityScript.flatPowerMod = targetAbilityScript.flatPowerMod;
+                selectedAbilityScript.flatAttackSpeedMod = targetAbilityScript.flatAttackSpeedMod;
+                selectedAbilityScript.flatMoveSpeedMod = targetAbilityScript.flatMoveSpeedMod;
+                selectedAbilityScript.flatCdrMod = targetAbilityScript.flatCdrMod;
+                selectedAbilityScript.flatRangeMod = targetAbilityScript.flatRangeMod;
+                selectedAbilityScript.flatAoeMod = targetAbilityScript.flatAoeMod;
+                selectedAbilityScript.flatProjSpeedMod = targetAbilityScript.flatProjSpeedMod;
+                selectedAbilityScript.flatDurationMod = targetAbilityScript.flatDurationMod;
+                selectedAbilityScript.projectileSpeed = targetAbilityScript.projectileSpeed;
+                selectedAbilityScript.piercing = targetAbilityScript.piercing;
+                selectedAbilityScript.projectileSize = targetAbilityScript.projectileSize;
+                selectedAbilityScript.aoeDuration = targetAbilityScript.aoeDuration;
+                selectedAbilityScript.offensive = targetAbilityScript.offensive;
+                selectedAbilityScript.stun = targetAbilityScript.stun;
+
+                targetAbilityScript.type = tempAbilityScript.type;
+                targetAbilityScript.targeting = tempAbilityScript.targeting;
+                targetAbilityScript.baseDamage = tempAbilityScript.baseDamage;
+                targetAbilityScript.baseHealing = tempAbilityScript.baseHealing;
+                targetAbilityScript.baseRange = tempAbilityScript.baseRange;
+                targetAbilityScript.baseAoeRadius = tempAbilityScript.baseAoeRadius;
+                targetAbilityScript.baseCastTime = tempAbilityScript.baseCastTime;
+                targetAbilityScript.baseCooldown = tempAbilityScript.baseCooldown;
+                targetAbilityScript.appliesEffect = tempAbilityScript.appliesEffect;
+                targetAbilityScript.dotDamage = tempAbilityScript.dotDamage;
+                targetAbilityScript.hotHealing = tempAbilityScript.hotHealing;
+                targetAbilityScript.effectDuration = tempAbilityScript.effectDuration;
+                targetAbilityScript.stackingEffect = tempAbilityScript.stackingEffect;
+                targetAbilityScript.percentArmourMod = tempAbilityScript.percentArmourMod;
+                targetAbilityScript.percentPowerMod = tempAbilityScript.percentPowerMod;
+                targetAbilityScript.percentAttackSpeedMod = tempAbilityScript.percentAttackSpeedMod;
+                targetAbilityScript.percentMoveSpeedMod = tempAbilityScript.percentMoveSpeedMod;
+                targetAbilityScript.percentCdrMod = tempAbilityScript.percentCdrMod;
+                targetAbilityScript.percentRangeMod = tempAbilityScript.percentRangeMod;
+                targetAbilityScript.percentAoeMod = tempAbilityScript.percentAoeMod;
+                targetAbilityScript.percentProjSpeedMod = tempAbilityScript.percentProjSpeedMod;
+                targetAbilityScript.percentDurationMod = tempAbilityScript.percentDurationMod;
+                targetAbilityScript.flatArmourMod = tempAbilityScript.flatArmourMod;
+                targetAbilityScript.flatPowerMod = tempAbilityScript.flatPowerMod;
+                targetAbilityScript.flatAttackSpeedMod = tempAbilityScript.flatAttackSpeedMod;
+                targetAbilityScript.flatMoveSpeedMod = tempAbilityScript.flatMoveSpeedMod;
+                targetAbilityScript.flatCdrMod = tempAbilityScript.flatCdrMod;
+                targetAbilityScript.flatRangeMod = tempAbilityScript.flatRangeMod;
+                targetAbilityScript.flatAoeMod = tempAbilityScript.flatAoeMod;
+                targetAbilityScript.flatProjSpeedMod = tempAbilityScript.flatProjSpeedMod;
+                targetAbilityScript.flatDurationMod = tempAbilityScript.flatDurationMod;
+                targetAbilityScript.projectileSpeed = tempAbilityScript.projectileSpeed;
+                targetAbilityScript.piercing = tempAbilityScript.piercing;
+                targetAbilityScript.projectileSize = tempAbilityScript.projectileSize;
+                targetAbilityScript.aoeDuration = tempAbilityScript.aoeDuration;
+                targetAbilityScript.offensive = tempAbilityScript.offensive;
+                targetAbilityScript.stun = tempAbilityScript.stun;
+
+                resetTempAbility();
+
+            }
+            else if (equipped == false)
+            {
+                targetAbilityScriptInv = player.transform.Find("inventory").transform.Find("inventorySlot" + abilityNum.ToString()).gameObject.GetComponent<inventorySlotScript>();
+
+                selectedAbilityScript.type = targetAbilityScriptInv.type;
+                selectedAbilityScript.targeting = targetAbilityScriptInv.targeting;
+                selectedAbilityScript.baseDamage = targetAbilityScriptInv.baseDamage;
+                selectedAbilityScript.baseHealing = targetAbilityScriptInv.baseHealing;
+                selectedAbilityScript.baseRange = targetAbilityScriptInv.baseRange;
+                selectedAbilityScript.baseAoeRadius = targetAbilityScriptInv.baseAoeRadius;
+                selectedAbilityScript.baseCastTime = targetAbilityScriptInv.baseCastTime;
+                selectedAbilityScript.baseCooldown = targetAbilityScriptInv.baseCooldown;
+                selectedAbilityScript.appliesEffect = targetAbilityScriptInv.appliesEffect;
+                selectedAbilityScript.dotDamage = targetAbilityScriptInv.dotDamage;
+                selectedAbilityScript.hotHealing = targetAbilityScriptInv.hotHealing;
+                selectedAbilityScript.effectDuration = targetAbilityScriptInv.effectDuration;
+                selectedAbilityScript.stackingEffect = targetAbilityScriptInv.stackingEffect;
+                selectedAbilityScript.percentArmourMod = targetAbilityScriptInv.percentArmourMod;
+                selectedAbilityScript.percentPowerMod = targetAbilityScriptInv.percentPowerMod;
+                selectedAbilityScript.percentAttackSpeedMod = targetAbilityScriptInv.percentAttackSpeedMod;
+                selectedAbilityScript.percentMoveSpeedMod = targetAbilityScriptInv.percentMoveSpeedMod;
+                selectedAbilityScript.percentCdrMod = targetAbilityScriptInv.percentCdrMod;
+                selectedAbilityScript.percentRangeMod = targetAbilityScriptInv.percentRangeMod;
+                selectedAbilityScript.percentAoeMod = targetAbilityScriptInv.percentAoeMod;
+                selectedAbilityScript.percentProjSpeedMod = targetAbilityScriptInv.percentProjSpeedMod;
+                selectedAbilityScript.percentDurationMod = targetAbilityScriptInv.percentDurationMod;
+                selectedAbilityScript.flatArmourMod = targetAbilityScriptInv.flatArmourMod;
+                selectedAbilityScript.flatPowerMod = targetAbilityScriptInv.flatPowerMod;
+                selectedAbilityScript.flatAttackSpeedMod = targetAbilityScriptInv.flatAttackSpeedMod;
+                selectedAbilityScript.flatMoveSpeedMod = targetAbilityScriptInv.flatMoveSpeedMod;
+                selectedAbilityScript.flatCdrMod = targetAbilityScriptInv.flatCdrMod;
+                selectedAbilityScript.flatRangeMod = targetAbilityScriptInv.flatRangeMod;
+                selectedAbilityScript.flatAoeMod = targetAbilityScriptInv.flatAoeMod;
+                selectedAbilityScript.flatProjSpeedMod = targetAbilityScriptInv.flatProjSpeedMod;
+                selectedAbilityScript.flatDurationMod = targetAbilityScriptInv.flatDurationMod;
+                selectedAbilityScript.projectileSpeed = targetAbilityScriptInv.projectileSpeed;
+                selectedAbilityScript.piercing = targetAbilityScriptInv.piercing;
+                selectedAbilityScript.projectileSize = targetAbilityScriptInv.projectileSize;
+                selectedAbilityScript.aoeDuration = targetAbilityScriptInv.aoeDuration;
+                selectedAbilityScript.offensive = targetAbilityScriptInv.offensive;
+                selectedAbilityScript.stun = targetAbilityScriptInv.stun;
+
+                targetAbilityScriptInv.type = tempAbilityScript.type;
+                targetAbilityScriptInv.targeting = tempAbilityScript.targeting;
+                targetAbilityScriptInv.baseDamage = tempAbilityScript.baseDamage;
+                targetAbilityScriptInv.baseHealing = tempAbilityScript.baseHealing;
+                targetAbilityScriptInv.baseRange = tempAbilityScript.baseRange;
+                targetAbilityScriptInv.baseAoeRadius = tempAbilityScript.baseAoeRadius;
+                targetAbilityScriptInv.baseCastTime = tempAbilityScript.baseCastTime;
+                targetAbilityScriptInv.baseCooldown = tempAbilityScript.baseCooldown;
+                targetAbilityScriptInv.appliesEffect = tempAbilityScript.appliesEffect;
+                targetAbilityScriptInv.dotDamage = tempAbilityScript.dotDamage;
+                targetAbilityScriptInv.hotHealing = tempAbilityScript.hotHealing;
+                targetAbilityScriptInv.effectDuration = tempAbilityScript.effectDuration;
+                targetAbilityScriptInv.stackingEffect = tempAbilityScript.stackingEffect;
+                targetAbilityScriptInv.percentArmourMod = tempAbilityScript.percentArmourMod;
+                targetAbilityScriptInv.percentPowerMod = tempAbilityScript.percentPowerMod;
+                targetAbilityScriptInv.percentAttackSpeedMod = tempAbilityScript.percentAttackSpeedMod;
+                targetAbilityScriptInv.percentMoveSpeedMod = tempAbilityScript.percentMoveSpeedMod;
+                targetAbilityScriptInv.percentCdrMod = tempAbilityScript.percentCdrMod;
+                targetAbilityScriptInv.percentRangeMod = tempAbilityScript.percentRangeMod;
+                targetAbilityScriptInv.percentAoeMod = tempAbilityScript.percentAoeMod;
+                targetAbilityScriptInv.percentProjSpeedMod = tempAbilityScript.percentProjSpeedMod;
+                targetAbilityScriptInv.percentDurationMod = tempAbilityScript.percentDurationMod;
+                targetAbilityScriptInv.flatArmourMod = tempAbilityScript.flatArmourMod;
+                targetAbilityScriptInv.flatPowerMod = tempAbilityScript.flatPowerMod;
+                targetAbilityScriptInv.flatAttackSpeedMod = tempAbilityScript.flatAttackSpeedMod;
+                targetAbilityScriptInv.flatMoveSpeedMod = tempAbilityScript.flatMoveSpeedMod;
+                targetAbilityScriptInv.flatCdrMod = tempAbilityScript.flatCdrMod;
+                targetAbilityScriptInv.flatRangeMod = tempAbilityScript.flatRangeMod;
+                targetAbilityScriptInv.flatAoeMod = tempAbilityScript.flatAoeMod;
+                targetAbilityScriptInv.flatProjSpeedMod = tempAbilityScript.flatProjSpeedMod;
+                targetAbilityScriptInv.flatDurationMod = tempAbilityScript.flatDurationMod;
+                targetAbilityScriptInv.projectileSpeed = tempAbilityScript.projectileSpeed;
+                targetAbilityScriptInv.piercing = tempAbilityScript.piercing;
+                targetAbilityScriptInv.projectileSize = tempAbilityScript.projectileSize;
+                targetAbilityScriptInv.aoeDuration = tempAbilityScript.aoeDuration;
+                targetAbilityScriptInv.offensive = tempAbilityScript.offensive;
+                targetAbilityScriptInv.stun = tempAbilityScript.stun;
+
+                resetTempAbility();
+            }
+        }
+    }
+
+    public void resetTempAbility()
+    {
+        tempAbilityScript.type = null;
+        tempAbilityScript.targeting = null;
+        tempAbilityScript.baseDamage = 0;
+        tempAbilityScript.baseHealing = 0;
+        tempAbilityScript.baseRange = 0;
+        tempAbilityScript.baseAoeRadius = 0;
+        tempAbilityScript.baseCastTime = 0;
+        tempAbilityScript.baseCooldown = 0;
+        tempAbilityScript.appliesEffect = false;
+        tempAbilityScript.dotDamage = 0;
+        tempAbilityScript.hotHealing = 0;
+        tempAbilityScript.effectDuration = 0;
+        tempAbilityScript.stackingEffect = false;
+        tempAbilityScript.percentArmourMod = 0;
+        tempAbilityScript.percentPowerMod = 0;
+        tempAbilityScript.percentAttackSpeedMod = 0;
+        tempAbilityScript.percentMoveSpeedMod = 0;
+        tempAbilityScript.percentCdrMod = 0;
+        tempAbilityScript.percentRangeMod = 0;
+        tempAbilityScript.percentAoeMod = 0;
+        tempAbilityScript.percentProjSpeedMod = 0;
+        tempAbilityScript.percentDurationMod = 0;
+        tempAbilityScript.flatArmourMod = 0;
+        tempAbilityScript.flatPowerMod = 0;
+        tempAbilityScript.flatAttackSpeedMod = 0;
+        tempAbilityScript.flatMoveSpeedMod = 0;
+        tempAbilityScript.flatCdrMod = 0;
+        tempAbilityScript.flatRangeMod = 0;
+        tempAbilityScript.flatAoeMod = 0;
+        tempAbilityScript.flatProjSpeedMod = 0;
+        tempAbilityScript.flatDurationMod = 0;
+        tempAbilityScript.projectileSpeed = 0;
+        tempAbilityScript.piercing = false;
+        tempAbilityScript.projectileSize = 0;
+        tempAbilityScript.aoeDuration = 0;
+        tempAbilityScript.offensive = true;
+        tempAbilityScript.stun = false;
     }
 }

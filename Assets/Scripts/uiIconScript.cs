@@ -8,6 +8,7 @@ public class uiIconScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     public uiManagerScript manager;
     public int abilityNum;
+    public bool equipped;
     public bool hovered;
 
     // Start is called before the first frame update
@@ -17,11 +18,16 @@ public class uiIconScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        manager.showToolTip(abilityNum);
+        manager.showToolTip(abilityNum,equipped);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         manager.hideToolTip();
+    }
+
+    public void selectAbility()
+    {
+        manager.selectAbility(abilityNum,equipped);
     }
 }

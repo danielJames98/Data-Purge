@@ -102,7 +102,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -155,6 +155,43 @@ MonoBehaviour:
   frozen: 0
   canvas: {fileID: 0}
   pickUpSound: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
+  type: 
+  targeting: 
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 0
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 0
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  projectileSize: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
 --- !u!82 &4616584258084138865
 AudioSource:
   m_ObjectHideFlags: 0
