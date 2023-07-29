@@ -13,8 +13,9 @@ public class playerController : baseCharacter
     
     public GameObject ui;
 
-    public List<inventorySlotScript> inventoryItems;
+    public List<baseAbilityScript> inventoryItems;
     public int firstEmptyInventorySlot;
+    public GameObject inventory;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,28 @@ public class playerController : baseCharacter
         frontFirePoint = transform.Find("frontFirePoint").gameObject;
         firstEmptyInventorySlot = 0;
         rb=this.GetComponent<Rigidbody>();
+        inventory = transform.Find("inventory").gameObject;
+
+        inventoryItems[0] = inventory.transform.Find("inventorySlot0").GetComponent<baseAbilityScript>();
+        inventoryItems[1] = inventory.transform.Find("inventorySlot1").GetComponent<baseAbilityScript>();
+        inventoryItems[2] = inventory.transform.Find("inventorySlot2").GetComponent<baseAbilityScript>();
+        inventoryItems[3] = inventory.transform.Find("inventorySlot3").GetComponent<baseAbilityScript>();
+        inventoryItems[4] = inventory.transform.Find("inventorySlot4").GetComponent<baseAbilityScript>();
+        inventoryItems[5] = inventory.transform.Find("inventorySlot5").GetComponent<baseAbilityScript>();
+        inventoryItems[6] = inventory.transform.Find("inventorySlot6").GetComponent<baseAbilityScript>();
+        inventoryItems[7] = inventory.transform.Find("inventorySlot7").GetComponent<baseAbilityScript>();
+        inventoryItems[8] = inventory.transform.Find("inventorySlot8").GetComponent<baseAbilityScript>();
+        inventoryItems[9] = inventory.transform.Find("inventorySlot9").GetComponent<baseAbilityScript>();
+        inventoryItems[10] = inventory.transform.Find("inventorySlot10").GetComponent<baseAbilityScript>();
+        inventoryItems[11] = inventory.transform.Find("inventorySlot11").GetComponent<baseAbilityScript>();
+        inventoryItems[12] = inventory.transform.Find("inventorySlot12").GetComponent<baseAbilityScript>();
+        inventoryItems[13] = inventory.transform.Find("inventorySlot13").GetComponent<baseAbilityScript>();
+        inventoryItems[14] = inventory.transform.Find("inventorySlot14").GetComponent<baseAbilityScript>();
+        inventoryItems[15] = inventory.transform.Find("inventorySlot15").GetComponent<baseAbilityScript>();
+        inventoryItems[16] = inventory.transform.Find("inventorySlot16").GetComponent<baseAbilityScript>();
+        inventoryItems[17] = inventory.transform.Find("inventorySlot17").GetComponent<baseAbilityScript>();
+        inventoryItems[18] = inventory.transform.Find("inventorySlot18").GetComponent<baseAbilityScript>();
+        inventoryItems[19] = inventory.transform.Find("inventorySlot19").GetComponent<baseAbilityScript>();
 
 
         ability0 = transform.Find("ability0").gameObject;

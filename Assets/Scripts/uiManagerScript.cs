@@ -141,9 +141,9 @@ public class uiManagerScript : MonoBehaviour
     {
         int i = 0;
 
-        foreach(inventorySlotScript item in player.GetComponent<playerController>().inventoryItems)
+        foreach(baseAbilityScript item in player.GetComponent<playerController>().inventoryItems)
         {
-            if (item.type == "") 
+            if (item.type == ""||item.type==null) 
             {
                 inventoryUI.transform.Find("inventorySlot" + i).gameObject.GetComponent<Image>().color = Color.grey;
             }
@@ -169,7 +169,7 @@ public class uiManagerScript : MonoBehaviour
         }
         else if (equipped==false)
         {
-            if(player.transform.Find("inventory").transform.Find("inventorySlot" + abilityNum.ToString()).gameObject.GetComponent<inventorySlotScript>().type!="")
+            if(player.transform.Find("inventory").transform.Find("inventorySlot" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>().type!="")
             {
                 toolTipActive = true;
                 toolTip.SetActive(true);
@@ -917,5 +917,10 @@ public class uiManagerScript : MonoBehaviour
         tempAbilityScript.aoeDuration = 0;
         tempAbilityScript.offensive = true;
         tempAbilityScript.stun = false;
-    }
+
+        selectedAbilityScript=null;
+        selectedAbilityScriptInv=null;
+        targetAbilityScript=null;
+        targetAbilityScriptInv=null;
+}
 }
