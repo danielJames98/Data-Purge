@@ -271,6 +271,13 @@ public class baseCharacter : MonoBehaviour
             timeSinceCastStart = 0;
             castStartTime = 0;
         }       
+
+        if(castingAbility==null)
+        {
+            castBar.GetComponent<Slider>().value = 0;
+            timeSinceCastStart = 0;
+            castStartTime = 0;
+        }
     }
 
     public void gainXP(float xpGain)
@@ -371,16 +378,22 @@ public class baseCharacter : MonoBehaviour
     public void generateAbility(baseAbilityScript ability)
     {
         //select if offensive or supportive
-        int offenseInt = Random.Range(0, 20);
-        if(offenseInt<19)
+        if(this.gameObject.tag=="Enemy")
         {
             ability.offensive = true;
         }
-        else if(offenseInt==19)
+        else
         {
-            ability.offensive = false;
+            int offenseInt = Random.Range(0, 20);
+            if (offenseInt < 19)
+            {
+                ability.offensive = true;
+            }
+            else if (offenseInt == 19)
+            {
+                ability.offensive = false;
+            }
         }
-
         //select a targeting method and type
         int targetingInt = Random.Range(1, 3);
         if(targetingInt==0)
@@ -406,7 +419,7 @@ public class baseCharacter : MonoBehaviour
 
             //set projectile size and speed
             ability.projectileSpeed=Random.Range(10, 100);
-            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 2f)*10)*0.1f;
+            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 1.5f)*10)*0.1f;
         }
         else if(targetingInt == 2)
         {
@@ -466,7 +479,7 @@ public class baseCharacter : MonoBehaviour
         }
 
         //assign cast time and cooldown
-        ability.baseCastTime = Mathf.Round(Random.Range(0f, 2f)*10)*0.1f;
+        ability.baseCastTime = Mathf.Round(Random.Range(0.1f, 1f)*10)*0.1f;
         ability.baseCooldown = Random.Range(0, 10);
 
         //decide how many effects this applies
@@ -685,7 +698,7 @@ public class baseCharacter : MonoBehaviour
 
             //set projectile size and speed
             ability.projectileSpeed = Random.Range(10, 100);
-            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 2f) * 10) * 0.1f;
+            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 1.5f) * 10) * 0.1f;
         }
         else if (targetingInt == 2)
         {
@@ -745,7 +758,7 @@ public class baseCharacter : MonoBehaviour
         }
 
         //assign cast time and cooldown
-        ability.baseCastTime = Mathf.Round(Random.Range(0f, 2f) * 10) * 0.1f;
+        ability.baseCastTime = Mathf.Round(Random.Range(0.1f, 1f) * 10) * 0.1f;
         ability.baseCooldown = Random.Range(0, 10);
 
         //decide how many effects this applies

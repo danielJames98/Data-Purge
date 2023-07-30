@@ -12,10 +12,11 @@ public class playerController : baseCharacter
     public Camera cam;
     
     public GameObject ui;
-
+    public uiManagerScript uiScript;
     public List<baseAbilityScript> inventoryItems;
     public int firstEmptyInventorySlot;
     public GameObject inventory;
+    public bool inventoryOpen;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class playerController : baseCharacter
         animator= transform.Find("Robot Kyle").GetComponent<Animator>();
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         ui = Instantiate(Resources.Load<GameObject>("inGameUI"));
+        uiScript=ui.GetComponent<uiManagerScript>();
         healthBar = GameObject.Find("playerHealthBar");
         healthBarActive = true;
         xpBar = GameObject.Find("playerXpBar");
@@ -84,7 +86,7 @@ public class playerController : baseCharacter
 
     void Update()
     {
-        if (Input.GetMouseButton(0)&& EventSystem.current.IsPointerOverGameObject()==false)
+        if (Input.GetMouseButton(0))
         {
             if(navMeshAgent.enabled==true && casting ==false &&stunned==false)
             {
@@ -99,7 +101,8 @@ public class playerController : baseCharacter
                 {
                     lootHit.transform.gameObject.GetComponent<lootScript>().pickUp(this, inventoryItems[firstEmptyInventorySlot]);
                 }
-                else if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable")))
+                
+                if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable"))&&inventoryOpen==false)
                 {
                     targetCharacter = null;
                     castingAbility = null;

@@ -4461,7 +4461,7 @@ GameObject:
   - component: {fileID: 6767490192886829955}
   m_Layer: 5
   m_Name: inGameUI
-  m_TagString: Untagged
+  m_TagString: ui
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4619,6 +4619,11 @@ MonoBehaviour:
   inventorySlotUI19: {fileID: 0}
   tempAbility: {fileID: 0}
   tempAbilityScript: {fileID: 0}
+  abilitySelected: 0
+  selectedAbilityScript: {fileID: 0}
+  selectedAbilityScriptInv: {fileID: 0}
+  targetAbilityScript: {fileID: 0}
+  targetAbilityScriptInv: {fileID: 0}
 --- !u!1 &5337673545504062653
 GameObject:
   m_ObjectHideFlags: 0
@@ -4898,7 +4903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8137045653685114408}
-  - component: {fileID: 6677093444908050892}
+  - component: {fileID: 938998594789111192}
   m_Layer: 0
   m_Name: tempAbility
   m_TagString: Untagged
@@ -4921,7 +4926,7 @@ Transform:
   m_Father: {fileID: 8980307293525920035}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6677093444908050892
+--- !u!114 &938998594789111192
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4930,7 +4935,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5403609526947096138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14a03b41a6b739b479c70202651cab98, type: 3}
+  m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 
@@ -4941,11 +4946,16 @@ MonoBehaviour:
   baseAoeRadius: 0
   baseCastTime: 0
   baseCooldown: 0
+  cam: {fileID: 0}
   appliesEffect: 0
   dotDamage: 0
   hotHealing: 0
   effectDuration: 0
   stackingEffect: 0
+  parentCharacter: {fileID: 0}
+  parentCharacterScript: {fileID: 0}
+  parentCharacterNav: {fileID: 0}
+  onCooldown: 0
   percentArmourMod: 0
   percentPowerMod: 0
   percentAttackSpeedMod: 0
@@ -4966,9 +4976,10 @@ MonoBehaviour:
   flatDurationMod: 0
   projectileSpeed: 0
   piercing: 0
+  frontFirePoint: {fileID: 0}
   projectileSize: 0
   aoeDuration: 0
-  offensive: 0
+  offensive: 1
   stun: 0
 --- !u!1 &5422250509122813424
 GameObject:
@@ -7596,6 +7607,7 @@ GameObject:
   - component: {fileID: 7416183234554691267}
   - component: {fileID: 7557269022011813408}
   - component: {fileID: 1430105166098138444}
+  - component: {fileID: 4132654199124596340}
   m_Layer: 5
   m_Name: inventory
   m_TagString: Untagged
@@ -7681,6 +7693,29 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &4132654199124596340
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8087782001278122271}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &8236498326647865397
 GameObject:
   m_ObjectHideFlags: 0

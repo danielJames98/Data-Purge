@@ -65,12 +65,16 @@ public class baseAbilityScript : MonoBehaviour
     void Start()
     {
         parentCharacter = transform.parent.gameObject;
-        if(parentCharacter.name!="inventory")
+        if(parentCharacter.name=="playerCharacter(Clone)"|| parentCharacter.name == "baseEnemy(Clone)")
         {
             parentCharacterScript = parentCharacter.GetComponent<baseCharacter>();
-            parentCharacterNav = parentCharacter.GetComponent<NavMeshAgent>();
-            cam = GameObject.Find("Main Camera(Clone)").GetComponent<Camera>();
+            parentCharacterNav = parentCharacter.GetComponent<NavMeshAgent>();          
             frontFirePoint = parentCharacter.transform.Find("frontFirePoint").gameObject;
+
+            if(parentCharacter.name=="playerCharacter(Clone)")
+            {
+                cam = GameObject.Find("Main Camera(Clone)").GetComponent<Camera>();
+            }
         }
     }
 
@@ -323,6 +327,7 @@ public class baseAbilityScript : MonoBehaviour
         projectileScriptRef.readyToFire();
         parentCharacterScript.castingCoroutine = null;
         parentCharacterScript.castingAbility = null;
+        parentCharacterScript.castBarUpdate();
         StartCoroutine("cooldown");
     }
 
@@ -384,6 +389,7 @@ public class baseAbilityScript : MonoBehaviour
         aoeScriptRef.readyToActivate();
         parentCharacterScript.castingCoroutine = null;
         parentCharacterScript.castingAbility = null;
+        parentCharacterScript.castBarUpdate();
         StartCoroutine("cooldown");
     }
 
