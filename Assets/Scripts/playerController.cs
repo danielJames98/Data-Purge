@@ -183,8 +183,6 @@ public class playerController : baseCharacter
             animator.speed = 1;
         }
 
-        
-
         if(casting == true)
         {
             castBarUpdate();
@@ -194,6 +192,4 @@ public class playerController : baseCharacter
             }
         }
     }
-
-   
 }

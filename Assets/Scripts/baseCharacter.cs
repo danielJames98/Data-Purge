@@ -84,6 +84,9 @@ public class baseCharacter : MonoBehaviour
     public int currentWalkSound;
     public float walkSoundDelay;
     public bool walking;
+    public GameObject chargeSparks;
+
+    public List<aoeScript> aoesColliding;
 
     public void takeDamage(float damage)
     {
@@ -168,9 +171,16 @@ public class baseCharacter : MonoBehaviour
             SceneManager.LoadScene("generatedScene");
         }
 
+        foreach(aoeScript aoeScript in aoesColliding)
+        {
+            if(aoeScript.charsInAoe.Contains(this))
+            {
+                aoeScript.charsInAoe.Remove(this);
+            }
+        }
+
         alive = false;
-        
-        
+               
         Destroy(gameObject);
     }
 
@@ -238,7 +248,8 @@ public class baseCharacter : MonoBehaviour
         {
             castingAbility.StopCoroutine(castingCoroutine);
         }
-        castingAbility= null;
+        animator.SetBool("casting", false);
+        castingAbility = null;
         targetCharacter = null;
         castBar.GetComponent<Slider>().value = 0;
         casting = false;
@@ -375,6 +386,22 @@ public class baseCharacter : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.GetComponent<aoeScript>()!=null)
+        {
+            aoesColliding.Add(collision.gameObject.GetComponent<aoeScript>());
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<aoeScript>() != null&& aoesColliding.Contains(collision.gameObject.GetComponent<aoeScript>()))
+        {
+            aoesColliding.Remove(collision.gameObject.GetComponent<aoeScript>());
+        }
+    }
+
     public void generateAbility(baseAbilityScript ability)
     {
         //select if offensive or supportive
@@ -419,7 +446,7 @@ public class baseCharacter : MonoBehaviour
 
             //set projectile size and speed
             ability.projectileSpeed=Random.Range(10, 100);
-            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 1.5f)*10)*0.1f;
+            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 1f)*10)*0.1f;
         }
         else if(targetingInt == 2)
         {
@@ -698,7 +725,7 @@ public class baseCharacter : MonoBehaviour
 
             //set projectile size and speed
             ability.projectileSpeed = Random.Range(10, 100);
-            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 1.5f) * 10) * 0.1f;
+            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 1f) * 10) * 0.1f;
         }
         else if (targetingInt == 2)
         {

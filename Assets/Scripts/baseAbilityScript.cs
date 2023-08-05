@@ -30,6 +30,7 @@ public class baseAbilityScript : MonoBehaviour
     public GameObject parentCharacter;
     public baseCharacter parentCharacterScript;
     public NavMeshAgent parentCharacterNav;
+    public Animator parentCharacterAnimator;
 
     public bool onCooldown;
 
@@ -70,6 +71,7 @@ public class baseAbilityScript : MonoBehaviour
             parentCharacterScript = parentCharacter.GetComponent<baseCharacter>();
             parentCharacterNav = parentCharacter.GetComponent<NavMeshAgent>();          
             frontFirePoint = parentCharacter.transform.Find("frontFirePoint").gameObject;
+            parentCharacterAnimator= parentCharacter.transform.Find("Robot Kyle").GetComponent<Animator>();
 
             if(parentCharacter.name=="playerCharacter(Clone)")
             {
@@ -311,8 +313,12 @@ public class baseAbilityScript : MonoBehaviour
         parentCharacterScript.castingCoroutine = "spawnProjectile";
         parentCharacterScript.casting = true;
         parentCharacterScript.castingAbility = this;
+        parentCharacterAnimator.SetBool("casting", true);
+        parentCharacterScript.chargeSparks.SetActive(true);
         yield return new WaitForSeconds(baseCastTime / (1 + (parentCharacterScript.attackSpeed / 100)));
         parentCharacterScript.casting = false;
+        parentCharacterScript.chargeSparks.SetActive(false);
+        parentCharacterAnimator.SetBool("casting", false);
         GameObject projectile = Instantiate(Resources.Load("projectile", typeof(GameObject)), frontFirePoint.transform.position, frontFirePoint.transform.rotation) as GameObject;
         projectile.transform.localScale = new Vector3(projectileSize * (1 + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)));
         projectileScript projectileScriptRef = projectile.GetComponent<projectileScript>();
@@ -375,7 +381,11 @@ public class baseAbilityScript : MonoBehaviour
             parentCharacter.transform.LookAt(point);
         }
         parentCharacterScript.casting = true;
+        parentCharacterAnimator.SetBool("casting", true);
+        parentCharacterScript.chargeSparks.SetActive(true);
         yield return new WaitForSeconds(baseCastTime / (1 + (parentCharacterScript.attackSpeed / 100)));
+        parentCharacterAnimator.SetBool("casting", false);
+        parentCharacterScript.chargeSparks.SetActive(false);
         parentCharacterScript.casting = false;
         GameObject aoe = Instantiate(Resources.Load("aoe", typeof(GameObject)), point, Quaternion.identity) as GameObject;
         aoe.transform.localScale = new Vector3(baseAoeRadius * (1 + (parentCharacterScript.bonusArea / 100)), 0.1f,baseAoeRadius * (1 + (parentCharacterScript.bonusArea / 100)));
