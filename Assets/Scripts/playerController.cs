@@ -17,6 +17,7 @@ public class playerController : baseCharacter
     public int firstEmptyInventorySlot;
     public GameObject inventory;
     public bool inventoryOpen;
+    public bool inventoryFull;
 
     // Start is called before the first frame update
     void Start()
@@ -99,7 +100,11 @@ public class playerController : baseCharacter
 
                 if (Physics.Raycast(lootRay, out lootHit, 100) && lootHit.transform.gameObject.tag == "loot" && Vector3.Distance(this.transform.position, lootHit.point)<10)
                 {
-                    lootHit.transform.gameObject.GetComponent<lootScript>().pickUp(this, inventoryItems[firstEmptyInventorySlot]);
+                    getFirstEmptySlot();
+                    if(inventoryFull==false)
+                    {
+                        lootHit.transform.gameObject.GetComponent<lootScript>().pickUp(this, inventoryItems[firstEmptyInventorySlot]);
+                    }                  
                 }
                 
                 if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable"))&&inventoryOpen==false)
@@ -107,8 +112,7 @@ public class playerController : baseCharacter
                     targetCharacter = null;
                     castingAbility = null;
                     navMeshAgent.destination = hit.point;
-                }
-                
+                }             
             }
         }
 
@@ -173,22 +177,57 @@ public class playerController : baseCharacter
 
         if(navMeshAgent.velocity.magnitude>0)
         {
-            if(animator.speed != 1 * (navMeshAgent.velocity.magnitude / 10))
+            walking = true;
+         
+            if (animator.speed != 1 * (navMeshAgent.velocity.magnitude / 10))
             {
                 animator.speed = 1 * (navMeshAgent.velocity.magnitude / 10);
             }
         }
         else if(navMeshAgent.velocity.magnitude==0)
         {
+            walking = false;
             animator.speed = 1;
         }
 
-        if(casting == true)
+        if (walking == true && walkSoundPlaying == false)
+        {
+            StartCoroutine(playWalkSound());
+        }
+
+        if (casting == true)
         {
             castBarUpdate();
             if (targetCharacter != null)
             {
                 transform.forward = targetCharacter.transform.position - transform.position;
+            }
+        }
+    }
+
+    void getFirstEmptySlot()
+    {
+        int i = 0;
+        bool findingSlot=true;
+
+        while (i<=19 && findingSlot==true)
+        {
+            if (inventoryItems[i].type == null || inventoryItems[i].type == "")
+            {
+                firstEmptyInventorySlot = i;
+                findingSlot = false;
+            }
+            else
+            {
+                if(i<19)
+                {
+                    i++;
+                }
+                else
+                {
+                    inventoryFull = true;
+                    findingSlot=false;
+                }              
             }
         }
     }

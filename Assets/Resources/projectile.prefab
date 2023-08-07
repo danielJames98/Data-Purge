@@ -157,3 +157,4 @@ MonoBehaviour:
   damage: 0
   healing: 0
   offensive: 0
+  enemyMat: {fileID: 2100000, guid: 660444433a0f5b947bca655fc6351a62, type: 2}

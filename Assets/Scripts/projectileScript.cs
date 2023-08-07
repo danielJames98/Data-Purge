@@ -16,6 +16,7 @@ public class projectileScript : MonoBehaviour
     public float damage;
     public float healing;
     public bool offensive;
+    public Material enemyMat;
 
     void Update()
     {
@@ -30,6 +31,10 @@ public class projectileScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         startPoint = transform.position;
         rb.velocity = transform.forward * speed;
+        if (charAppliedBy.gameObject.tag=="Enemy")
+        {
+            gameObject.GetComponent<MeshRenderer>().material = enemyMat;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

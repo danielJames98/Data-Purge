@@ -922,4 +922,109 @@ public class uiManagerScript : MonoBehaviour
         targetAbilityScript=null;
         targetAbilityScriptInv=null;
 }
+
+    public void showBinToolTip()
+    {
+        toolTipActive = true;
+        toolTip.SetActive(true);
+        toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, 200);
+        toolTipTitle.text = "Bin";
+        toolTipText.text = "Left click to drop the selected ability in the bin, destroying it but granting 5XP.";
+    }
+
+    public void hideBinToolTip()
+    {
+        toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, 95);
+        toolTipActive = false;
+        toolTip.SetActive(false);
+    }
+
+    public void binAbility()
+    {
+        if (selectedAbilityScript != null)
+        {
+            selectedAbilityScript.type = null;
+            selectedAbilityScript.targeting = null;
+            selectedAbilityScript.baseDamage = 0;
+            selectedAbilityScript.baseHealing = 0;
+            selectedAbilityScript.baseRange = 0;
+            selectedAbilityScript.baseAoeRadius = 0;
+            selectedAbilityScript.baseCastTime = 0;
+            selectedAbilityScript.baseCooldown = 0;
+            selectedAbilityScript.appliesEffect = false;
+            selectedAbilityScript.dotDamage = 0;
+            selectedAbilityScript.hotHealing = 0;
+            selectedAbilityScript.effectDuration = 0;
+            selectedAbilityScript.stackingEffect = false;
+            selectedAbilityScript.percentArmourMod = 0;
+            selectedAbilityScript.percentPowerMod = 0;
+            selectedAbilityScript.percentAttackSpeedMod = 0;
+            selectedAbilityScript.percentMoveSpeedMod = 0;
+            selectedAbilityScript.percentCdrMod = 0;
+            selectedAbilityScript.percentRangeMod = 0;
+            selectedAbilityScript.percentAoeMod = 0;
+            selectedAbilityScript.percentProjSpeedMod = 0;
+            selectedAbilityScript.percentDurationMod = 0;
+            selectedAbilityScript.flatArmourMod = 0;
+            selectedAbilityScript.flatPowerMod = 0;
+            selectedAbilityScript.flatAttackSpeedMod = 0;
+            selectedAbilityScript.flatMoveSpeedMod = 0;
+            selectedAbilityScript.flatCdrMod = 0;
+            selectedAbilityScript.flatRangeMod = 0;
+            selectedAbilityScript.flatAoeMod = 0;
+            selectedAbilityScript.flatProjSpeedMod = 0;
+            selectedAbilityScript.flatDurationMod = 0;
+            selectedAbilityScript.projectileSpeed = 0;
+            selectedAbilityScript.piercing = false;
+            selectedAbilityScript.projectileSize = 0;
+            selectedAbilityScript.aoeDuration = 0;
+            selectedAbilityScript.offensive = true;
+            selectedAbilityScript.stun = false;
+
+            tempAbilityScript.type = null;
+            tempAbilityScript.targeting = null;
+            tempAbilityScript.baseDamage = 0;
+            tempAbilityScript.baseHealing = 0;
+            tempAbilityScript.baseRange = 0;
+            tempAbilityScript.baseAoeRadius = 0;
+            tempAbilityScript.baseCastTime = 0;
+            tempAbilityScript.baseCooldown = 0;
+            tempAbilityScript.appliesEffect = false;
+            tempAbilityScript.dotDamage = 0;
+            tempAbilityScript.hotHealing = 0;
+            tempAbilityScript.effectDuration = 0;
+            tempAbilityScript.stackingEffect = false;
+            tempAbilityScript.percentArmourMod = 0;
+            tempAbilityScript.percentPowerMod = 0;
+            tempAbilityScript.percentAttackSpeedMod = 0;
+            tempAbilityScript.percentMoveSpeedMod = 0;
+            tempAbilityScript.percentCdrMod = 0;
+            tempAbilityScript.percentRangeMod = 0;
+            tempAbilityScript.percentAoeMod = 0;
+            tempAbilityScript.percentProjSpeedMod = 0;
+            tempAbilityScript.percentDurationMod = 0;
+            tempAbilityScript.flatArmourMod = 0;
+            tempAbilityScript.flatPowerMod = 0;
+            tempAbilityScript.flatAttackSpeedMod = 0;
+            tempAbilityScript.flatMoveSpeedMod = 0;
+            tempAbilityScript.flatCdrMod = 0;
+            tempAbilityScript.flatRangeMod = 0;
+            tempAbilityScript.flatAoeMod = 0;
+            tempAbilityScript.flatProjSpeedMod = 0;
+            tempAbilityScript.flatDurationMod = 0;
+            tempAbilityScript.projectileSpeed = 0;
+            tempAbilityScript.piercing = false;
+            tempAbilityScript.projectileSize = 0;
+            tempAbilityScript.aoeDuration = 0;
+            tempAbilityScript.offensive = true;
+            tempAbilityScript.stun = false;
+
+            selectedAbilityScript = null;
+            selectedAbilityScriptInv = null;
+            abilitySelected = false;
+            playerScript.gainXP(5);
+
+            fillInventoryUI();
+        }
+    }
 }

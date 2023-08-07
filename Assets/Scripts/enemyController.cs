@@ -128,6 +128,7 @@ public class enemyController : baseCharacter
 
         if (navMeshAgent.velocity.magnitude > 0)
         {
+            walking = true;
             if (animator.speed != 1 * (navMeshAgent.velocity.magnitude / 10))
             {
                 animator.speed = 1 * (navMeshAgent.velocity.magnitude / 10);
@@ -135,7 +136,13 @@ public class enemyController : baseCharacter
         }
         else if (navMeshAgent.velocity.magnitude == 0)
         {
+            walking = false;
             animator.speed = 1;
+        }
+
+        if (walking == true && walkSoundPlaying == false)
+        {
+            StartCoroutine(playWalkSound());
         }
 
         if (casting==true)

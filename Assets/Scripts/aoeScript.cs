@@ -13,6 +13,10 @@ public class aoeScript : MonoBehaviour
     public float healing;
     public List<baseCharacter> charsInAoe;
     public bool offensive;
+    public GameObject vfx;
+    public ParticleSystem portal;
+    public ParticleSystem smoke;
+    public ParticleSystem sparks;
 
     public void readyToActivate()
     {
@@ -24,13 +28,32 @@ public class aoeScript : MonoBehaviour
             StartCoroutine("applyEffects");
         }
         StartCoroutine("impact");
+
+        startVfx();
+    }
+
+    public void startVfx()
+    {
+        portal=vfx.GetComponent<ParticleSystem>();
+        smoke=portal.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>();
+        sparks = portal.transform.Find("CircleSparks").gameObject.GetComponent<ParticleSystem>();
+
+        if(charAppliedBy.gameObject.tag=="Player")
+        {
+            portal.startColor = Color.cyan;
+            smoke.startColor= Color.cyan;
+            sparks.startColor= Color.cyan;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(offensive==true && other.tag!=charAppliedBy.tag && other.gameObject.GetComponent<baseCharacter>()!=null)
+        if(offensive==true && other.tag!=charAppliedBy.tag)
         {
-            charsInAoe.Add(other.gameObject.GetComponent<baseCharacter>());
+            if (other.gameObject.GetComponent<baseCharacter>() != null)
+            {
+                charsInAoe.Add(other.gameObject.GetComponent<baseCharacter>());
+            }
         }
         else if(offensive==false && other.tag == charAppliedBy.tag && other.gameObject.GetComponent<baseCharacter>() != null)
         {
