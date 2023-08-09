@@ -24,8 +24,10 @@ public class playerController : baseCharacter
     {
         GameObject camObject = Instantiate(Resources.Load<GameObject>("Main Camera"));
         camObject.GetComponent<camController>().player = this.gameObject;
-        cam = camObject.GetComponent<Camera>();       
-        animator= transform.Find("Robot Kyle").GetComponent<Animator>();
+        cam = camObject.GetComponent<Camera>();
+        GameObject musicPlayer = Instantiate(Resources.Load<GameObject>("musicPlayer"));
+        musicPlayer.transform.parent = gameObject.transform;
+        animator = transform.Find("Robot Kyle").GetComponent<Animator>();
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         ui = Instantiate(Resources.Load<GameObject>("inGameUI"));
         uiScript=ui.GetComponent<uiManagerScript>();
@@ -143,7 +145,7 @@ public class playerController : baseCharacter
 
         if (castingAbility != null && movingToRange==true)
         {
-            if (Vector3.Distance(gameObject.transform.position,targetPosition) < (castingAbility.baseRange * (1 + (bonusRange / 100))))
+            if (Vector3.Distance(gameObject.transform.position,targetPosition) <= (castingAbility.baseRange * (1 + (bonusRange / 100))))
             {
                 if (castingAbility.targeting=="pointAndClick")
                 {

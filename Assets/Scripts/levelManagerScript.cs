@@ -155,7 +155,7 @@ public class levelManagerScript : MonoBehaviour
 
     public void turnNewLevel()
     {
-        direction = Random.Range(0, 4);
+        direction = Random.Range(0, 5);
         directionSelected = true;
 
         if (direction == 1)

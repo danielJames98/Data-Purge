@@ -57,7 +57,6 @@ public class lootScript : MonoBehaviour
     public bool offensive = true;
     public bool stun = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb=GetComponent<Rigidbody>();
@@ -68,7 +67,6 @@ public class lootScript : MonoBehaviour
         canvas.GetComponent<overHeadCanvasScript>().yOffset = 0.5f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(transform.position.y<=0.6f && frozen==false)
@@ -82,7 +80,7 @@ public class lootScript : MonoBehaviour
 
     public void pickUp(playerController pc, baseAbilityScript slot)
     {
-        AudioSource.PlayClipAtPoint(pickUpSound, this.transform.position);
+        AudioSource.PlayClipAtPoint(pickUpSound, this.transform.position, 0.1f);
         slot.type = type;
         slot.targeting = targeting;
         slot.baseDamage = baseDamage;

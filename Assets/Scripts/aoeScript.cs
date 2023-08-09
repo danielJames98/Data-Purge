@@ -17,11 +17,12 @@ public class aoeScript : MonoBehaviour
     public ParticleSystem portal;
     public ParticleSystem smoke;
     public ParticleSystem sparks;
+    public string charAppliedByTag;
 
     public void readyToActivate()
     {
         rb = GetComponent<Rigidbody>();
-
+        charAppliedByTag = charAppliedBy.tag;
         StartCoroutine("durationTimer");
         if (abilityAppliedBy.appliesEffect&& abilityAppliedBy.stun==false)
         {
@@ -48,16 +49,21 @@ public class aoeScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(offensive==true && other.tag!=charAppliedBy.tag)
+        if (other.gameObject != null)
         {
-            if (other.gameObject.GetComponent<baseCharacter>() != null)
+            if (offensive == true && other.tag != charAppliedByTag)
+            {
+                if (other.gameObject.GetComponent<baseCharacter>() != null)
+                {
+                    charsInAoe.Add(other.gameObject.GetComponent<baseCharacter>());
+                    other.gameObject.GetComponent<baseCharacter>().aoesColliding.Add(this);
+                }
+            }
+            else if (offensive == false && other.tag == charAppliedByTag && other.gameObject.GetComponent<baseCharacter>() != null)
             {
                 charsInAoe.Add(other.gameObject.GetComponent<baseCharacter>());
+                other.gameObject.GetComponent<baseCharacter>().aoesColliding.Add(this);
             }
-        }
-        else if(offensive==false && other.tag == charAppliedBy.tag && other.gameObject.GetComponent<baseCharacter>() != null)
-        {
-            charsInAoe.Add(other.gameObject.GetComponent<baseCharacter>());
         }
     }
 
@@ -66,6 +72,11 @@ public class aoeScript : MonoBehaviour
         if(charsInAoe.Contains(other.gameObject.GetComponent<baseCharacter>()))
         {
             charsInAoe.Remove(other.gameObject.GetComponent<baseCharacter>());
+            if(other.gameObject.GetComponent<baseCharacter>().aoesColliding.Contains(this))
+            {
+                other.gameObject.GetComponent<baseCharacter>().aoesColliding.Remove(this);
+            }
+            
         }
     }
 
@@ -118,6 +129,24 @@ public class aoeScript : MonoBehaviour
     IEnumerator durationTimer()
     {
         yield return new WaitForSeconds(duration);
+        foreach(baseCharacter character in charsInAoe)
+        {
+            if(character.aoesColliding.Contains(this))
+            {
+                character.aoesColliding.Remove(this);
+            }
+        }
         Destroy(this.gameObject);
+    }
+
+    public void triggerRemoveTarget(baseCharacter target)
+    {
+        StartCoroutine(removeTarget(target));
+    }
+
+    public IEnumerator removeTarget(baseCharacter target)
+    {
+        yield return new WaitForEndOfFrame();
+        charsInAoe.Remove(target);
     }
 }

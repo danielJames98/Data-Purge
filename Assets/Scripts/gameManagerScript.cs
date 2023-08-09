@@ -10,7 +10,7 @@ public class gameManagerScript : MonoBehaviour
 
     void Start()
     {
-        startingLevel = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 4).ToString()));
+        startingLevel = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 5).ToString()));
         player = Instantiate(Resources.Load<GameObject>("PlayerCharacter"), new Vector3(-48,1.5f,0), Quaternion.identity);
         player.transform.Rotate(0, 90, 0);
         startingLevel.GetComponent<levelManagerScript>().lockDown();

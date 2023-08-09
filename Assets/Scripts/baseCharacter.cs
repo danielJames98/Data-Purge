@@ -86,73 +86,78 @@ public class baseCharacter : MonoBehaviour
     public bool walking;
     public GameObject chargeSparks;
 
+    public List<AudioClip> deathSounds;
+
     public List<aoeScript> aoesColliding;
 
     public void takeDamage(float damage)
     {
-        if (damage / (1 + (armour / 100)) > 0)
+        if(alive==true)
         {
-            currentHealth = currentHealth - (damage / (1 + (armour / 100)));
-
-            if (healthBarActive == false)
+            if (damage / (1 + (armour / 100)) > 0)
             {
-                healthBar.SetActive(true);
-                healthBarActive = true;
-            }
+                currentHealth = currentHealth - (damage / (1 + (armour / 100)));
 
-            if (healthBarActive == true)
-            {
-                healthBar.GetComponent<Slider>().value = currentHealth / maxHealth;
-
-                spawnCombatText(Mathf.Round(damage / (1 + (armour / 100))), "damage");
-
-                if (this.gameObject.tag != "Player")
+                if (healthBarActive == false)
                 {
-                    StopCoroutine("hideHealthBar");
-                    StartCoroutine("hideHealthBar");
+                    healthBar.SetActive(true);
+                    healthBarActive = true;
                 }
+
+                if (healthBarActive == true)
+                {
+                    healthBar.GetComponent<Slider>().value = currentHealth / maxHealth;
+
+                    spawnCombatText(Mathf.Round(damage / (1 + (armour / 100))), "damage");
+
+                    if (this.gameObject.tag != "Player")
+                    {
+                        StopCoroutine("hideHealthBar");
+                        StartCoroutine("hideHealthBar");
+                    }
+                }
+
             }
 
+            if (currentHealth <= 0)
+            {
+                StartCoroutine("Die");
+            }
         }
 
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+
+
     }
 
     public void takeHealing(float healing)
     {
-        if (currentHealth < maxHealth)
+        if(alive==true)
         {
-            if (currentHealth + healing < maxHealth)
+            if (currentHealth < maxHealth)
             {
-                currentHealth = currentHealth + healing;
-                spawnCombatText(Mathf.Round(healing), "heal");
-            }
-            else
-            {
-                spawnCombatText(Mathf.Round(maxHealth - currentHealth), "heal");
-                currentHealth = maxHealth;
-            }
+                if (currentHealth + healing < maxHealth)
+                {
+                    currentHealth = currentHealth + healing;
+                    spawnCombatText(Mathf.Round(healing), "heal");
+                }
+                else
+                {
+                    spawnCombatText(Mathf.Round(maxHealth - currentHealth), "heal");
+                    currentHealth = maxHealth;
+                }
 
-            healthBar.GetComponent<Slider>().value = currentHealth / maxHealth;
+                healthBar.GetComponent<Slider>().value = currentHealth / maxHealth;
+            }
         }
     }
 
-    public void Die()
+    public IEnumerator Die()
     {
         if (gameObject.tag == "Enemy")
         {
             GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().gainXP(20);
             GameObject loot0 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
             generateAbilityCore(loot0.GetComponent<lootScript>());
-            GameObject loot1 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
-            generateAbilityCore(loot1.GetComponent<lootScript>());
-            GameObject loot2 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
-            generateAbilityCore(loot2.GetComponent<lootScript>());
-            GameObject loot3 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
-            generateAbilityCore(loot3.GetComponent<lootScript>());
 
             if (levelManager.objective == "Annihilation")
             {
@@ -163,7 +168,7 @@ public class baseCharacter : MonoBehaviour
                 levelManager.completeObjective();
             }
 
-            Destroy(overHeadCanvas);
+            
         }
         if (gameObject.tag == "Player")
         {
@@ -175,18 +180,29 @@ public class baseCharacter : MonoBehaviour
         {
             if (aoeScript.charsInAoe.Contains(this))
             {
-                aoeScript.charsInAoe.Remove(this);
+                aoeScript.removeTarget(this);
             }
         }
-
+        interruptCast();
+        navMeshAgent.destination = transform.position;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        AudioSource.PlayClipAtPoint(deathSounds[Random.Range(0, deathSounds.Count)], gameObject.transform.position);
         alive = false;
 
+        yield return new WaitForSeconds(0.1f);
+        if(gameObject.tag=="Enemy")
+        {
+            Destroy(overHeadCanvas);
+        }
         Destroy(gameObject);
     }
 
     public void activateAbility(baseAbilityScript abilityToActivate)
     {
-        abilityToActivate.activateAbility();
+        if(alive==true)
+        {
+            abilityToActivate.activateAbility();
+        }       
     }
 
     public void spawnCombatText(float quantity, string textType)
@@ -247,6 +263,7 @@ public class baseCharacter : MonoBehaviour
         if (castingCoroutine != null && castingAbility != null)
         {
             castingAbility.StopCoroutine(castingCoroutine);
+            castingAbility.GetComponent<AudioSource>().Stop();
         }
         animator.SetBool("casting", false);
         castingAbility = null;
@@ -383,22 +400,6 @@ public class baseCharacter : MonoBehaviour
         if (levelsLeftToAdd > 0)
         {
             levelUp(levelsLeftToAdd);
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<aoeScript>() != null)
-        {
-            aoesColliding.Add(collision.gameObject.GetComponent<aoeScript>());
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<aoeScript>() != null && aoesColliding.Contains(collision.gameObject.GetComponent<aoeScript>()))
-        {
-            aoesColliding.Remove(collision.gameObject.GetComponent<aoeScript>());
         }
     }
 

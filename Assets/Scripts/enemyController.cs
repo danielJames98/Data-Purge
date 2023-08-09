@@ -178,7 +178,7 @@ public class enemyController : baseCharacter
 
     public void aiSelectAbility()
     {
-        if(casting == false && stunned == false)
+        if(casting == false && stunned == false && alive==true)
         {
             int abilityNumber = Random.Range(0, 4);
 

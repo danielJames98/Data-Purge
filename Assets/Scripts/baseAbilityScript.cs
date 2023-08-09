@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
-using UnityEngine.UIElements;
-using UnityEngine.UIElements.Experimental;
+using UnityEngine.UI;
 
 public class baseAbilityScript : MonoBehaviour
 {
@@ -31,6 +31,7 @@ public class baseAbilityScript : MonoBehaviour
     public baseCharacter parentCharacterScript;
     public NavMeshAgent parentCharacterNav;
     public Animator parentCharacterAnimator;
+    public AudioSource audioSource;
 
     public bool onCooldown;
 
@@ -63,6 +64,14 @@ public class baseAbilityScript : MonoBehaviour
     public bool offensive=true;
     public bool stun=false;
 
+    public List<AudioClip> abilitySounds;
+    public List<AudioClip> castSounds;
+
+    public Slider cooldownSlider;
+    public float cooldownStartTime;
+    public float timeSinceCooldownStart;
+    public float cooldownLeft;
+
     void Start()
     {
         parentCharacter = transform.parent.gameObject;
@@ -72,18 +81,44 @@ public class baseAbilityScript : MonoBehaviour
             parentCharacterNav = parentCharacter.GetComponent<NavMeshAgent>();          
             frontFirePoint = parentCharacter.transform.Find("frontFirePoint").gameObject;
             parentCharacterAnimator= parentCharacter.transform.Find("Robot Kyle").GetComponent<Animator>();
+            audioSource= gameObject.GetComponent<AudioSource>();
 
             if(parentCharacter.name=="playerCharacter(Clone)")
             {
+                cooldownSlider = GameObject.Find("inGameUI(Clone)").transform.Find(this.gameObject.name+"Icon").transform.Find(this.gameObject.name + "CooldownSlider").GetComponent<Slider>();
                 cam = GameObject.Find("Main Camera(Clone)").GetComponent<Camera>();
             }
         }
+    }
+
+    private void Update()
+    {
+        if(parentCharacter.tag=="Player" && cooldownSlider!=null)
+        {
+            if (onCooldown == true)
+            {
+                timeSinceCooldownStart = Time.time - cooldownStartTime;
+                cooldownLeft = (baseCooldown / (1 + (parentCharacterScript.cooldownReduction / 100))) - timeSinceCooldownStart;
+
+                if (cooldownSlider.value != cooldownLeft / (baseCooldown / (1 + (parentCharacterScript.cooldownReduction / 100))))
+                {
+                    cooldownSlider.value = cooldownLeft / (baseCooldown / (1 + (parentCharacterScript.cooldownReduction / 100)));
+                }
+            }
+            else if (cooldownSlider.value != 0)
+            {
+                cooldownSlider.value = 0;
+            }
+        }
+
     }
 
     public void activateAbility()
     {
         if (onCooldown==false && parentCharacterScript.casting == false && parentCharacterScript.stunned == false) 
         {
+            parentCharacterNav.destination = transform.position;
+
             if (targeting == "pointAndClick")
             {
                 pointAndClick();
@@ -168,7 +203,9 @@ public class baseAbilityScript : MonoBehaviour
         parentCharacterScript.castingCoroutine = "applyPointandClickEffect";
         parentCharacterScript.casting = true;
         parentCharacterScript.castingAbility = this;
+        playCastSound();
         yield return new WaitForSeconds(baseCastTime / (1 + (parentCharacterScript.attackSpeed / 100)));
+        playAbilitySound();
         parentCharacterScript.casting = false;
         GameObject targetCharacter;
 
@@ -315,7 +352,9 @@ public class baseAbilityScript : MonoBehaviour
         parentCharacterScript.castingAbility = this;
         parentCharacterAnimator.SetBool("casting", true);
         parentCharacterScript.chargeSparks.SetActive(true);
+        playCastSound();
         yield return new WaitForSeconds(baseCastTime / (1 + (parentCharacterScript.attackSpeed / 100)));
+        playAbilitySound();
         parentCharacterScript.casting = false;
         parentCharacterScript.chargeSparks.SetActive(false);
         parentCharacterAnimator.SetBool("casting", false);
@@ -383,7 +422,9 @@ public class baseAbilityScript : MonoBehaviour
         parentCharacterScript.casting = true;
         parentCharacterAnimator.SetBool("casting", true);
         parentCharacterScript.chargeSparks.SetActive(true);
+        playCastSound();
         yield return new WaitForSeconds(baseCastTime / (1 + (parentCharacterScript.attackSpeed / 100)));
+        playAbilitySound();
         parentCharacterAnimator.SetBool("casting", false);
         parentCharacterScript.chargeSparks.SetActive(false);
         parentCharacterScript.casting = false;
@@ -425,6 +466,7 @@ public class baseAbilityScript : MonoBehaviour
     IEnumerator cooldown()
     {
         onCooldown = true;
+        cooldownStartTime=Time.time;
         yield return new WaitForSeconds(baseCooldown/(1+(parentCharacterScript.cooldownReduction/100)));
         onCooldown= false;
         StopCoroutine("cooldown");
@@ -441,5 +483,17 @@ public class baseAbilityScript : MonoBehaviour
         parentCharacterNav.enabled = true;
         parentCharacterScript.rb.angularVelocity = new Vector3(0, 0, 0);
         parentCharacterScript.rb.velocity = new Vector3(0, 0, 0);
+    }
+
+    public void playCastSound()
+    {
+        audioSource.clip = castSounds[Random.Range(0, castSounds.Count)];
+        audioSource.Play();
+    }
+
+    public void playAbilitySound()
+    {
+        audioSource.Stop();
+        AudioSource.PlayClipAtPoint(abilitySounds[Random.Range(0, abilitySounds.Count)], parentCharacter.transform.position);
     }
 }
