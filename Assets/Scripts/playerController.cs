@@ -25,12 +25,12 @@ public class playerController : baseCharacter
         GameObject camObject = Instantiate(Resources.Load<GameObject>("Main Camera"));
         camObject.GetComponent<camController>().player = this.gameObject;
         cam = camObject.GetComponent<Camera>();
+        ui = camObject.transform.Find("inGameUI").gameObject;
+        uiScript = ui.GetComponent<uiManagerScript>();
         GameObject musicPlayer = Instantiate(Resources.Load<GameObject>("musicPlayer"));
         musicPlayer.transform.parent = gameObject.transform;
         animator = transform.Find("Robot Kyle").GetComponent<Animator>();
         navMeshAgent = this.GetComponent<NavMeshAgent>();
-        ui = Instantiate(Resources.Load<GameObject>("inGameUI"));
-        uiScript=ui.GetComponent<uiManagerScript>();
         healthBar = GameObject.Find("playerHealthBar");
         healthBarActive = true;
         xpBar = GameObject.Find("playerXpBar");

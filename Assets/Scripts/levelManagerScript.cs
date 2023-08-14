@@ -32,10 +32,10 @@ public class levelManagerScript : MonoBehaviour
 
     private void Update()
     {
-        if (rotationDone == false && directionSelected == true && (this.transform.rotation==targetRotation || direction==0) && gameManager.activeLevel==this.gameObject)
+        if (rotationDone == false && directionSelected == true && this.transform.rotation==targetRotation && gameManager.activeLevel==this.gameObject)
         {
             rotationDone=true;
-            spawnEnemies();
+            
         }
     }
 
@@ -104,7 +104,9 @@ public class levelManagerScript : MonoBehaviour
         {
             firewall.GetComponent<NavMeshLink>().enabled = false;
             firewall.GetComponent<Renderer>().material = closedDoorMat;
-        }      
+        }
+
+        spawnEnemies();
     }
 
     public void spawnEnemies()
@@ -155,10 +157,15 @@ public class levelManagerScript : MonoBehaviour
 
     public void turnNewLevel()
     {
-        direction = Random.Range(0, 5);
+        direction = Random.Range(0, 4);
         directionSelected = true;
 
-        if (direction == 1)
+        if(direction==0)
+        {
+            rotationDone = true;
+            spawnEnemies();
+        }
+        else if (direction == 1)
         {
             targetRotation = new Quaternion(0, 90, 0, 0);
             this.transform.Rotate(0, 90, 0, 0);

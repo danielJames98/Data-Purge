@@ -651,6 +651,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
   - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
   - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!82 &7820799209371433637
 AudioSource:
   m_ObjectHideFlags: 0
@@ -864,6 +868,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
   - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
   - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!82 &7981596831399574343
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1077,6 +1085,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
   - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
   - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!82 &6983034756690362215
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1290,6 +1302,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
   - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
   - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!82 &6610369801219421739
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1503,6 +1519,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
   - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
   - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!82 &4513262218519380903
 AudioSource:
   m_ObjectHideFlags: 0

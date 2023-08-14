@@ -91,6 +91,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &620713826464239188
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +186,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &1238010420492979326
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +450,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &1586622973404580568
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +545,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &1758190778316929052
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +666,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
   - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
   - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!82 &7045794645745151721
 AudioSource:
   m_ObjectHideFlags: 0
@@ -837,6 +857,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &3302974726794195963
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +952,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &3506257751177481393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,6 +1460,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &4715084883421355475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,6 +1555,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &5542006829917678933
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,6 +1650,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &5803313448381602782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,6 +1745,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &5887483177471492839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,6 +1871,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &6697749914915674478
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,6 +1966,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &6851426085473316441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2009,6 +2061,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &6902490759089474468
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,6 +2182,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
   - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
   - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!82 &1324069071747084178
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2313,6 +2373,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &7021168890723935428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,6 +2494,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
   - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
   - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!82 &5051614102087332917
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2617,6 +2685,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &7179713639233591547
 GameObject:
   m_ObjectHideFlags: 0
@@ -2708,6 +2780,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &7731535993805441038
 GameObject:
   m_ObjectHideFlags: 0
@@ -2799,6 +2875,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &7924696040963100470
 GameObject:
   m_ObjectHideFlags: 0
@@ -2916,6 +2996,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
   - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
   - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!82 &638085179011747370
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3103,6 +3187,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &8227573667730724459
 GameObject:
   m_ObjectHideFlags: 0
@@ -3194,6 +3282,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &8759030319764382577
 GameObject:
   m_ObjectHideFlags: 0
@@ -3285,6 +3377,10 @@ MonoBehaviour:
   stun: 0
   abilitySounds: []
   castSounds: []
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!1 &9217937408879356233
 GameObject:
   m_ObjectHideFlags: 0
@@ -3402,6 +3498,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
   - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
   - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
 --- !u!82 &130484051824951747
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3509,6 +3609,10 @@ PrefabInstance:
     - target: {fileID: 134812, guid: 3c81b162a1af44348b8994f7040514d4, type: 3}
       propertyPath: m_Name
       value: SciFiGunLightBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 134812, guid: 3c81b162a1af44348b8994f7040514d4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 449102, guid: 3c81b162a1af44348b8994f7040514d4, type: 3}
       propertyPath: m_RootOrder

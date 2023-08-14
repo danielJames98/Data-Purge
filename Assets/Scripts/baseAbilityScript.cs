@@ -85,7 +85,7 @@ public class baseAbilityScript : MonoBehaviour
 
             if(parentCharacter.name=="playerCharacter(Clone)")
             {
-                cooldownSlider = GameObject.Find("inGameUI(Clone)").transform.Find(this.gameObject.name+"Icon").transform.Find(this.gameObject.name + "CooldownSlider").GetComponent<Slider>();
+                cooldownSlider = GameObject.Find("inGameUI").transform.Find(this.gameObject.name+"Icon").transform.Find(this.gameObject.name + "CooldownSlider").GetComponent<Slider>();
                 cam = GameObject.Find("Main Camera(Clone)").GetComponent<Camera>();
             }
         }

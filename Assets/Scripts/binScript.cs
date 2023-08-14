@@ -10,7 +10,7 @@ public class binScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     void Start()
     {
-        manager = GameObject.Find("inGameUI(Clone)").GetComponent<uiManagerScript>();
+        manager = GameObject.Find("inGameUI").GetComponent<uiManagerScript>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

@@ -14,7 +14,7 @@ public class uiIconScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     // Start is called before the first frame update
     void Start()
     {
-        manager = GameObject.Find("inGameUI(Clone)").GetComponent<uiManagerScript>();
+        manager = GameObject.Find("inGameUI").GetComponent<uiManagerScript>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
