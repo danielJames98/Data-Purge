@@ -89,120 +89,123 @@ public class playerController : baseCharacter
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Time.timeScale > 0 && alive == true)
         {
-            if(navMeshAgent.enabled==true && casting ==false &&stunned==false)
+            if (Input.GetMouseButton(0))
             {
-                
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                
-                Ray lootRay = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit lootHit;
-
-                if (Physics.Raycast(lootRay, out lootHit, 100) && lootHit.transform.gameObject.tag == "loot" && Vector3.Distance(this.transform.position, lootHit.point)<10)
+                if (navMeshAgent.enabled == true && casting == false && stunned == false)
                 {
-                    getFirstEmptySlot();
-                    if(inventoryFull==false)
+
+                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+
+                    Ray lootRay = cam.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit lootHit;
+
+                    if (Physics.Raycast(lootRay, out lootHit, 100) && lootHit.transform.gameObject.tag == "loot" && Vector3.Distance(this.transform.position, lootHit.point) < 10)
                     {
-                        lootHit.transform.gameObject.GetComponent<lootScript>().pickUp(this, inventoryItems[firstEmptyInventorySlot]);
-                    }                  
+                        getFirstEmptySlot();
+                        if (inventoryFull == false)
+                        {
+                            lootHit.transform.gameObject.GetComponent<lootScript>().pickUp(this, inventoryItems[firstEmptyInventorySlot]);
+                        }
+                    }
+
+                    if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable")) && inventoryOpen == false)
+                    {
+                        targetCharacter = null;
+                        castingAbility = null;
+                        navMeshAgent.destination = hit.point;
+                    }
                 }
-                
-                if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable"))&&inventoryOpen==false)
-                {
-                    targetCharacter = null;
-                    castingAbility = null;
-                    navMeshAgent.destination = hit.point;
-                }             
             }
-        }
 
-        if (Input.GetMouseButtonDown(1) && casting == false && stunned == false)
-        {
-            activateAbility(abilityScript0);
-        }
-
-        if (Input.GetButtonDown("1") && casting == false && stunned == false)
-        {
-            activateAbility(abilityScript1);
-        }
-
-        if (Input.GetButtonDown("2") && casting == false && stunned == false)
-        {
-            activateAbility(abilityScript2);
-        }
-
-        if (Input.GetButtonDown("3") && casting == false && stunned == false)
-        {
-            activateAbility(abilityScript3);
-        }
-
-        if (Input.GetButtonDown("4") && casting == false && stunned == false)
-        {
-            activateAbility(abilityScript4);
-        }
-
-        if (castingAbility != null && movingToRange==true)
-        {
-            if (Vector3.Distance(gameObject.transform.position,targetPosition) <= (castingAbility.baseRange * (1 + (bonusRange / 100))))
+            if (Input.GetMouseButtonDown(1) && casting == false && stunned == false)
             {
-                if (castingAbility.targeting=="pointAndClick")
+                activateAbility(abilityScript0);
+            }
+
+            if (Input.GetButtonDown("1") && casting == false && stunned == false)
+            {
+                activateAbility(abilityScript1);
+            }
+
+            if (Input.GetButtonDown("2") && casting == false && stunned == false)
+            {
+                activateAbility(abilityScript2);
+            }
+
+            if (Input.GetButtonDown("3") && casting == false && stunned == false)
+            {
+                activateAbility(abilityScript3);
+            }
+
+            if (Input.GetButtonDown("4") && casting == false && stunned == false)
+            {
+                activateAbility(abilityScript4);
+            }
+
+            if (castingAbility != null && movingToRange == true)
+            {
+                if (Vector3.Distance(gameObject.transform.position, targetPosition) <= (castingAbility.baseRange * (1 + (bonusRange / 100))))
                 {
-                    castingAbility.StartCoroutine("applyPointandClickEffect");
+                    if (castingAbility.targeting == "pointAndClick")
+                    {
+                        castingAbility.StartCoroutine("applyPointandClickEffect");
+                    }
+                    else if (castingAbility.targeting == "ground")
+                    {
+                        castingAbility.StartCoroutine("spawnAoe");
+                    }
+
+                    navMeshAgent.destination = transform.position;
+                    movingToRange = false;
                 }
-                else if(castingAbility.targeting=="ground")
+            }
+
+            if (targetCharacter != null && castingAbility != null && movingToRange == true)
+            {
+                // navMeshAgent.destination = targetCharacter.transform.position;
+            }
+
+            if (navMeshAgent.speed != moveSpeed)
+            {
+                navMeshAgent.speed = moveSpeed;
+            }
+
+
+            if (animator.GetFloat("velocity") != navMeshAgent.velocity.magnitude)
+            {
+                animator.SetFloat("velocity", navMeshAgent.velocity.magnitude);
+            }
+
+            if (navMeshAgent.velocity.magnitude > 0)
+            {
+                walking = true;
+
+                if (animator.speed != 1 * (navMeshAgent.velocity.magnitude / 10))
                 {
-                    castingAbility.StartCoroutine("spawnAoe");
+                    animator.speed = 1 * (navMeshAgent.velocity.magnitude / 10);
                 }
-
-                navMeshAgent.destination = transform.position;
-                movingToRange = false;
             }
-        }
-
-        if (targetCharacter != null && castingAbility != null && movingToRange == true)
-        {
-           // navMeshAgent.destination = targetCharacter.transform.position;
-        }
-
-        if(navMeshAgent.speed!=moveSpeed)
-        {
-            navMeshAgent.speed = moveSpeed;
-        }
-
-
-        if (animator.GetFloat("velocity")!= navMeshAgent.velocity.magnitude)
-        {
-            animator.SetFloat("velocity", navMeshAgent.velocity.magnitude);
-        }
-
-        if(navMeshAgent.velocity.magnitude>0)
-        {
-            walking = true;
-         
-            if (animator.speed != 1 * (navMeshAgent.velocity.magnitude / 10))
+            else if (navMeshAgent.velocity.magnitude == 0)
             {
-                animator.speed = 1 * (navMeshAgent.velocity.magnitude / 10);
+                walking = false;
+                animator.speed = 1;
             }
-        }
-        else if(navMeshAgent.velocity.magnitude==0)
-        {
-            walking = false;
-            animator.speed = 1;
-        }
 
-        if (walking == true && walkSoundPlaying == false)
-        {
-            StartCoroutine(playWalkSound());
-        }
-
-        if (casting == true)
-        {
-            castBarUpdate();
-            if (targetCharacter != null)
+            if (walking == true && walkSoundPlaying == false)
             {
-                transform.forward = targetCharacter.transform.position - transform.position;
+                StartCoroutine(playWalkSound());
+            }
+
+            if (casting == true)
+            {
+                castBarUpdate();
+                if (targetCharacter != null)
+                {
+                    transform.forward = targetCharacter.transform.position - transform.position;
+                }
             }
         }
     }

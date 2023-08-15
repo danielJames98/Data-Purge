@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class menuManagerScript : MonoBehaviour
+public class gameOverMenuScript : MonoBehaviour
 {
     public void newGame()
     {
@@ -14,5 +13,10 @@ public class menuManagerScript : MonoBehaviour
     public void quit()
     {
         Application.Quit();
+    }
+
+    public void mainMenu()
+    {
+        SceneManager.LoadScene("mainMenu");
     }
 }

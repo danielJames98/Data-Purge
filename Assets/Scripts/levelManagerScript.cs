@@ -32,10 +32,10 @@ public class levelManagerScript : MonoBehaviour
 
     private void Update()
     {
-        if (rotationDone == false && directionSelected == true && this.transform.rotation==targetRotation && gameManager.activeLevel==this.gameObject)
+        if (direction > 0 && rotationDone == false && directionSelected == true && this.transform.rotation==targetRotation)
         {
             rotationDone=true;
-            
+            spawnEnemies();
         }
     }
 
@@ -89,6 +89,14 @@ public class levelManagerScript : MonoBehaviour
         }
     }
 
+    public void killEnemies()
+    {
+        foreach(GameObject enemy in enemyList)
+        {
+            enemy.GetComponent<enemyController>().Die();
+        }
+    }
+
     public void lockDown()
     {
         if (gameManager == null)
@@ -104,9 +112,7 @@ public class levelManagerScript : MonoBehaviour
         {
             firewall.GetComponent<NavMeshLink>().enabled = false;
             firewall.GetComponent<Renderer>().material = closedDoorMat;
-        }
-
-        spawnEnemies();
+        }        
     }
 
     public void spawnEnemies()

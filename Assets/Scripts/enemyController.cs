@@ -54,109 +54,112 @@ public class enemyController : baseCharacter
 
     void Update()
     {
-        if(charactersInRange.Count > 0)
+       if(Time.timeScale>0)
         {
-            aggroTarget = charactersInRange[0];
-        }
-        else
-        {
-            aggroTarget= null;
-        }
-
-        if(aggroTarget!= null)
-        {
-            if(inCombat==false)
+            if (charactersInRange.Count > 0)
             {
-                inCombat = true;
+                aggroTarget = charactersInRange[0];
             }
-        }
-        else
-        {
-            inCombat = false;
-        }
-
-        if(inCombat && castingAbility==null && casting == false && stunned == false)
-        {
-            aiSelectAbility();
-        }
-
-        if (targetCharacter != null && casting == false && stunned == false && castingAbility!=null)
-        {       
-
-            if (navMeshAgent.destination != targetCharacter.transform.position)
+            else
             {
-                navMeshAgent.destination = targetCharacter.transform.position;               
-            }   
-            
-            if(targetPosition!=targetCharacter.transform.position)
-            {
-                targetPosition= targetCharacter.transform.position;
+                aggroTarget = null;
             }
-        }
 
-        if (castingAbility != null && casting == false && stunned == false && movingToRange == true)
-        {
-            if (Vector3.Distance(gameObject.transform.position, targetCharacter.transform.position) <= (castingAbility.baseRange * (1 + (bonusRange / 100))))
+            if (aggroTarget != null)
             {
-                if (castingAbility.targeting=="pointAndClick")
+                if (inCombat == false)
                 {
-                    castingAbility.StartCoroutine("applyPointandClickEffect");
+                    inCombat = true;
                 }
-                else if (castingAbility.targeting=="direction")
+            }
+            else
+            {
+                inCombat = false;
+            }
+
+            if (inCombat && castingAbility == null && casting == false && stunned == false)
+            {
+                aiSelectAbility();
+            }
+
+            if (targetCharacter != null && casting == false && stunned == false && castingAbility != null)
+            {
+
+                if (navMeshAgent.destination != targetCharacter.transform.position)
                 {
-                    castingAbility.StartCoroutine("spawnProjectile");
-                }
-                else if (castingAbility.targeting == "ground")
-                {
-                    castingAbility.StartCoroutine("spawnAoe");
+                    navMeshAgent.destination = targetCharacter.transform.position;
                 }
 
-                movingToRange = false;
-                navMeshAgent.destination = transform.position;
+                if (targetPosition != targetCharacter.transform.position)
+                {
+                    targetPosition = targetCharacter.transform.position;
+                }
             }
-        }
 
-        if (navMeshAgent.speed != moveSpeed)
-        {
-            navMeshAgent.speed = moveSpeed;
-        }
-
-        if (animator.GetFloat("velocity") != navMeshAgent.velocity.magnitude)
-        {
-            animator.SetFloat("velocity", navMeshAgent.velocity.magnitude);
-        }
-
-        if (navMeshAgent.velocity.magnitude > 0)
-        {
-            walking = true;
-            if (animator.speed != 1 * (navMeshAgent.velocity.magnitude / 10))
+            if (castingAbility != null && casting == false && stunned == false && movingToRange == true)
             {
-                animator.speed = 1 * (navMeshAgent.velocity.magnitude / 10);
+                if (Vector3.Distance(gameObject.transform.position, targetCharacter.transform.position) <= (castingAbility.baseRange * (1 + (bonusRange / 100))))
+                {
+                    if (castingAbility.targeting == "pointAndClick")
+                    {
+                        castingAbility.StartCoroutine("applyPointandClickEffect");
+                    }
+                    else if (castingAbility.targeting == "direction")
+                    {
+                        castingAbility.StartCoroutine("spawnProjectile");
+                    }
+                    else if (castingAbility.targeting == "ground")
+                    {
+                        castingAbility.StartCoroutine("spawnAoe");
+                    }
+
+                    movingToRange = false;
+                    navMeshAgent.destination = transform.position;
+                }
             }
-        }
-        else if (navMeshAgent.velocity.magnitude == 0)
-        {
-            walking = false;
-            animator.speed = 1;
-        }
 
-        if (walking == true && walkSoundPlaying == false)
-        {
-            StartCoroutine(playWalkSound());
-        }
-
-        if (casting==true)
-        {
-            castBarUpdate();
-            if(targetCharacter!=null)
+            if (navMeshAgent.speed != moveSpeed)
             {
-                transform.forward = targetCharacter.transform.position - transform.position;
-            }         
-        }
-        else if (casting == false && castBarActive == true)
-        {
-            castBar.SetActive(false);
-            castBarActive = false;
+                navMeshAgent.speed = moveSpeed;
+            }
+
+            if (animator.GetFloat("velocity") != navMeshAgent.velocity.magnitude)
+            {
+                animator.SetFloat("velocity", navMeshAgent.velocity.magnitude);
+            }
+
+            if (navMeshAgent.velocity.magnitude > 0)
+            {
+                walking = true;
+                if (animator.speed != 1 * (navMeshAgent.velocity.magnitude / 10))
+                {
+                    animator.speed = 1 * (navMeshAgent.velocity.magnitude / 10);
+                }
+            }
+            else if (navMeshAgent.velocity.magnitude == 0)
+            {
+                walking = false;
+                animator.speed = 1;
+            }
+
+            if (walking == true && walkSoundPlaying == false)
+            {
+                StartCoroutine(playWalkSound());
+            }
+
+            if (casting == true)
+            {
+                castBarUpdate();
+                if (targetCharacter != null)
+                {
+                    transform.forward = targetCharacter.transform.position - transform.position;
+                }
+            }
+            else if (casting == false && castBarActive == true)
+            {
+                castBar.SetActive(false);
+                castBarActive = false;
+            }
         }
     }
 

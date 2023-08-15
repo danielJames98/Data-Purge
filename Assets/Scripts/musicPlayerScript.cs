@@ -6,6 +6,7 @@ public class musicPlayerScript : MonoBehaviour
 {
     public AudioSource audioSource;
     public List<AudioClip> songs;
+    public AudioClip deathSound;
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +25,11 @@ public class musicPlayerScript : MonoBehaviour
             audioSource.clip = songs[Random.Range(0, songs.Count)]; 
             audioSource.Play();
         }
+    }
+
+    public void playDeathSound()
+    {
+        audioSource.clip = deathSound;
+        audioSource.Play();
     }
 }

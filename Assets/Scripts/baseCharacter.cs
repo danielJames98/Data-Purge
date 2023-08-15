@@ -119,7 +119,7 @@ public class baseCharacter : MonoBehaviour
 
             }
 
-            if (currentHealth <= 0)
+            if (currentHealth <= 0&& alive==true)
             {
                 StartCoroutine("Die");
             }
@@ -153,6 +153,12 @@ public class baseCharacter : MonoBehaviour
 
     public IEnumerator Die()
     {
+        interruptCast();
+        navMeshAgent.destination = transform.position;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        AudioSource.PlayClipAtPoint(deathSounds[Random.Range(0, deathSounds.Count)], gameObject.transform.position);
+        alive = false;
+
         if (gameObject.tag == "Enemy")
         {
             GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().gainXP(20);
@@ -173,7 +179,13 @@ public class baseCharacter : MonoBehaviour
         if (gameObject.tag == "Player")
         {
             GameObject.Find("Main Camera(Clone)").GetComponent<camController>().player = null;
-            SceneManager.LoadScene("generatedScene");
+            GameObject.Find("Main Camera(Clone)").GetComponent<ShaderEffect_CorruptedVram>().enabled = true;
+            GameObject.Find("Main Camera(Clone)").GetComponent<ShaderEffect_CorruptedVram>().shift = 5;
+            GameObject.Find("musicPlayer(Clone)").GetComponent<musicPlayerScript>().playDeathSound();
+            gameManager.GetComponent<gameManagerScript>().activeLevel.GetComponent<levelManagerScript>().killEnemies();
+            gameManager.GetComponent<gameManagerScript>().inGameUI.SetActive(false);
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("gameOverScene");
         }
 
         foreach (aoeScript aoeScript in aoesColliding)
@@ -183,18 +195,13 @@ public class baseCharacter : MonoBehaviour
                 aoeScript.removeTarget(this);
             }
         }
-        interruptCast();
-        navMeshAgent.destination = transform.position;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        AudioSource.PlayClipAtPoint(deathSounds[Random.Range(0, deathSounds.Count)], gameObject.transform.position);
-        alive = false;
-
-        yield return new WaitForSeconds(0.1f);
+        
         if(gameObject.tag=="Enemy")
         {
+            yield return new WaitForSeconds(0.1f);
             Destroy(overHeadCanvas);
-        }
-        Destroy(gameObject);
+            Destroy(this.gameObject);
+        }      
     }
 
     public void activateAbility(baseAbilityScript abilityToActivate)

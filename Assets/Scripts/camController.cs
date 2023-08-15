@@ -15,6 +15,7 @@ public class camController : MonoBehaviour
     {
         player = GameObject.Find("playerCharacter(Clone)");
         cam = this.GetComponent<Camera>();
+        GameObject.Find("gameManager").GetComponent<gameManagerScript>().cam = this.gameObject;
     }
 
     // Update is called once per frame

@@ -16,6 +16,14 @@ public class uiManagerScript : MonoBehaviour
     public TMPro.TextMeshProUGUI toolTipText;
     public RectTransform toolTipTransform;
     public GameObject player;
+    public GameObject healthBar;
+    public GameObject xpBar;
+    public GameObject castBar;
+    public GameObject abilityButton0;
+    public GameObject abilityButton1;
+    public GameObject abilityButton2;
+    public GameObject abilityButton3;
+    public GameObject abilityButton4;
     public playerController playerScript;
     public TMPro.TextMeshProUGUI levelNum;
     public TMPro.TextMeshProUGUI healthNum;
@@ -64,8 +72,22 @@ public class uiManagerScript : MonoBehaviour
     public baseAbilityScript targetAbilityScript;
     public baseAbilityScript targetAbilityScriptInv;
 
+    public gameManagerScript gameManager;
+
     void Start()
     {
+        gameObject.GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera(Clone)").GetComponent<Camera>();
+        gameManager= GameObject.Find("gameManager").GetComponent<gameManagerScript>();
+        gameManager.inGameUI = this.gameObject;
+
+        healthBar = transform.Find("playerHealthBar").gameObject;
+        xpBar = transform.Find("playerHealthBar").gameObject;
+        castBar = transform.Find("playerHealthBar").gameObject;
+        abilityButton0 = transform.Find("playerHealthBar").gameObject;
+        abilityButton1 = transform.Find("playerHealthBar").gameObject;
+        abilityButton2 = transform.Find("playerHealthBar").gameObject;
+        abilityButton3 = transform.Find("playerHealthBar").gameObject;
+        abilityButton4 = transform.Find("playerHealthBar").gameObject;
         player = GameObject.Find("playerCharacter(Clone)");
         playerScript = player.GetComponent<playerController>();
 
@@ -388,10 +410,7 @@ public class uiManagerScript : MonoBehaviour
     }
     public void fillToolTipEquipped(int abilityNum)
     {
-        
-
         baseAbilityScript abilityScript = player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
-
         
         toolTipText.text = "Type: "+ abilityScript.type + "<br>";
         toolTipText.text = toolTipText.text + "Targeting: " + abilityScript.targeting + "<br>";

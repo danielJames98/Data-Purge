@@ -64,7 +64,7 @@ public class lootScript : MonoBehaviour
         rb.AddForce(Random.Range(sideForceMin,sideForceMax), upForce, Random.Range(sideForceMin, sideForceMax));
         canvas= Instantiate(Resources.Load("lootCanvas", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
         canvas.GetComponent<overHeadCanvasScript>().parentCharacter = this.gameObject;
-        canvas.GetComponent<overHeadCanvasScript>().yOffset = 0.5f;
+        canvas.GetComponent<overHeadCanvasScript>().yOffset = 1f;
     }
 
     void Update()

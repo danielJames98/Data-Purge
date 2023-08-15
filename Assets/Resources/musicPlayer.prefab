@@ -160,3 +160,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ec1950f32ccd3624485a341ce39eabc6, type: 3}
   - {fileID: 8300000, guid: 563026256dff2794c9a58ffedbf121ff, type: 3}
   - {fileID: 8300000, guid: 8955514f96060f74fa80ca4886ce6a4e, type: 3}
+  deathSound: {fileID: 8300000, guid: 48b52e03132d54044a1cf1979ba7a028, type: 3}
