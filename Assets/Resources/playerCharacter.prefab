@@ -2944,7 +2944,7 @@ MonoBehaviour:
   parentCharacterAnimator: {fileID: 0}
   audioSource: {fileID: 0}
   onCooldown: 0
-  percentArmourMod: 10
+  percentArmourMod: 0
   percentPowerMod: 0
   percentAttackSpeedMod: 0
   percentMoveSpeedMod: 0

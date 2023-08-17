@@ -45,7 +45,7 @@ public class enemyController : baseCharacter
         generateAbility(abilityScript4);
         */
 
-        levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level);
+        levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level*2);
 
         gameManager = GameObject.Find("gameManager").GetComponent<gameManagerScript>();
         levelManager = gameManager.activeLevel.GetComponent<levelManagerScript>();
@@ -212,7 +212,7 @@ public class enemyController : baseCharacter
     {
         boss = true;
 
-        levelUp(5);
+        levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level);
 
         this.transform.localScale = new Vector3(2f, 2f, 2f);
         this.gameObject.GetComponent<SphereCollider>().radius = 7.5f;
