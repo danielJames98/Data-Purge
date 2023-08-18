@@ -18,6 +18,7 @@ public class playerController : baseCharacter
     public GameObject inventory;
     public bool inventoryOpen;
     public bool inventoryFull;
+    
 
     // Start is called before the first frame update
     void Start()

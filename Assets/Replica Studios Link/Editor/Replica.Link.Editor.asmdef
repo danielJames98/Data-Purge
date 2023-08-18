@@ -1,7 +1,0 @@
-{
-  "name": "Replica.Link.Editor",
-  "rootNamespace": "Packages",
-  "includePlatforms": [
-    "Editor"
-  ]
-}

@@ -73,6 +73,32 @@ public class uiManagerScript : MonoBehaviour
     public baseAbilityScript targetAbilityScriptInv;
 
     public gameManagerScript gameManager;
+    public GameObject dialogueDisplay;
+    public AudioSource dialogueAudioSource;
+    public TMPro.TextMeshProUGUI dialogueText;
+    public TMPro.TextMeshProUGUI dialogueSpeakerName;
+
+    public AudioClip introAudio;
+    public AudioClip hack1Audio;
+    public AudioClip hack2Audio;
+    public AudioClip hack3Audio;
+    public AudioClip hack4Audio;
+    public AudioClip hack5Audio;
+    public AudioClip finalHackAudio;
+    public AudioClip finalBossAudio;
+    public AudioClip finalBossDefeatedAudio;
+    public AudioClip notLeavingAudio;
+
+    public string introText;
+    public string hack1Text;
+    public string hack2Text;
+    public string hack3Text;
+    public string hack4Text;
+    public string hack5Text;
+    public string finalHackText;
+    public string finalBossText;
+    public string finalBossDefeatedText;
+    public string notLeavingText;
 
     void Start()
     {
@@ -123,6 +149,7 @@ public class uiManagerScript : MonoBehaviour
         tempAbility = transform.Find("tempAbility").gameObject;
         tempAbilityScript = tempAbility.GetComponent<baseAbilityScript>();
 
+        showIntroDialogue();
     }
 
     void Update()
@@ -1045,5 +1072,95 @@ public class uiManagerScript : MonoBehaviour
 
             fillInventoryUI();
         }
+    }
+
+    public void showIntroDialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = introText;
+        dialogueSpeakerName.text = "O.V";
+        dialogueAudioSource.clip = introAudio;
+        dialogueAudioSource.Play();
+    }
+
+    public void showHack1Dialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = hack1Text;
+        dialogueSpeakerName.text = "Hacker";
+        dialogueAudioSource.clip = hack1Audio;
+        dialogueAudioSource.Play();
+    }
+
+    public void showHack2Dialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = hack2Text;
+        dialogueSpeakerName.text = "Hacker";
+        dialogueAudioSource.clip = hack2Audio;
+        dialogueAudioSource.Play();
+    }
+
+    public void showHack3Dialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = hack3Text;
+        dialogueSpeakerName.text = "Hacker";
+        dialogueAudioSource.clip = hack3Audio;
+        dialogueAudioSource.Play();
+    }
+
+    public void showHack4Dialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = hack4Text;
+        dialogueSpeakerName.text = "Hacker";
+        dialogueAudioSource.clip = hack4Audio;
+        dialogueAudioSource.Play();
+    }
+
+    public void showHack5Dialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = hack5Text;
+        dialogueSpeakerName.text = "Hacker";
+        dialogueAudioSource.clip = hack5Audio;
+        dialogueAudioSource.Play();
+    }
+
+    public void showFinalHackDialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = finalHackText;
+        dialogueSpeakerName.text = "Hacker";
+        dialogueAudioSource.clip = finalHackAudio;
+        dialogueAudioSource.Play();
+    }
+
+    public void showFinalBossDialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = finalBossText;
+        dialogueSpeakerName.text = "Overlord";
+        dialogueAudioSource.clip = finalBossAudio;
+        dialogueAudioSource.Play();
+    }
+
+    public void showFinalBossDefeatedDialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = finalBossDefeatedText;
+        dialogueSpeakerName.text = "Hacker";
+        dialogueAudioSource.clip = finalBossDefeatedAudio;
+        dialogueAudioSource.Play();
+    }
+
+    public void showNotLeavingDialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = notLeavingText;
+        dialogueSpeakerName.text = "Hacker";
+        dialogueAudioSource.clip = notLeavingAudio;
+        dialogueAudioSource.Play();
     }
 }

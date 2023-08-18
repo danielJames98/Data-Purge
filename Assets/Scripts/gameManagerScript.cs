@@ -10,6 +10,7 @@ public class gameManagerScript : MonoBehaviour
     public GameObject inGameUI;
     public GameObject cam;
     public GameObject pauseMenu;
+    
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class gameManagerScript : MonoBehaviour
         player = Instantiate(Resources.Load<GameObject>("PlayerCharacter"), new Vector3(-48,1.5f,0), Quaternion.identity);
         player.transform.Rotate(0, 90, 0);
         startingLevel.GetComponent<levelManagerScript>().lockDown();
+        
     }
 
     private void Update()
