@@ -50,28 +50,28 @@ public class levelManagerScript : MonoBehaviour
 
             if(overlaps.Length==0)
             {
-                GameObject newLevel0 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 4).ToString()), new Vector3(this.transform.position.x + 100, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+                GameObject newLevel0 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()), new Vector3(this.transform.position.x + 100, this.transform.position.y, this.transform.position.z), Quaternion.identity);
             }
 
             overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x - 52, this.transform.position.y, this.transform.position.z), 1);
 
             if (overlaps.Length == 0)
             {
-                GameObject newLevel1 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 4).ToString()), new Vector3(this.transform.position.x - 100, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+                GameObject newLevel1 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()), new Vector3(this.transform.position.x - 100, this.transform.position.y, this.transform.position.z), Quaternion.identity);
             }
 
             overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 52), 1);
 
             if (overlaps.Length == 0)
             {
-                GameObject newLevel2 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 4).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 100), Quaternion.identity);
+                GameObject newLevel2 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 100), Quaternion.identity);
             }
 
             overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 52), 1);
 
             if (overlaps.Length == 0)
             {
-                GameObject newLevel3 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 4).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 100), Quaternion.identity);
+                GameObject newLevel3 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 100), Quaternion.identity);
             }
 
             foreach (GameObject firewall in firewalls)
