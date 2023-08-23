@@ -120,7 +120,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   zoomSpeed: 5
   minFOV: 30
-  maxFOV: 60
+  maxFOV: 90
 --- !u!54 &7509995227264063432
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3742b3db229aa4af88a4485f7a021c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shift: 0
+  shift: 100
 --- !u!1001 &2996747584264268330
 PrefabInstance:
   m_ObjectHideFlags: 0

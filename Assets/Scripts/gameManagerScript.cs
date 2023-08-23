@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class gameManagerScript : MonoBehaviour
 {
@@ -10,14 +11,19 @@ public class gameManagerScript : MonoBehaviour
     public GameObject inGameUI;
     public GameObject cam;
     public GameObject pauseMenu;
+
+   
+    public directionalLightScript changeLightScript;
+    public Light staticLight;
     
 
     void Start()
     {
         startingLevel = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()));
+        activeLevel = startingLevel;
         player = Instantiate(Resources.Load<GameObject>("PlayerCharacter"), new Vector3(-48,1.5f,0), Quaternion.identity);
         player.transform.Rotate(0, 90, 0);
-        startingLevel.GetComponent<levelManagerScript>().lockDown();
+        
     }
 
     private void Update()
@@ -44,5 +50,33 @@ public class gameManagerScript : MonoBehaviour
             pauseMenu.SetActive(false);
             cam.GetComponent<BWEffect>().intensity = 0;
         }
+    }
+
+    public void launchFinalLevel()
+    {
+
+        cam.GetComponent<ShaderEffect_CorruptedVram>().enabled = true;
+        StartCoroutine("disableCorruption");
+        levelManagerScript activeLevelScript = activeLevel.GetComponent<levelManagerScript>();
+        activeLevelScript.killEnemies();
+        activeLevelScript.completeObjective();
+
+        GameObject finalLevel= Instantiate(Resources.Load<GameObject>("levels/finalBossLevel"), new Vector3(0,1000,0), Quaternion.identity);
+        playerController pcCon = player.GetComponent<playerController>();
+        pcCon.interruptCast();
+
+        player.GetComponent<NavMeshAgent>().Warp(new Vector3(-7, 1002, -85));
+    }
+
+    IEnumerator disableCorruption()
+    {
+        yield return new WaitForSeconds(5);
+        cam.GetComponent<ShaderEffect_CorruptedVram>().enabled = false;
+    }
+
+    public void skipLevel()
+    {
+        levelManagerScript activeLevelScript = activeLevel.GetComponent<levelManagerScript>();
+        activeLevelScript.killEnemies();
     }
 }

@@ -115,6 +115,7 @@ MonoBehaviour:
   directionSelected: 0
   rotationDone: 0
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  locked: 0
 --- !u!65 &7297544611991023123
 BoxCollider:
   m_ObjectHideFlags: 0

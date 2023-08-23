@@ -1,9 +1,11 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class uiManagerScript : MonoBehaviour
@@ -79,6 +81,8 @@ public class uiManagerScript : MonoBehaviour
     public TMPro.TextMeshProUGUI dialogueSpeakerName;
 
     public AudioClip introAudio;
+    public AudioClip levelCompleteAudio;
+    public AudioClip hack0Audio;
     public AudioClip hack1Audio;
     public AudioClip hack2Audio;
     public AudioClip hack3Audio;
@@ -90,20 +94,27 @@ public class uiManagerScript : MonoBehaviour
     public AudioClip notLeavingAudio;
 
     public string introText;
+    public string levelCompleteText;
+    public string hack0Text;
     public string hack1Text;
     public string hack2Text;
     public string hack3Text;
     public string hack4Text;
     public string hack5Text;
-    public string finalHackText;
     public string finalBossText;
     public string finalBossDefeatedText;
     public string notLeavingText;
 
+    public bool storyPlaying;
+
+    public int nextHack;
+
+    public GameObject finalBossButton;
+
     void Start()
     {
         gameObject.GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera(Clone)").GetComponent<Camera>();
-        gameManager= GameObject.Find("gameManager").GetComponent<gameManagerScript>();
+        gameManager = GameObject.Find("gameManager").GetComponent<gameManagerScript>();
         gameManager.inGameUI = this.gameObject;
 
         healthBar = transform.Find("playerHealthBar").gameObject;
@@ -139,12 +150,12 @@ public class uiManagerScript : MonoBehaviour
         toolTipTitle = toolTip.transform.Find("toolTipTitle").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
         toolTipText = toolTip.transform.Find("toolTipText").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
         toolTip.SetActive(false);
-        toolTipActive= false;
+        toolTipActive = false;
 
         inventoryUI = transform.Find("inventory").gameObject;
-        
+
         inventoryUI.SetActive(false);
-        inventoryUIActive=false;
+        inventoryUIActive = false;
 
         tempAbility = transform.Find("tempAbility").gameObject;
         tempAbilityScript = tempAbility.GetComponent<baseAbilityScript>();
@@ -156,15 +167,15 @@ public class uiManagerScript : MonoBehaviour
     {
         if (Input.GetButtonDown("c"))
         {
-            if(statPageActive==false)
+            if (statPageActive == false)
             {
-                statPageActive=true;
+                statPageActive = true;
                 statPage.SetActive(true);
                 fillStatPage();
             }
-            else if(statPageActive==true)
+            else if (statPageActive == true)
             {
-                statPageActive=false;
+                statPageActive = false;
                 statPage.SetActive(false);
             }
         }
@@ -186,57 +197,62 @@ public class uiManagerScript : MonoBehaviour
                 playerScript.inventoryOpen = false;
             }
         }
+
+        if (storyPlaying == true && dialogueAudioSource.isPlaying == false)
+        {
+            storySceneDone();
+        }
     }
 
     public void fillInventoryUI()
     {
         int i = 0;
 
-        foreach(baseAbilityScript item in player.GetComponent<playerController>().inventoryItems)
+        foreach (baseAbilityScript item in player.GetComponent<playerController>().inventoryItems)
         {
-            if (item.type == ""||item.type==null) 
+            if (item.type == "" || item.type == null)
             {
                 inventoryUI.transform.Find("inventorySlot" + i).gameObject.GetComponent<Image>().color = Color.grey;
             }
-            else if(item.type!="")
+            else if (item.type != "")
             {
                 inventoryUI.transform.Find("inventorySlot" + i).gameObject.GetComponent<Image>().color = Color.white;
             }
             i++;
-        }       
+        }
     }
 
-    public void showToolTip(int abilityNum,bool equipped)
+    public void showToolTip(int abilityNum, bool equipped)
     {
-        if(equipped==true)
+        if (equipped == true)
         {
-            if(player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>().type!="")
+            if (player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>().type != "")
             {
                 toolTipActive = true;
                 toolTip.SetActive(true);
                 toolTipTitle.text = "Ability" + abilityNum.ToString();
                 fillToolTipEquipped(abilityNum);
-            }          
+            }
         }
-        else if (equipped==false)
+        else if (equipped == false)
         {
-            if(player.transform.Find("inventory").transform.Find("inventorySlot" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>().type!="")
+            if (player.transform.Find("inventory").transform.Find("inventorySlot" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>().type != "")
             {
                 toolTipActive = true;
                 toolTip.SetActive(true);
                 toolTipTitle.text = "Ability" + abilityNum.ToString();
                 fillToolTipInventory(abilityNum);
-            }            
-        }       
+            }
+        }
     }
     public void fillToolTipInventory(int abilityNum)
     {
-        baseAbilityScript abilityScript = player.transform.Find("inventory").transform.Find("inventorySlot"+abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
+        baseAbilityScript abilityScript = player.transform.Find("inventory").transform.Find("inventorySlot" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
 
         toolTipText.text = "Type: " + abilityScript.type + "<br>";
         toolTipText.text = toolTipText.text + "Targeting: " + abilityScript.targeting + "<br>";
 
-        
+
         if (abilityScript.baseDamage > 0)
         {
             toolTipText.text = toolTipText.text + "Damage: " + abilityScript.baseDamage + "<br>";
@@ -438,17 +454,17 @@ public class uiManagerScript : MonoBehaviour
     public void fillToolTipEquipped(int abilityNum)
     {
         baseAbilityScript abilityScript = player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
-        
-        toolTipText.text = "Type: "+ abilityScript.type + "<br>";
+
+        toolTipText.text = "Type: " + abilityScript.type + "<br>";
         toolTipText.text = toolTipText.text + "Targeting: " + abilityScript.targeting + "<br>";
 
-        if(abilityScript.baseDamage>0)
+        if (abilityScript.baseDamage > 0)
         {
             toolTipText.text = toolTipText.text + "Damage: " + abilityScript.baseDamage + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if(abilityScript.baseHealing>0)
+        if (abilityScript.baseHealing > 0)
         {
             toolTipText.text = toolTipText.text + "Healing: " + abilityScript.baseHealing + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
@@ -651,10 +667,10 @@ public class uiManagerScript : MonoBehaviour
     public void fillStatPage()
     {
         levelNum.text = playerScript.level.ToString();
-        healthNum.text = playerScript.currentHealth.ToString() + "/"+ playerScript.maxHealth.ToString();
+        healthNum.text = playerScript.currentHealth.ToString() + "/" + playerScript.maxHealth.ToString();
         xpNum.text = playerScript.currentXP.ToString() + "/" + playerScript.maxXP.ToString();
         moveSpeedNum.text = playerScript.moveSpeed.ToString();
-        powerNum.text = "+"+playerScript.power.ToString()+"%";
+        powerNum.text = "+" + playerScript.power.ToString() + "%";
         attackSpeedNum.text = "+" + playerScript.attackSpeed.ToString() + "%";
         cdrNum.text = "+" + playerScript.cooldownReduction.ToString() + "%";
         armourNum.text = "+" + playerScript.armour.ToString() + "%";
@@ -666,7 +682,7 @@ public class uiManagerScript : MonoBehaviour
 
     public void selectAbility(int abilityNum, bool equipped)
     {
-        if(abilitySelected==false)
+        if (abilitySelected == false)
         {
             abilitySelected = true;
             if (equipped == true)
@@ -755,9 +771,9 @@ public class uiManagerScript : MonoBehaviour
                 tempAbilityScript.stun = selectedAbilityScript.stun;
             }
         }
-        else if (abilitySelected==true)
+        else if (abilitySelected == true)
         {
-            abilitySelected=false;
+            abilitySelected = false;
             if (equipped == true)
             {
                 targetAbilityScript = player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
@@ -963,11 +979,11 @@ public class uiManagerScript : MonoBehaviour
         tempAbilityScript.offensive = true;
         tempAbilityScript.stun = false;
 
-        selectedAbilityScript=null;
-        selectedAbilityScriptInv=null;
-        targetAbilityScript=null;
-        targetAbilityScriptInv=null;
-}
+        selectedAbilityScript = null;
+        selectedAbilityScriptInv = null;
+        targetAbilityScript = null;
+        targetAbilityScriptInv = null;
+    }
 
     public void showBinToolTip()
     {
@@ -1074,6 +1090,12 @@ public class uiManagerScript : MonoBehaviour
         }
     }
 
+    public void storySceneDone()
+    {
+        dialogueDisplay.SetActive(false);
+        storyPlaying = false;
+    }
+
     public void showIntroDialogue()
     {
         dialogueDisplay.SetActive(true);
@@ -1081,6 +1103,67 @@ public class uiManagerScript : MonoBehaviour
         dialogueSpeakerName.text = "O.V";
         dialogueAudioSource.clip = introAudio;
         dialogueAudioSource.Play();
+        storyPlaying = true;
+    }
+
+    public void showLevelCompleteDialogue()
+    {
+        Debug.Log("ragreg");
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = levelCompleteText;
+        dialogueSpeakerName.text = "O.V";
+        dialogueAudioSource.clip = levelCompleteAudio;
+        dialogueAudioSource.Play();
+        storyPlaying = true;
+
+        int hackChance = Random.Range(0, 2);
+
+        if (hackChance > 0)
+        {
+            StartCoroutine("hackDelay");
+        }
+    }
+
+    IEnumerator hackDelay()
+    {
+        yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
+
+        if (nextHack == 0)
+        {
+            showHack0Dialogue();
+        }
+        else if (nextHack == 1)
+        {
+            showHack1Dialogue();
+        }
+        else if (nextHack == 2)
+        {
+            showHack2Dialogue();
+        }
+        else if (nextHack == 3)
+        {
+            showHack3Dialogue();
+        }
+        else if (nextHack == 4)
+        {
+            showHack4Dialogue();
+        }
+        else if (nextHack == 5)
+        {
+            showHack5Dialogue();
+        }
+
+        nextHack++;
+    }
+
+    public void showHack0Dialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        dialogueText.text = hack0Text;
+        dialogueSpeakerName.text = "Hacker";
+        dialogueAudioSource.clip = hack0Audio;
+        dialogueAudioSource.Play();
+        storyPlaying = true;
     }
 
     public void showHack1Dialogue()
@@ -1090,6 +1173,7 @@ public class uiManagerScript : MonoBehaviour
         dialogueSpeakerName.text = "Hacker";
         dialogueAudioSource.clip = hack1Audio;
         dialogueAudioSource.Play();
+        storyPlaying = true;
     }
 
     public void showHack2Dialogue()
@@ -1099,6 +1183,7 @@ public class uiManagerScript : MonoBehaviour
         dialogueSpeakerName.text = "Hacker";
         dialogueAudioSource.clip = hack2Audio;
         dialogueAudioSource.Play();
+        storyPlaying = true;
     }
 
     public void showHack3Dialogue()
@@ -1108,6 +1193,7 @@ public class uiManagerScript : MonoBehaviour
         dialogueSpeakerName.text = "Hacker";
         dialogueAudioSource.clip = hack3Audio;
         dialogueAudioSource.Play();
+        storyPlaying = true;
     }
 
     public void showHack4Dialogue()
@@ -1117,24 +1203,18 @@ public class uiManagerScript : MonoBehaviour
         dialogueSpeakerName.text = "Hacker";
         dialogueAudioSource.clip = hack4Audio;
         dialogueAudioSource.Play();
+        storyPlaying = true;
     }
 
     public void showHack5Dialogue()
     {
         dialogueDisplay.SetActive(true);
+        finalBossButton.SetActive(true);
         dialogueText.text = hack5Text;
         dialogueSpeakerName.text = "Hacker";
         dialogueAudioSource.clip = hack5Audio;
         dialogueAudioSource.Play();
-    }
-
-    public void showFinalHackDialogue()
-    {
-        dialogueDisplay.SetActive(true);
-        dialogueText.text = finalHackText;
-        dialogueSpeakerName.text = "Hacker";
-        dialogueAudioSource.clip = finalHackAudio;
-        dialogueAudioSource.Play();
+        storyPlaying = true;
     }
 
     public void showFinalBossDialogue()
@@ -1144,6 +1224,7 @@ public class uiManagerScript : MonoBehaviour
         dialogueSpeakerName.text = "Overlord";
         dialogueAudioSource.clip = finalBossAudio;
         dialogueAudioSource.Play();
+        storyPlaying = true;
     }
 
     public void showFinalBossDefeatedDialogue()
@@ -1153,6 +1234,7 @@ public class uiManagerScript : MonoBehaviour
         dialogueSpeakerName.text = "Hacker";
         dialogueAudioSource.clip = finalBossDefeatedAudio;
         dialogueAudioSource.Play();
+        storyPlaying = true;
     }
 
     public void showNotLeavingDialogue()
@@ -1162,5 +1244,16 @@ public class uiManagerScript : MonoBehaviour
         dialogueSpeakerName.text = "Hacker";
         dialogueAudioSource.clip = notLeavingAudio;
         dialogueAudioSource.Play();
+        storyPlaying = true;
+    }
+
+    public void launchFinalLevel()
+    {
+        gameManager.launchFinalLevel();
+    }
+
+    public void skipLevel()
+    {
+        gameManager.skipLevel();
     }
 }

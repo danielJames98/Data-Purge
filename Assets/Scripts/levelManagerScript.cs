@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
@@ -19,6 +20,7 @@ public class levelManagerScript : MonoBehaviour
     public bool directionSelected;
     public bool rotationDone;
     public Quaternion targetRotation;
+    public bool locked;
 
     private void Start()
     {
@@ -34,8 +36,12 @@ public class levelManagerScript : MonoBehaviour
     {
         if (direction > 0 && rotationDone == false && directionSelected == true && this.transform.rotation==targetRotation)
         {
-            rotationDone=true;
-            spawnEnemies();
+            rotationDone=true;            
+        }
+
+        if(rotationDone==true&&objectiveComplete==false&& gameManager.activeLevel==this.gameObject&&locked==false)
+        {
+            lockDown();
         }
     }
 
@@ -78,33 +84,43 @@ public class levelManagerScript : MonoBehaviour
             {
                 Destroy(firewall);
             }
+
+            GameObject.Find("Main Camera(Clone)").transform.Find("inGameUI").GetComponent<uiManagerScript>().showLevelCompleteDialogue();
         }
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag=="Player" && objectiveComplete==false)
+        if (collision.gameObject.tag=="Player" && objectiveComplete==false&&gameManager!=null)
         {
-            lockDown();
+            gameManager.activeLevel = this.gameObject;
         }
     }
 
     public void killEnemies()
     {
-        foreach(GameObject enemy in enemyList)
+        if(enemyList.Count>0)
         {
-            enemy.GetComponent<enemyController>().Die();
+            foreach (GameObject enemy in enemyList)
+            {
+                enemy.GetComponent<enemyController>().StartCoroutine("Die");
+                
+            }
+            enemyList.Clear();
         }
+
     }
 
     public void lockDown()
     {
+        Debug.Log("go");
+        locked = true;
+        spawnEnemies();
+
         if (gameManager == null)
         {
             gameManager = GameObject.Find("gameManager").gameObject.GetComponent<gameManagerScript>();
         }
-
-        gameManager.activeLevel = this.gameObject;
 
         this.GetComponent<BoxCollider>().enabled = false;
 
@@ -112,7 +128,7 @@ public class levelManagerScript : MonoBehaviour
         {
             firewall.GetComponent<NavMeshLink>().enabled = false;
             firewall.GetComponent<Renderer>().material = closedDoorMat;
-        }        
+        }
     }
 
     public void spawnEnemies()
@@ -169,7 +185,6 @@ public class levelManagerScript : MonoBehaviour
         if(direction==0)
         {
             rotationDone = true;
-            spawnEnemies();
         }
         else if (direction == 1)
         {

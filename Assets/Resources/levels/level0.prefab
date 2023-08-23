@@ -117,6 +117,7 @@ MonoBehaviour:
   directionSelected: 0
   rotationDone: 0
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  locked: 0
 --- !u!65 &7297544611991023123
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -183,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5762476520210178999, guid: a055fcf953539e646bb96e0426936f0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -38.5
+      value: -39
       objectReference: {fileID: 0}
     - target: {fileID: 5762476520210178999, guid: a055fcf953539e646bb96e0426936f0e, type: 3}
       propertyPath: m_LocalPosition.y
