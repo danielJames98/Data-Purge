@@ -24,10 +24,13 @@ public class levelManagerScript : MonoBehaviour
 
     private void Start()
     {
-        if(gameManager==null)
-        {
+
             gameManager = GameObject.Find("gameManager").gameObject.GetComponent<gameManagerScript>();
-        }
+            gameManager.firewalls.Add(firewalls[0]);
+            gameManager.firewalls.Add(firewalls[1]);
+            gameManager.firewalls.Add(firewalls[2]);
+            gameManager.firewalls.Add(firewalls[3]);
+        
         
         turnNewLevel();
     }
@@ -39,7 +42,7 @@ public class levelManagerScript : MonoBehaviour
             rotationDone=true;            
         }
 
-        if(rotationDone==true&&objectiveComplete==false&& gameManager.activeLevel==this.gameObject&&locked==false)
+        if (rotationDone == true && objectiveComplete == false && gameManager.activeLevel == this.gameObject && locked == false) 
         {
             lockDown();
         }
@@ -80,10 +83,7 @@ public class levelManagerScript : MonoBehaviour
                 GameObject newLevel3 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 100), Quaternion.identity);
             }
 
-            foreach (GameObject firewall in firewalls)
-            {
-                Destroy(firewall);
-            }
+            gameManager.StartCoroutine("unlock");
 
             GameObject.Find("Main Camera(Clone)").transform.Find("inGameUI").GetComponent<uiManagerScript>().showLevelCompleteDialogue();
         }
@@ -91,7 +91,7 @@ public class levelManagerScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag=="Player" && objectiveComplete==false&&gameManager!=null)
+        if (collision.gameObject.tag=="Player" && objectiveComplete==false&&gameManager!=null&& gameManager.activeLevel!=this.gameObject)
         {
             gameManager.activeLevel = this.gameObject;
         }
@@ -117,18 +117,8 @@ public class levelManagerScript : MonoBehaviour
         locked = true;
         spawnEnemies();
 
-        if (gameManager == null)
-        {
-            gameManager = GameObject.Find("gameManager").gameObject.GetComponent<gameManagerScript>();
-        }
+        gameManager.StartCoroutine("lockdown");
 
-        this.GetComponent<BoxCollider>().enabled = false;
-
-        foreach(GameObject firewall in firewalls)
-        {
-            firewall.GetComponent<NavMeshLink>().enabled = false;
-            firewall.GetComponent<Renderer>().material = closedDoorMat;
-        }
     }
 
     public void spawnEnemies()

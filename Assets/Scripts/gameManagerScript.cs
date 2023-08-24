@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,8 @@ public class gameManagerScript : MonoBehaviour
    
     public directionalLightScript changeLightScript;
     public Light staticLight;
+
+    public List<GameObject> firewalls;
     
 
     void Start()
@@ -31,6 +34,26 @@ public class gameManagerScript : MonoBehaviour
         if(Input.GetButtonDown("Cancel"))
         {
             pauseGame();
+        }
+    }
+
+    public void lockdown()
+    {
+        foreach (GameObject firewall in firewalls)
+        {
+            firewall.GetComponent<NavMeshLink>().enabled = false;
+            firewall.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+    }
+
+    public IEnumerator unlock()
+    {
+        yield return new WaitForSeconds (0.1f);
+        Debug.Log("ergerg");
+        foreach (GameObject firewall in firewalls)
+        {
+            firewall.GetComponent<NavMeshLink>().enabled = true;
+            firewall.GetComponent<MeshRenderer>().material.color=Color.green;
         }
     }
 
