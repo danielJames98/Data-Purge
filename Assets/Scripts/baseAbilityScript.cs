@@ -75,13 +75,21 @@ public class baseAbilityScript : MonoBehaviour
     void Start()
     {
         parentCharacter = transform.parent.gameObject;
-        if(parentCharacter.name=="playerCharacter(Clone)"|| parentCharacter.name == "baseEnemy(Clone)")
+        if(parentCharacter.name=="playerCharacter(Clone)"|| parentCharacter.name == "baseEnemy(Clone)"|| parentCharacter.name == "overlord")
         {
             parentCharacterScript = parentCharacter.GetComponent<baseCharacter>();
             parentCharacterNav = parentCharacter.GetComponent<NavMeshAgent>();          
             frontFirePoint = parentCharacter.transform.Find("frontFirePoint").gameObject;
-            parentCharacterAnimator= parentCharacter.transform.Find("Robot Kyle").GetComponent<Animator>();
-            audioSource= gameObject.GetComponent<AudioSource>();
+            if (parentCharacter.name == "baseEnemy(Clone)"|| parentCharacter.name == "playerCharacter(Clone)")
+            {
+                parentCharacterAnimator = parentCharacter.transform.Find("Robot Kyle").GetComponent<Animator>();
+            }
+            else
+            {
+                parentCharacterAnimator = parentCharacter.transform.Find("HPCharacter").GetComponent<Animator>();
+                Debug.Log("erger");
+            }
+            audioSource = gameObject.GetComponent<AudioSource>();
 
             if(parentCharacter.name=="playerCharacter(Clone)")
             {
@@ -312,7 +320,7 @@ public class baseAbilityScript : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable")))
             {
                 parentCharacterNav.destination = parentCharacter.transform.position;
-                parentCharacter.transform.LookAt(hit.point);
+                parentCharacter.transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
                 if(type=="projectile")
                 {
                     StartCoroutine("spawnProjectile");
@@ -328,7 +336,7 @@ public class baseAbilityScript : MonoBehaviour
             if (Vector3.Distance(parentCharacter.transform.position, parentCharacterScript.aggroTarget.transform.position) <= (baseRange * (1 + (parentCharacterScript.bonusRange / 100))))
             {
                 parentCharacterNav.destination = parentCharacter.transform.position;
-                parentCharacter.transform.LookAt(parentCharacterScript.aggroTarget.transform.position);
+                parentCharacter.transform.LookAt(new Vector3(parentCharacterScript.aggroTarget.transform.position.x, transform.position.y, parentCharacterScript.aggroTarget.transform.position.z));
                 if (type == "projectile")
                 {
                     StartCoroutine("spawnProjectile");
@@ -351,12 +359,12 @@ public class baseAbilityScript : MonoBehaviour
         parentCharacterScript.casting = true;
         parentCharacterScript.castingAbility = this;
         parentCharacterAnimator.SetBool("casting", true);
-        parentCharacterScript.chargeSparks.SetActive(true);
+        parentCharacterScript.weapon.SetActive(true);
         playCastSound();
         yield return new WaitForSeconds(baseCastTime / (1 + (parentCharacterScript.attackSpeed / 100)));
         playAbilitySound();
         parentCharacterScript.casting = false;
-        parentCharacterScript.chargeSparks.SetActive(false);
+        parentCharacterScript.weapon.SetActive(false);
         parentCharacterAnimator.SetBool("casting", false);
         GameObject projectile = Instantiate(Resources.Load("projectile", typeof(GameObject)), frontFirePoint.transform.position, frontFirePoint.transform.rotation) as GameObject;
         projectile.transform.localScale = new Vector3(projectileSize * (1 + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)));
@@ -399,7 +407,7 @@ public class baseAbilityScript : MonoBehaviour
         {
             if (Vector3.Distance(parentCharacter.transform.position, parentCharacterScript.aggroTarget.transform.position) <= (baseRange * (1 + (parentCharacterScript.bonusRange / 100))))
             {
-                parentCharacterScript.targetPosition = new Vector3(parentCharacterScript.aggroTarget.transform.position.x, 0.6f, parentCharacterScript.aggroTarget.transform.position.z);
+                parentCharacterScript.targetPosition = new Vector3(parentCharacterScript.aggroTarget.transform.position.x, parentCharacterScript.aggroTarget.transform.position.y-1, parentCharacterScript.aggroTarget.transform.position.z);
                 StartCoroutine("spawnAoe");
             }
             else
@@ -412,21 +420,21 @@ public class baseAbilityScript : MonoBehaviour
     IEnumerator spawnAoe()
     {
         Vector3 point;
-        point = new Vector3(parentCharacterScript.targetPosition.x, 0.6f, parentCharacterScript.targetPosition.z);               
+        point = new Vector3(parentCharacterScript.targetPosition.x, parentCharacterScript.targetPosition.y-1, parentCharacterScript.targetPosition.z);               
         parentCharacterScript.castingCoroutine = "spawnAoe";
         parentCharacterScript.castingAbility = this;
         if(targeting!="self")
         {
-            parentCharacter.transform.LookAt(point);
+            parentCharacter.transform.LookAt(new Vector3(point.x, transform.position.y, point.z));
         }
         parentCharacterScript.casting = true;
         parentCharacterAnimator.SetBool("casting", true);
-        parentCharacterScript.chargeSparks.SetActive(true);
+        parentCharacterScript.weapon.SetActive(true);
         playCastSound();
         yield return new WaitForSeconds(baseCastTime / (1 + (parentCharacterScript.attackSpeed / 100)));
         playAbilitySound();
         parentCharacterAnimator.SetBool("casting", false);
-        parentCharacterScript.chargeSparks.SetActive(false);
+        parentCharacterScript.weapon.SetActive(false);
         parentCharacterScript.casting = false;
         GameObject aoe = Instantiate(Resources.Load("aoe", typeof(GameObject)), point, Quaternion.identity) as GameObject;
         aoe.transform.localScale = new Vector3(baseAoeRadius * (1 + (parentCharacterScript.bonusArea / 100)), 0.1f,baseAoeRadius * (1 + (parentCharacterScript.bonusArea / 100)));

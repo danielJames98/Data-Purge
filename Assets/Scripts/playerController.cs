@@ -11,8 +11,8 @@ public class playerController : baseCharacter
 {
     public Camera cam;
     
-    public GameObject ui;
-    public uiManagerScript uiScript;
+
+
     public List<baseAbilityScript> inventoryItems;
     public int firstEmptyInventorySlot;
     public GameObject inventory;
@@ -198,6 +198,15 @@ public class playerController : baseCharacter
             if (walking == true && walkSoundPlaying == false)
             {
                 StartCoroutine(playWalkSound());
+            }
+
+            if(navMeshAgent.velocity.magnitude == 0)
+            {
+                navMeshAgent.updateRotation = false;
+            }
+            else
+            {
+                navMeshAgent.updateRotation = true;
             }
 
             if (casting == true)

@@ -49,7 +49,6 @@ public class gameManagerScript : MonoBehaviour
     public IEnumerator unlock()
     {
         yield return new WaitForSeconds (0.1f);
-        Debug.Log("ergerg");
         foreach (GameObject firewall in firewalls)
         {
             firewall.GetComponent<NavMeshLink>().enabled = true;
@@ -77,24 +76,25 @@ public class gameManagerScript : MonoBehaviour
 
     public void launchFinalLevel()
     {
-
         cam.GetComponent<ShaderEffect_CorruptedVram>().enabled = true;
         StartCoroutine("disableCorruption");
         levelManagerScript activeLevelScript = activeLevel.GetComponent<levelManagerScript>();
         activeLevelScript.killEnemies();
         activeLevelScript.completeObjective();
 
-        GameObject finalLevel= Instantiate(Resources.Load<GameObject>("levels/finalBossLevel"), new Vector3(0,1000,0), Quaternion.identity);
+        GameObject finalLevel= Instantiate(Resources.Load<GameObject>("levels/finalBossLevel"), new Vector3(0,500,0), Quaternion.identity);
         playerController pcCon = player.GetComponent<playerController>();
         pcCon.interruptCast();
+        
 
-        player.GetComponent<NavMeshAgent>().Warp(new Vector3(-7, 1002, -85));
+        player.GetComponent<NavMeshAgent>().Warp(new Vector3(-7, 502, -85));
     }
 
     IEnumerator disableCorruption()
     {
         yield return new WaitForSeconds(5);
         cam.GetComponent<ShaderEffect_CorruptedVram>().enabled = false;
+        inGameUI.GetComponent<uiManagerScript>().showFinalBossDialogue();
     }
 
     public void skipLevel()

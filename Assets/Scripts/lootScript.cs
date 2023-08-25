@@ -69,7 +69,7 @@ public class lootScript : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.y<=0.6f && frozen==false)
+        if(transform.position.y<=1f && frozen==false)
         {
             frozen=true;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -80,7 +80,7 @@ public class lootScript : MonoBehaviour
 
     public void pickUp(playerController pc, baseAbilityScript slot)
     {
-        AudioSource.PlayClipAtPoint(pickUpSound, this.transform.position, 0.1f);
+        AudioSource.PlayClipAtPoint(pickUpSound, this.transform.position, 1f);
         slot.type = type;
         slot.targeting = targeting;
         slot.baseDamage = baseDamage;

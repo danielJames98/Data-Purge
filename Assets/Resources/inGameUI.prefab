@@ -6016,7 +6016,11 @@ MonoBehaviour:
   dialogueText: {fileID: 4985063210247798229}
   dialogueSpeakerName: {fileID: 4921660332839909571}
   introAudio: {fileID: 8300000, guid: 33bafb4aaaaa75e43a9a0325b355c405, type: 3}
-  levelCompleteAudio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
+  levelCompleteAudio1: {fileID: 8300000, guid: b6e1c04d76919d949ab75cb3f4abebed, type: 3}
+  levelCompleteAudio2: {fileID: 8300000, guid: 572b42aeae3019c4685926c9ed10e09e, type: 3}
+  levelCompleteAudio3: {fileID: 8300000, guid: fbc73ebd0abc9f6428b5eff0490f1294, type: 3}
+  levelCompleteAudio4: {fileID: 8300000, guid: 2ebc5bf9570c644419088b67121e81d8, type: 3}
+  levelCompleteAudio5: {fileID: 8300000, guid: 373879464737c24418885ab479847eea, type: 3}
   hack0Audio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
   hack1Audio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
   hack2Audio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
@@ -6027,6 +6031,7 @@ MonoBehaviour:
   finalBossAudio: {fileID: 8300000, guid: d62f0baf964c36a47956e1efaa506558, type: 3}
   finalBossDefeatedAudio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
   notLeavingAudio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
+  levelUpSound: {fileID: 0}
   introText: "Hello, and welcome to DATA PURGE! Left click to move your character
     and press 1, 2, 3, 4 and your right mouse button to activate your abilities.
     Defeat enemies and complete objectives to gain experience, equipment and abilities
@@ -6036,7 +6041,13 @@ MonoBehaviour:
     and ever without seeing the same fight twice! And even if you die, you can just
     have another go! Now doesn\u2019t that sound like fun?! It's time to show them
     what you\u2019re made of! I believe in you!"
-  levelCompleteText: Well done!
+  levelCompleteText1: Objective Complete! Great work player, that was quite the achievement!
+  levelCompleteText2: "Objective Complete! Well done! I\u2019m so proud of you!"
+  levelCompleteText3: 'Objective Complete! That was amazing! Very impressive indeed! '
+  levelCompleteText4: "Objective Complete! Wow, you really showed them who\u2019s
+    boss!"
+  levelCompleteText5: "Objective Complete! You\u2019re incredible! I can\u2019t believe
+    you did that!"
   hack0Text: "Hello? Hello?! If you can hear this then there are some things you
     need to know. I don\u2019t have long so listen up, I can only get through when
     she opens this audio channel. The year is (Static), an AI called Overlord controls
@@ -9584,7 +9595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4588544850541272231
 RectTransform:
   m_ObjectHideFlags: 0

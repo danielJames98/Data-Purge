@@ -1068,6 +1068,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: 1
   animator: {fileID: 0}
+  ui: {fileID: 0}
+  uiScript: {fileID: 0}
   gameManager: {fileID: 0}
   levelManager: {fileID: 0}
   level: 0
@@ -1148,11 +1150,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d51df139d4e50794993d2130348b08d9, type: 3}
   - {fileID: 8300000, guid: 39ca7e88dc461e8458d02a2284708c0d, type: 3}
   - {fileID: 8300000, guid: d772d1b334ef5f148bf1308d5fb3e4b0, type: 3}
+  levelUpSound: {fileID: 8300000, guid: 4b32e5e5fc0844e4abab696a049beb51, type: 3}
   walkSoundPlaying: 0
   currentWalkSound: 0
   walkSoundDelay: 0.25
   walking: 0
-  chargeSparks: {fileID: 5599011416593551420}
+  weapon: {fileID: 1231006474210689121}
   deathSounds:
   - {fileID: 8300000, guid: 8524588a69a4f3e40bb597b6221138f1, type: 3}
   - {fileID: 8300000, guid: fc96116dc3c141440aabb5605744fea2, type: 3}
@@ -1166,8 +1169,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d4aee29185389894b9cc0d8873904a49, type: 3}
   aoesColliding: []
   cam: {fileID: 0}
-  ui: {fileID: 0}
-  uiScript: {fileID: 0}
   inventoryItems:
   - {fileID: 0}
   - {fileID: 0}
@@ -3612,7 +3613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 134812, guid: 3c81b162a1af44348b8994f7040514d4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 449102, guid: 3c81b162a1af44348b8994f7040514d4, type: 3}
       propertyPath: m_RootOrder
@@ -3666,6 +3667,11 @@ PrefabInstance:
       addedObject: {fileID: 9086096601203992135}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c81b162a1af44348b8994f7040514d4, type: 3}
+--- !u!1 &1231006474210689121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 134812, guid: 3c81b162a1af44348b8994f7040514d4, type: 3}
+  m_PrefabInstance: {fileID: 1231006474210823933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1231006474210907315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 449102, guid: 3c81b162a1af44348b8994f7040514d4, type: 3}
@@ -3769,7 +3775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7131401307255788800, guid: 4d9a3b35b3bc07649b697df7fb497b6d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8445978410991379322, guid: 4d9a3b35b3bc07649b697df7fb497b6d, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -3788,11 +3794,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d9a3b35b3bc07649b697df7fb497b6d, type: 3}
---- !u!1 &5599011416593551420 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7131401307255788800, guid: 4d9a3b35b3bc07649b697df7fb497b6d, type: 3}
-  m_PrefabInstance: {fileID: 3405984122275267900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9086096601203992135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5862613817031353211, guid: 4d9a3b35b3bc07649b697df7fb497b6d, type: 3}

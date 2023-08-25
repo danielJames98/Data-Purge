@@ -81,7 +81,11 @@ public class uiManagerScript : MonoBehaviour
     public TMPro.TextMeshProUGUI dialogueSpeakerName;
 
     public AudioClip introAudio;
-    public AudioClip levelCompleteAudio;
+    public AudioClip levelCompleteAudio1;
+    public AudioClip levelCompleteAudio2;
+    public AudioClip levelCompleteAudio3;
+    public AudioClip levelCompleteAudio4;
+    public AudioClip levelCompleteAudio5;
     public AudioClip hack0Audio;
     public AudioClip hack1Audio;
     public AudioClip hack2Audio;
@@ -92,9 +96,14 @@ public class uiManagerScript : MonoBehaviour
     public AudioClip finalBossAudio;
     public AudioClip finalBossDefeatedAudio;
     public AudioClip notLeavingAudio;
+    public AudioClip levelUpSound;
 
     public string introText;
-    public string levelCompleteText;
+    public string levelCompleteText1;
+    public string levelCompleteText2;
+    public string levelCompleteText3;
+    public string levelCompleteText4;
+    public string levelCompleteText5;
     public string hack0Text;
     public string hack1Text;
     public string hack2Text;
@@ -1108,11 +1117,35 @@ public class uiManagerScript : MonoBehaviour
 
     public void showLevelCompleteDialogue()
     {
-        Debug.Log("ragreg");
         dialogueDisplay.SetActive(true);
-        dialogueText.text = levelCompleteText;
         dialogueSpeakerName.text = "O.V";
-        dialogueAudioSource.clip = levelCompleteAudio;
+        int levelCompleteInt = Random.Range(1, 6);
+        if(levelCompleteInt==1)
+        {
+            dialogueText.text = levelCompleteText1;
+            dialogueAudioSource.clip = levelCompleteAudio1;
+        }
+        else if(levelCompleteInt == 2)
+        {
+            dialogueText.text = levelCompleteText2;
+            dialogueAudioSource.clip = levelCompleteAudio2;
+        }
+        else if (levelCompleteInt == 3)
+        {
+            dialogueText.text = levelCompleteText3;
+            dialogueAudioSource.clip = levelCompleteAudio3;
+        }
+        else if (levelCompleteInt == 4)
+        {
+            dialogueText.text = levelCompleteText4;
+            dialogueAudioSource.clip = levelCompleteAudio4;
+        }
+        else if (levelCompleteInt == 5)
+        {
+            dialogueText.text = levelCompleteText5;
+            dialogueAudioSource.clip = levelCompleteAudio5;
+        }
+
         dialogueAudioSource.Play();
         storyPlaying = true;
 

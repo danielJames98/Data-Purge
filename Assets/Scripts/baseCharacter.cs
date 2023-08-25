@@ -11,7 +11,8 @@ public class baseCharacter : MonoBehaviour
     public bool alive = true;
 
     public Animator animator;
-
+    public GameObject ui;
+    public uiManagerScript uiScript;
     public gameManagerScript gameManager;
     public levelManagerScript levelManager;
 
@@ -80,11 +81,12 @@ public class baseCharacter : MonoBehaviour
 
     public AudioSource audioSource;
     public List<AudioClip> walkSounds;
+    public AudioClip levelUpSound;
     public bool walkSoundPlaying;
     public int currentWalkSound;
     public float walkSoundDelay;
     public bool walking;
-    public GameObject chargeSparks;
+    public GameObject weapon;
 
     public List<AudioClip> deathSounds;
 
@@ -340,11 +342,12 @@ public class baseCharacter : MonoBehaviour
         level++;
         maxXP = level * 100;
 
+
         int statToBuff = Random.Range(0, 10);
 
         if (statToBuff == 0)
         {
-            maxHealth++;
+            maxHealth+=10;
             spawnLevelUpText(level, "Health");
         }
         else if (statToBuff == 1)
@@ -398,6 +401,13 @@ public class baseCharacter : MonoBehaviour
         if (tag == "Player")
         {
             xpBar.GetComponent<Slider>().value = currentXP / maxXP;
+
+            
+            if(level>1)
+            {
+                AudioSource.PlayClipAtPoint(levelUpSound, transform.position, 2);
+            }
+            
         }
 
         healthBar.GetComponent<Slider>().value = currentHealth / maxHealth;

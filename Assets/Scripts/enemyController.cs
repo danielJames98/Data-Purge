@@ -12,9 +12,17 @@ public class enemyController : baseCharacter
         navMeshAgent = this.GetComponent<NavMeshAgent>();
 
         frontFirePoint = transform.Find("frontFirePoint").gameObject;
-        animator = transform.Find("Robot Kyle").GetComponent<Animator>();
+        if(gameObject.name=="baseEnemy(Clone)")
+        {
+            animator = transform.Find("Robot Kyle").GetComponent<Animator>();
+        }
+        else
+        {
+            animator = transform.Find("HPCharacter").GetComponent<Animator>();
+        }
+        
         overHeadCanvas = Instantiate(Resources.Load("overHeadCanvas", typeof(GameObject)), new Vector3(this.transform.position.x, this.transform.position.y + 2, this.transform.position.z), Quaternion.identity) as GameObject;
-        overHeadCanvas.GetComponent<overHeadCanvasScript>().yOffset = 2;
+        overHeadCanvas.GetComponent<overHeadCanvasScript>().yOffset = 1+transform.localScale.y;
         healthBar = overHeadCanvas.transform.Find("healthBar").gameObject;
         overHeadCanvas.GetComponent<overHeadCanvasScript>().parentCharacter = this.gameObject;
         healthBar.SetActive(false);
@@ -39,13 +47,23 @@ public class enemyController : baseCharacter
 
         generateAbility(abilityScript0);
         generateAbility(abilityScript1);
-        /*
-        generateAbility(abilityScript2);
-        generateAbility(abilityScript3);
-        generateAbility(abilityScript4);
-        */
+         if(gameObject.name=="overlord")
+        {
+            generateAbility(abilityScript2);
+            generateAbility(abilityScript3);
+            generateAbility(abilityScript4);
+        }
 
-        levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level*2);
+        
+        if(gameObject.name!="overlord")
+        {
+            levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level * 2);
+        }
+        else
+        {
+            levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level + 50);
+        }
+
 
         gameManager = GameObject.Find("gameManager").GetComponent<gameManagerScript>();
         levelManager = gameManager.activeLevel.GetComponent<levelManagerScript>();

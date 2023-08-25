@@ -364,7 +364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 18155889365060496, guid: ce4ae594b220f7a4980b0e73c7aeb12b, type: 3}
       propertyPath: changeRate
-      value: 0.02
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 18155889365060496, guid: ce4ae594b220f7a4980b0e73c7aeb12b, type: 3}
       propertyPath: intensityMax
