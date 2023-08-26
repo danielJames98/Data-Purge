@@ -69,7 +69,7 @@ public class lootScript : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.y<=1f && frozen==false)
+        if((transform.position.y<=1f ||  transform.position.y == 501f) && frozen ==false)
         {
             frozen=true;
             rb.constraints = RigidbodyConstraints.FreezeRotation;

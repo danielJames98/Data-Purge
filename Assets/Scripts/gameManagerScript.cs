@@ -12,8 +12,10 @@ public class gameManagerScript : MonoBehaviour
     public GameObject inGameUI;
     public GameObject cam;
     public GameObject pauseMenu;
+    public GameObject endGamePortal;
+    public bool gameComplete;
+    public GameObject backToGamePortal;
 
-   
     public directionalLightScript changeLightScript;
     public Light staticLight;
 
@@ -76,18 +78,32 @@ public class gameManagerScript : MonoBehaviour
 
     public void launchFinalLevel()
     {
-        cam.GetComponent<ShaderEffect_CorruptedVram>().enabled = true;
-        StartCoroutine("disableCorruption");
+        if(gameComplete==false)
+        {
+            GameObject finalLevel = Instantiate(Resources.Load<GameObject>("levels/finalBossLevel"), new Vector3(0, 500, 0), Quaternion.identity);
+            cam.GetComponent<ShaderEffect_CorruptedVram>().enabled = true;
+            StartCoroutine("disableCorruption");
+        }
+        
+        
         levelManagerScript activeLevelScript = activeLevel.GetComponent<levelManagerScript>();
         activeLevelScript.killEnemies();
         activeLevelScript.completeObjective();
-
-        GameObject finalLevel= Instantiate(Resources.Load<GameObject>("levels/finalBossLevel"), new Vector3(0,500,0), Quaternion.identity);
+        backToGamePortal.GetComponent<backToGamePortalScript>().warpLocation = player.transform.position;
+        
         playerController pcCon = player.GetComponent<playerController>();
         pcCon.interruptCast();
         
 
-        player.GetComponent<NavMeshAgent>().Warp(new Vector3(-7, 502, -85));
+        player.GetComponent<NavMeshAgent>().Warp(new Vector3(-7, 502, -80));
+    }
+
+    public void finalBossDefeated()
+    {
+        gameComplete = true;
+        inGameUI.GetComponent<uiManagerScript>().showFinalBossDefeatedDialogue();
+        endGamePortal.SetActive(true);
+        backToGamePortal.SetActive(true);
     }
 
     IEnumerator disableCorruption()

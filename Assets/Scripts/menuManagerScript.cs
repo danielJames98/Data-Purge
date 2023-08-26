@@ -11,6 +11,11 @@ public class menuManagerScript : MonoBehaviour
         SceneManager.LoadScene("generatedScene");
     }
 
+    public void mainMenu()
+    {
+        SceneManager.LoadScene("mainMenu");
+    }
+
     public void quit()
     {
         Application.Quit();

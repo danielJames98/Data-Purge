@@ -92,6 +92,8 @@ public class baseCharacter : MonoBehaviour
 
     public List<aoeScript> aoesColliding;
 
+
+
     public void takeDamage(float damage)
     {
         if(alive==true)
@@ -176,6 +178,28 @@ public class baseCharacter : MonoBehaviour
                 levelManager.completeObjective();
             }
 
+            if(gameObject.name=="overlord")
+            {
+                gameManager.finalBossDefeated();
+                GameObject loot1 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+                generateAbilityCore(loot1.GetComponent<lootScript>());
+                GameObject loot2 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+                generateAbilityCore(loot2.GetComponent<lootScript>());
+                GameObject loot3 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+                generateAbilityCore(loot3.GetComponent<lootScript>());
+                GameObject loot4 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+                generateAbilityCore(loot4.GetComponent<lootScript>());
+                GameObject loot5 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+                generateAbilityCore(loot5.GetComponent<lootScript>());
+                GameObject loot6 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+                generateAbilityCore(loot6.GetComponent<lootScript>());
+                GameObject loot7 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+                generateAbilityCore(loot7.GetComponent<lootScript>());
+                GameObject loot8 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+                generateAbilityCore(loot8.GetComponent<lootScript>());
+                GameObject loot9 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+                generateAbilityCore(loot9.GetComponent<lootScript>());
+            }
             
         }
         if (gameObject.tag == "Player")

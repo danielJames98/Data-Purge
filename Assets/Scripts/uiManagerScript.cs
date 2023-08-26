@@ -170,6 +170,8 @@ public class uiManagerScript : MonoBehaviour
         tempAbilityScript = tempAbility.GetComponent<baseAbilityScript>();
 
         showIntroDialogue();
+
+        
     }
 
     void Update()
@@ -1282,6 +1284,7 @@ public class uiManagerScript : MonoBehaviour
 
     public void launchFinalLevel()
     {
+        finalBossButton.SetActive(false);
         gameManager.launchFinalLevel();
     }
 
