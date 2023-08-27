@@ -975,15 +975,15 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   levelManager: {fileID: 0}
   level: 0
-  currentHealth: 500
-  maxHealth: 500
+  currentHealth: 250
+  maxHealth: 250
   moveSpeed: 10
   attackSpeed: 0
   cooldownReduction: 0
-  armour: 50
-  power: 100
-  bonusRange: 100
-  bonusArea: 100
+  armour: 0
+  power: 50
+  bonusRange: 50
+  bonusArea: 50
   bonusProjectileSpeed: 0
   bonusDuration: 0
   currentXP: 0

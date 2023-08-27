@@ -87,7 +87,6 @@ public class baseAbilityScript : MonoBehaviour
             else
             {
                 parentCharacterAnimator = parentCharacter.transform.Find("HPCharacter").GetComponent<Animator>();
-                Debug.Log("erger");
             }
             audioSource = gameObject.GetComponent<AudioSource>();
 
@@ -420,7 +419,15 @@ public class baseAbilityScript : MonoBehaviour
     IEnumerator spawnAoe()
     {
         Vector3 point;
-        point = new Vector3(parentCharacterScript.targetPosition.x, parentCharacterScript.targetPosition.y-1, parentCharacterScript.targetPosition.z);               
+        if(parentCharacter.tag=="enemy")
+        {
+            point = new Vector3(parentCharacterScript.targetPosition.x, parentCharacterScript.targetPosition.y - 1, parentCharacterScript.targetPosition.z);
+        }
+        else
+        {
+            point = new Vector3(parentCharacterScript.targetPosition.x, parentCharacterScript.targetPosition.y, parentCharacterScript.targetPosition.z);
+        }
+             
         parentCharacterScript.castingCoroutine = "spawnAoe";
         parentCharacterScript.castingAbility = this;
         if(targeting!="self")

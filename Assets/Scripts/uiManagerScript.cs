@@ -97,6 +97,7 @@ public class uiManagerScript : MonoBehaviour
     public AudioClip finalBossDefeatedAudio;
     public AudioClip notLeavingAudio;
     public AudioClip levelUpSound;
+    public AudioClip launchFinalLevelAudio;
 
     public string introText;
     public string levelCompleteText1;
@@ -1272,8 +1273,9 @@ public class uiManagerScript : MonoBehaviour
         storyPlaying = true;
     }
 
-    public void showNotLeavingDialogue()
+    IEnumerator showNotLeavingDialogue()
     {
+        yield return new WaitForSeconds(30);
         dialogueDisplay.SetActive(true);
         dialogueText.text = notLeavingText;
         dialogueSpeakerName.text = "Hacker";
@@ -1284,6 +1286,10 @@ public class uiManagerScript : MonoBehaviour
 
     public void launchFinalLevel()
     {
+        dialogueAudioSource.clip = launchFinalLevelAudio;
+        dialogueAudioSource.Play();
+        player.transform.Find("musicPlayer(Clone)").GetComponent<AudioSource>().pitch = 0.5f;
+        player.transform.Find("musicPlayer(Clone)").GetComponent<AudioSource>().volume = 1;
         finalBossButton.SetActive(false);
         gameManager.launchFinalLevel();
     }

@@ -105,11 +105,19 @@ public class playerController : baseCharacter
 
                     if (Physics.Raycast(lootRay, out lootHit, 100) && lootHit.transform.gameObject.tag == "loot" && Vector3.Distance(this.transform.position, lootHit.point) < 10)
                     {
-                        getFirstEmptySlot();
-                        if (inventoryFull == false)
+                        if(lootHit.transform.gameObject.name=="abilityCore(Clone)")
                         {
-                            lootHit.transform.gameObject.GetComponent<lootScript>().pickUp(this, inventoryItems[firstEmptyInventorySlot]);
+                            getFirstEmptySlot();
+                            if (inventoryFull == false)
+                            {
+                                lootHit.transform.gameObject.GetComponent<lootScript>().pickUp(this, inventoryItems[firstEmptyInventorySlot]);
+                            }
                         }
+                        else if(lootHit.transform.gameObject.name =="healthCore(Clone)")
+                        {
+                            lootHit.transform.gameObject.GetComponent<healthCoreScript>().pickUp(this);
+                        }
+
                     }
 
                     if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable")) && inventoryOpen == false)

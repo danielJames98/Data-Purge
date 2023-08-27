@@ -81,27 +81,31 @@ public class gameManagerScript : MonoBehaviour
         if(gameComplete==false)
         {
             GameObject finalLevel = Instantiate(Resources.Load<GameObject>("levels/finalBossLevel"), new Vector3(0, 500, 0), Quaternion.identity);
-            cam.GetComponent<ShaderEffect_CorruptedVram>().enabled = true;
+            StartCoroutine("corruption");
             StartCoroutine("disableCorruption");
-        }
-        
-        
+        }       
         levelManagerScript activeLevelScript = activeLevel.GetComponent<levelManagerScript>();
         activeLevelScript.killEnemies();
         activeLevelScript.completeObjective();
-        backToGamePortal.GetComponent<backToGamePortalScript>().warpLocation = player.transform.position;
-        
+        backToGamePortal.GetComponent<backToGamePortalScript>().warpLocation = player.transform.position;       
         playerController pcCon = player.GetComponent<playerController>();
         pcCon.interruptCast();
-        
-
         player.GetComponent<NavMeshAgent>().Warp(new Vector3(-7, 502, -80));
+    }
+
+    IEnumerator corruption()
+    {
+        cam.GetComponent<ShaderEffect_CorruptedVram>().enabled = true;
+        cam.GetComponent<ShaderEffect_CorruptedVram>().shift=Random.Range(-500, 500);
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine("corruption");       
     }
 
     public void finalBossDefeated()
     {
         gameComplete = true;
         inGameUI.GetComponent<uiManagerScript>().showFinalBossDefeatedDialogue();
+        inGameUI.GetComponent<uiManagerScript>().StartCoroutine("showNotLeavingDialogue");
         endGamePortal.SetActive(true);
         backToGamePortal.SetActive(true);
     }
@@ -109,6 +113,7 @@ public class gameManagerScript : MonoBehaviour
     IEnumerator disableCorruption()
     {
         yield return new WaitForSeconds(5);
+        StopCoroutine("corruption");
         cam.GetComponent<ShaderEffect_CorruptedVram>().enabled = false;
         inGameUI.GetComponent<uiManagerScript>().showFinalBossDialogue();
     }

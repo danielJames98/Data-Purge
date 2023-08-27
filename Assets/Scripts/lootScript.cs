@@ -65,11 +65,12 @@ public class lootScript : MonoBehaviour
         canvas= Instantiate(Resources.Load("lootCanvas", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
         canvas.GetComponent<overHeadCanvasScript>().parentCharacter = this.gameObject;
         canvas.GetComponent<overHeadCanvasScript>().yOffset = 1f;
+        canvas.transform.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = "Ability";
     }
 
     void Update()
     {
-        if((transform.position.y<=1f ||  transform.position.y == 501f) && frozen ==false)
+        if((transform.position.y<=1f ||  transform.position.y >= 500f && transform.position.y <= 501f) && frozen ==false)
         {
             frozen=true;
             rb.constraints = RigidbodyConstraints.FreezeRotation;

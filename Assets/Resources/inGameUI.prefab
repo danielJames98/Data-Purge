@@ -5081,7 +5081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -848, y: 174}
+  m_AnchoredPosition: {x: -850, y: 131.94}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4297918475811088115
@@ -5139,8 +5139,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6031,7 +6031,8 @@ MonoBehaviour:
   finalBossAudio: {fileID: 8300000, guid: d62f0baf964c36a47956e1efaa506558, type: 3}
   finalBossDefeatedAudio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
   notLeavingAudio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
-  levelUpSound: {fileID: 0}
+  levelUpSound: {fileID: 8300000, guid: 4b32e5e5fc0844e4abab696a049beb51, type: 3}
+  launchFinalLevelAudio: {fileID: 8300000, guid: d98ec710e632d784db5258fea2b793e8, type: 3}
   introText: "Hello, and welcome to DATA PURGE! Left click to move your character
     and press 1, 2, 3, 4 and your right mouse button to activate your abilities.
     Defeat enemies and complete objectives to gain experience, equipment and abilities
@@ -6293,8 +6294,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 272}
-  m_SizeDelta: {x: 1500, y: 400}
+  m_AnchoredPosition: {x: 0, y: 315.0586}
+  m_SizeDelta: {x: 1500, y: 313.8828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6472536244574264840
 CanvasRenderer:
@@ -6355,7 +6356,7 @@ MonoBehaviour:
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1

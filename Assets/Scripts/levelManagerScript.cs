@@ -86,6 +86,7 @@ public class levelManagerScript : MonoBehaviour
             gameManager.StartCoroutine("unlock");
 
             GameObject.Find("Main Camera(Clone)").transform.Find("inGameUI").GetComponent<uiManagerScript>().showLevelCompleteDialogue();
+            GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().gainXP(100);
         }
     }
 
@@ -103,22 +104,17 @@ public class levelManagerScript : MonoBehaviour
         {
             foreach (GameObject enemy in enemyList)
             {
-                enemy.GetComponent<enemyController>().StartCoroutine("Die");
-                
+                enemy.GetComponent<enemyController>().StartCoroutine("Die");               
             }
             enemyList.Clear();
         }
-
     }
 
     public void lockDown()
     {
-        Debug.Log("go");
         locked = true;
         spawnEnemies();
-
         gameManager.StartCoroutine("lockdown");
-
     }
 
     public void spawnEnemies()

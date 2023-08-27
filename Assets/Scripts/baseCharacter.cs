@@ -166,8 +166,18 @@ public class baseCharacter : MonoBehaviour
         if (gameObject.tag == "Enemy")
         {
             GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().gainXP(20);
-            GameObject loot0 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
-            generateAbilityCore(loot0.GetComponent<lootScript>());
+
+            int lootInt = Random.Range(0, 2);
+            if(lootInt==0)
+            {
+                GameObject loot0 = Instantiate(Resources.Load("abilityCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+                generateAbilityCore(loot0.GetComponent<lootScript>());
+            }
+            else if(lootInt ==1)
+            {
+                GameObject loot0 = Instantiate(Resources.Load("healthCore", typeof(GameObject)), this.transform.position, Quaternion.identity) as GameObject;
+            }
+
 
             if (levelManager.objective == "Annihilation")
             {
@@ -229,6 +239,7 @@ public class baseCharacter : MonoBehaviour
             Destroy(this.gameObject);
         }      
     }
+
 
     public void activateAbility(baseAbilityScript abilityToActivate)
     {
@@ -540,7 +551,7 @@ public class baseCharacter : MonoBehaviour
         //adds a range value if not self-targeted
         if (ability.targeting != "self")
         {
-            ability.baseRange = Random.Range(3, 10);
+            ability.baseRange = Random.Range(3, 20);
             if (ability.targeting == "pointAndClick")
             {
                 ability.baseRange = ability.baseRange / 2;
@@ -821,7 +832,7 @@ public class baseCharacter : MonoBehaviour
         //adds a range value if not self-targeted
         if (ability.targeting != "self")
         {
-            ability.baseRange = Random.Range(3, 10);
+            ability.baseRange = Random.Range(3, 20);
             if (ability.targeting == "pointAndClick")
             {
                 ability.baseRange = ability.baseRange / 2;

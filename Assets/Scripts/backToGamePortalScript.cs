@@ -24,7 +24,7 @@ public class backToGamePortalScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            GameObject.Find("inGameUI(Clone").GetComponent<uiManagerScript>().finalBossButton.SetActive(true);
+            GameObject.Find("Main Camera(Clone)").transform.Find("inGameUI").GetComponent<uiManagerScript>().finalBossButton.SetActive(true);
             other.gameObject.GetComponent<NavMeshAgent>().Warp(warpLocation);
         }
     }
