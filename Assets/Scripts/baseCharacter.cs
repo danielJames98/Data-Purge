@@ -92,6 +92,8 @@ public class baseCharacter : MonoBehaviour
 
     public List<aoeScript> aoesColliding;
 
+    public List<projectileScript> projectilesHoming;
+
 
 
     public void takeDamage(float damage)
@@ -231,8 +233,16 @@ public class baseCharacter : MonoBehaviour
                 aoeScript.removeTarget(this);
             }
         }
-        
-        if(gameObject.tag=="Enemy")
+
+        foreach (projectileScript projectileScript in projectilesHoming)
+        {
+            if (projectileScript.homingTarget==this)
+            {
+                projectileScript.homingTarget=null;
+            }
+        }
+
+        if (gameObject.tag=="Enemy")
         {
             yield return new WaitForSeconds(0.1f);
             Destroy(overHeadCanvas);
@@ -497,9 +507,29 @@ public class baseCharacter : MonoBehaviour
                 ability.piercing = true;
             }
 
+            int returningInt = Random.Range(0, 2);
+            if (returningInt == 0)
+            {
+                ability.returning = false;
+            }
+            else if (returningInt == 1)
+            {
+                ability.returning = true;
+            }
+
+            int homingInt = Random.Range(0, 2);
+            if (returningInt == 0)
+            {
+                ability.homing = false;
+            }
+            else if (returningInt == 1)
+            {
+                ability.homing = true;
+            }
+
             //set projectile size and speed
-            ability.projectileSpeed = Random.Range(10, 100);
-            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 1f) * 10) * 0.1f;
+            ability.projectileSpeed = Random.Range(10, 50);
+            ability.projectileSize = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
         }
         else if (targetingInt == 2)
         {
@@ -560,7 +590,7 @@ public class baseCharacter : MonoBehaviour
 
         //assign cast time and cooldown
         ability.baseCastTime = Mathf.Round(Random.Range(0.1f, 1f) * 10) * 0.1f;
-        ability.baseCooldown = Random.Range(0, 10);
+        ability.baseCooldown = Random.Range(1, 10);
 
         //decide how many effects this applies
         int effectsToAdd = Random.Range(0, 3);
@@ -725,6 +755,7 @@ public class baseCharacter : MonoBehaviour
                 {
                     ability.stun = true;
                     ability.effectDuration = ability.effectDuration / 4;
+                    ability.baseCooldown = ability.baseCooldown + 5;
                     effectsToAdd--;
                 }
             }
@@ -778,9 +809,19 @@ public class baseCharacter : MonoBehaviour
                 ability.piercing = true;
             }
 
+            int returningInt = Random.Range(0, 2);
+            if (returningInt == 0)
+            {
+                ability.returning = false;
+            }
+            else if (returningInt == 1)
+            {
+                ability.returning = true;
+            }
+
             //set projectile size and speed
-            ability.projectileSpeed = Random.Range(10, 100);
-            ability.projectileSize = Mathf.Round(Random.Range(0.1f, 1f) * 10) * 0.1f;
+            ability.projectileSpeed = Random.Range(10, 50);
+            ability.projectileSize = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
         }
         else if (targetingInt == 2)
         {
@@ -841,7 +882,7 @@ public class baseCharacter : MonoBehaviour
 
         //assign cast time and cooldown
         ability.baseCastTime = Mathf.Round(Random.Range(0.1f, 1f) * 10) * 0.1f;
-        ability.baseCooldown = Random.Range(0, 10);
+        ability.baseCooldown = Random.Range(1, 10);
 
         //decide how many effects this applies
         int effectsToAdd = Random.Range(0, 3);
@@ -1006,6 +1047,7 @@ public class baseCharacter : MonoBehaviour
                 {
                     ability.stun = true;
                     ability.effectDuration = ability.effectDuration / 4;
+                    ability.baseCooldown = ability.baseCooldown + 5;
                     effectsToAdd--;
                 }
             }

@@ -51,6 +51,8 @@ public class lootScript : MonoBehaviour
 
     public float projectileSpeed = 0;
     public bool piercing = false;
+    public bool returning = false;
+    public bool homing = true;
     public float projectileSize = 0;
 
     public float aoeDuration = 0;
@@ -115,6 +117,8 @@ public class lootScript : MonoBehaviour
         slot.flatDurationMod = flatDurationMod;
         slot.projectileSpeed = projectileSpeed;
         slot.piercing = piercing;
+        slot.returning = returning;
+        slot.homing = homing;
         slot.projectileSize = projectileSize;
         slot.aoeDuration = aoeDuration;
         slot.offensive = offensive;

@@ -57,6 +57,8 @@ public class baseAbilityScript : MonoBehaviour
 
     public float projectileSpeed = 0;
     public bool piercing = false;
+    public bool returning = false;
+    public bool homing = false;
     public GameObject frontFirePoint;
     public float projectileSize = 0;
 
@@ -373,6 +375,8 @@ public class baseAbilityScript : MonoBehaviour
         projectileScriptRef.charAppliedBy = parentCharacterScript;
         projectileScriptRef.speed = projectileSpeed * (1 + (parentCharacterScript.bonusProjectileSpeed / 100));
         projectileScriptRef.piercing = piercing;
+        projectileScriptRef.returning= returning;
+        projectileScriptRef.homing = homing;
         projectileScriptRef.damage = baseDamage * (1 + (parentCharacterScript.power / 100));
         projectileScriptRef.healing = baseHealing * (1 + (parentCharacterScript.power / 100));
         projectileScriptRef.offensive = offensive;

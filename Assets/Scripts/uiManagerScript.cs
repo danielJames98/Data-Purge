@@ -309,13 +309,13 @@ public class uiManagerScript : MonoBehaviour
 
         if (abilityScript.appliesEffect == true)
         {
-            toolTipText.text = toolTipText.text + "Applies Effect: " + "Yes" + "<br>";
+            toolTipText.text = toolTipText.text + "Effect: " + "Yes" + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
         if (abilityScript.stackingEffect == true)
         {
-            toolTipText.text = toolTipText.text + "Stacking Effect: " + "Yes" + "<br>";
+            toolTipText.text = toolTipText.text + "Stacking: " + "Yes" + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
@@ -435,31 +435,43 @@ public class uiManagerScript : MonoBehaviour
 
         if (abilityScript.flatProjSpeedMod > 0)
         {
-            toolTipText.text = toolTipText.text + "Flat Projectile Speed Mod: " + abilityScript.flatProjSpeedMod + "<br>";
+            toolTipText.text = toolTipText.text + "Projectile Speed Mod: " + abilityScript.flatProjSpeedMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
         if (abilityScript.flatDurationMod > 0)
         {
-            toolTipText.text = toolTipText.text + "flat Duration Mod: " + abilityScript.flatDurationMod + "<br>";
+            toolTipText.text = toolTipText.text + "Duration Mod: " + abilityScript.flatDurationMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
         if (abilityScript.projectileSize > 0)
         {
-            toolTipText.text = toolTipText.text + "Projectile Size: " + abilityScript.projectileSize + "<br>";
+            toolTipText.text = toolTipText.text + "Proj Size: " + abilityScript.projectileSize + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
         if (abilityScript.projectileSpeed > 0)
         {
-            toolTipText.text = toolTipText.text + "Projectile Speed: " + abilityScript.projectileSpeed + "<br>";
+            toolTipText.text = toolTipText.text + "Proj Speed: " + abilityScript.projectileSpeed + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
         if (abilityScript.piercing == true)
         {
-            toolTipText.text = toolTipText.text + "Piercing Projectile: " + "Yes" + "<br>";
+            toolTipText.text = toolTipText.text + "Piercing: " + "Yes" + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.returning == true)
+        {
+            toolTipText.text = toolTipText.text + "Returning: " + "Yes" + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.homing == true)
+        {
+            toolTipText.text = toolTipText.text + "Homing: " + "Yes" + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
     }
@@ -514,13 +526,13 @@ public class uiManagerScript : MonoBehaviour
 
         if (abilityScript.appliesEffect == true)
         {
-            toolTipText.text = toolTipText.text + "Applies Effect: " + "Yes" + "<br>";
+            toolTipText.text = toolTipText.text + "Effect: " + "Yes" + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
         if (abilityScript.stackingEffect == true)
         {
-            toolTipText.text = toolTipText.text + "Stacking Effect: " + "Yes" + "<br>";
+            toolTipText.text = toolTipText.text + "Stacking: " + "Yes" + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
@@ -667,6 +679,18 @@ public class uiManagerScript : MonoBehaviour
             toolTipText.text = toolTipText.text + "Piercing: " + "Yes" + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
+
+        if (abilityScript.returning == true)
+        {
+            toolTipText.text = toolTipText.text + "Returning: " + "Yes" + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.homing == true)
+        {
+            toolTipText.text = toolTipText.text + "Homing: " + "Yes" + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
     }
 
     public void hideToolTip()
@@ -734,6 +758,8 @@ public class uiManagerScript : MonoBehaviour
                 tempAbilityScript.flatDurationMod = selectedAbilityScript.flatDurationMod;
                 tempAbilityScript.projectileSpeed = selectedAbilityScript.projectileSpeed;
                 tempAbilityScript.piercing = selectedAbilityScript.piercing;
+                tempAbilityScript.returning = selectedAbilityScript.returning;
+                tempAbilityScript.returning = selectedAbilityScript.homing;
                 tempAbilityScript.projectileSize = selectedAbilityScript.projectileSize;
                 tempAbilityScript.aoeDuration = selectedAbilityScript.aoeDuration;
                 tempAbilityScript.offensive = selectedAbilityScript.offensive;
@@ -777,6 +803,8 @@ public class uiManagerScript : MonoBehaviour
                 tempAbilityScript.flatDurationMod = selectedAbilityScript.flatDurationMod;
                 tempAbilityScript.projectileSpeed = selectedAbilityScript.projectileSpeed;
                 tempAbilityScript.piercing = selectedAbilityScript.piercing;
+                tempAbilityScript.returning = selectedAbilityScript.returning;
+                tempAbilityScript.homing = selectedAbilityScript.homing;
                 tempAbilityScript.projectileSize = selectedAbilityScript.projectileSize;
                 tempAbilityScript.aoeDuration = selectedAbilityScript.aoeDuration;
                 tempAbilityScript.offensive = selectedAbilityScript.offensive;
@@ -823,6 +851,8 @@ public class uiManagerScript : MonoBehaviour
                 selectedAbilityScript.flatDurationMod = targetAbilityScript.flatDurationMod;
                 selectedAbilityScript.projectileSpeed = targetAbilityScript.projectileSpeed;
                 selectedAbilityScript.piercing = targetAbilityScript.piercing;
+                selectedAbilityScript.returning = targetAbilityScript.returning;
+                selectedAbilityScript.homing = targetAbilityScript.homing;
                 selectedAbilityScript.projectileSize = targetAbilityScript.projectileSize;
                 selectedAbilityScript.aoeDuration = targetAbilityScript.aoeDuration;
                 selectedAbilityScript.offensive = targetAbilityScript.offensive;
@@ -861,6 +891,8 @@ public class uiManagerScript : MonoBehaviour
                 targetAbilityScript.flatDurationMod = tempAbilityScript.flatDurationMod;
                 targetAbilityScript.projectileSpeed = tempAbilityScript.projectileSpeed;
                 targetAbilityScript.piercing = tempAbilityScript.piercing;
+                targetAbilityScript.returning = tempAbilityScript.returning;
+                targetAbilityScript.homing = tempAbilityScript.homing;
                 targetAbilityScript.projectileSize = tempAbilityScript.projectileSize;
                 targetAbilityScript.aoeDuration = tempAbilityScript.aoeDuration;
                 targetAbilityScript.offensive = tempAbilityScript.offensive;
@@ -903,6 +935,8 @@ public class uiManagerScript : MonoBehaviour
                 selectedAbilityScript.flatDurationMod = targetAbilityScript.flatDurationMod;
                 selectedAbilityScript.projectileSpeed = targetAbilityScript.projectileSpeed;
                 selectedAbilityScript.piercing = targetAbilityScript.piercing;
+                selectedAbilityScript.returning = targetAbilityScript.returning;
+                selectedAbilityScript.homing = targetAbilityScript.homing;
                 selectedAbilityScript.projectileSize = targetAbilityScript.projectileSize;
                 selectedAbilityScript.aoeDuration = targetAbilityScript.aoeDuration;
                 selectedAbilityScript.offensive = targetAbilityScript.offensive;
@@ -941,6 +975,8 @@ public class uiManagerScript : MonoBehaviour
                 targetAbilityScript.flatDurationMod = tempAbilityScript.flatDurationMod;
                 targetAbilityScript.projectileSpeed = tempAbilityScript.projectileSpeed;
                 targetAbilityScript.piercing = tempAbilityScript.piercing;
+                targetAbilityScript.returning = tempAbilityScript.returning;
+                targetAbilityScript.homing = tempAbilityScript.homing;
                 targetAbilityScript.projectileSize = tempAbilityScript.projectileSize;
                 targetAbilityScript.aoeDuration = tempAbilityScript.aoeDuration;
                 targetAbilityScript.offensive = tempAbilityScript.offensive;
@@ -986,6 +1022,8 @@ public class uiManagerScript : MonoBehaviour
         tempAbilityScript.flatDurationMod = 0;
         tempAbilityScript.projectileSpeed = 0;
         tempAbilityScript.piercing = false;
+        tempAbilityScript.returning = false;
+        tempAbilityScript.homing = false;
         tempAbilityScript.projectileSize = 0;
         tempAbilityScript.aoeDuration = 0;
         tempAbilityScript.offensive = true;
@@ -1050,6 +1088,8 @@ public class uiManagerScript : MonoBehaviour
             selectedAbilityScript.flatDurationMod = 0;
             selectedAbilityScript.projectileSpeed = 0;
             selectedAbilityScript.piercing = false;
+            selectedAbilityScript.returning = false;
+            selectedAbilityScript.homing = false;
             selectedAbilityScript.projectileSize = 0;
             selectedAbilityScript.aoeDuration = 0;
             selectedAbilityScript.offensive = true;
@@ -1088,6 +1128,8 @@ public class uiManagerScript : MonoBehaviour
             tempAbilityScript.flatDurationMod = 0;
             tempAbilityScript.projectileSpeed = 0;
             tempAbilityScript.piercing = false;
+            tempAbilityScript.returning = false;
+            tempAbilityScript.homing = false;
             tempAbilityScript.projectileSize = 0;
             tempAbilityScript.aoeDuration = 0;
             tempAbilityScript.offensive = true;
