@@ -22,29 +22,38 @@ public class projectileScript : MonoBehaviour
     public bool offensive;
     public Material enemyMat;
     public float maxLifeTime;
+    public bool aoeOnHit;
 
     void Update()
     {
         if(Vector3.Distance(transform.position, startPoint) >= range)
         {
-            if(returning==false)
+            if (returning == false)
             {
                 destroySelf();
-            }           
-            else if(returning==true && homing==false) 
-            {              
+            }
+            else if (returning == true && homing == false)
+            {
                 rb.velocity = rb.velocity * -1;
                 startPoint = transform.position;
                 returning = false;
             }
-            else if(returning==true && homing==true)
+            else if (returning == true && homing == true && charAppliedBy.gameObject != null)
             {
                 homingTarget=charAppliedBy.gameObject;
                 charAppliedBy.GetComponent<baseCharacter>().projectilesHoming.Add(this);
             }
+            else if (returning==true && homing == true && charAppliedBy.gameObject == null)
+            {
+                homingTarget = null;
+                homing = false;
+                returning=false;
+                transform.LookAt(startPoint);
+                rb.velocity = transform.forward * speed;             
+            }
         }
 
-        if(homingTarget!=null)
+        if (homingTarget != null && homingTarget.gameObject != null)
         {
             transform.LookAt(homingTarget.transform.position);
             rb.velocity = transform.forward * speed;
@@ -70,7 +79,7 @@ public class projectileScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(offensive == true && other.tag != charAppliedBy.tag && other.gameObject.GetComponent<baseCharacter>() != null)
+        if (other.gameObject != null && offensive == true && other.tag != tag && other.gameObject.GetComponent<baseCharacter>() != null)
         {
             if (damage>0)
             {
@@ -86,9 +95,14 @@ public class projectileScript : MonoBehaviour
             {
                 abilityAppliedBy.createEffect(other.gameObject);
             }
+
+            if(aoeOnHit==true)
+            {
+                abilityAppliedBy.spawnAoe(new Vector3(transform.position.x, transform.position.y-1, transform.position.z));
+            }
         }
 
-        else if (offensive == false && other.tag == charAppliedBy.tag && other.gameObject.GetComponent<baseCharacter>() != null)
+        else if (other.gameObject != null && offensive == false && other.tag == tag && other.gameObject.GetComponent<baseCharacter>() != null)
         {
             if (damage > 0)
             {
@@ -104,13 +118,19 @@ public class projectileScript : MonoBehaviour
             {
                 abilityAppliedBy.createEffect(other.gameObject);
             }
+
+            if (aoeOnHit == true)
+            {
+                abilityAppliedBy.spawnAoe(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z));
+            }
         }
 
         if (homingTarget != null && other.gameObject == homingTarget && returning == true && homingTarget != charAppliedBy.gameObject)
         {
             homingTarget = charAppliedBy.gameObject;
+            startPoint = transform.position;
         }
-        else if(homingTarget != null && other.gameObject == homingTarget && homingTarget == charAppliedBy.gameObject)
+        else if(homingTarget != null && other.gameObject == homingTarget && charAppliedBy!=null && homingTarget == charAppliedBy.gameObject)
         {
             destroySelf();
         }

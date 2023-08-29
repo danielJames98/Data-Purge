@@ -10,9 +10,6 @@ using UnityEngine.UI;
 public class playerController : baseCharacter
 {
     public Camera cam;
-    
-
-
     public List<baseAbilityScript> inventoryItems;
     public int firstEmptyInventorySlot;
     public GameObject inventory;

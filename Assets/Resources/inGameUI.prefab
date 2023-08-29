@@ -5081,7 +5081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -850, y: 131.94}
+  m_AnchoredPosition: {x: -115, y: 225}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4297918475811088115
@@ -6294,8 +6294,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 315.0586}
-  m_SizeDelta: {x: 1500, y: 313.8828}
+  m_AnchoredPosition: {x: -745, y: -340}
+  m_SizeDelta: {x: 430, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6472536244574264840
 CanvasRenderer:
@@ -6709,8 +6709,13 @@ MonoBehaviour:
   flatDurationMod: 0
   projectileSpeed: 0
   piercing: 0
+  returning: 0
+  homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0

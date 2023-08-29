@@ -54,7 +54,10 @@ public class lootScript : MonoBehaviour
     public bool returning = false;
     public bool homing = true;
     public float projectileSize = 0;
+    public int projectileCount = 0;
+    public int projectileSpread = 0;
 
+    public bool aoeOnHit;
     public float aoeDuration = 0;
     public bool offensive = true;
     public bool stun = false;
@@ -120,7 +123,10 @@ public class lootScript : MonoBehaviour
         slot.returning = returning;
         slot.homing = homing;
         slot.projectileSize = projectileSize;
+        slot.projectileCount = projectileCount;
+        slot.projectileSpread = projectileSpread;
         slot.aoeDuration = aoeDuration;
+        slot.aoeOnHit = aoeOnHit;
         slot.offensive = offensive;
         slot.stun = stun;
         pc.firstEmptyInventorySlot++;

@@ -75,8 +75,7 @@ public class aoeScript : MonoBehaviour
             if(other.gameObject.GetComponent<baseCharacter>().aoesColliding.Contains(this))
             {
                 other.gameObject.GetComponent<baseCharacter>().aoesColliding.Remove(this);
-            }
-            
+            }            
         }
     }
 
@@ -92,12 +91,12 @@ public class aoeScript : MonoBehaviour
                 {
                     if (damage > 0)
                     {
-                        character.takeDamage(damage);
+                        character.takeDamage(damage/2);
                     }
 
                     if (healing > 0)
                     {
-                        character.GetComponent<baseCharacter>().takeHealing(healing);
+                        character.GetComponent<baseCharacter>().takeHealing(healing/2);
                     }
 
                     if (abilityAppliedBy.stun == true)

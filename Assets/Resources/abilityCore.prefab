@@ -102,7 +102,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -188,7 +188,12 @@ MonoBehaviour:
   flatDurationMod: 0
   projectileSpeed: 0
   piercing: 0
+  returning: 0
+  homing: 1
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0

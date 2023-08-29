@@ -94,7 +94,7 @@ public class baseCharacter : MonoBehaviour
 
     public List<projectileScript> projectilesHoming;
 
-
+    public List<projectileScript> ownProjectiles;
 
     public void takeDamage(float damage)
     {
@@ -239,6 +239,14 @@ public class baseCharacter : MonoBehaviour
             if (projectileScript.homingTarget==this)
             {
                 projectileScript.homingTarget=null;
+            }
+        }
+
+        foreach (projectileScript ownProjectile in ownProjectiles)
+        {
+            if (ownProjectile.charAppliedBy == this)
+            {
+                ownProjectile.charAppliedBy = null;
             }
         }
 
@@ -402,42 +410,42 @@ public class baseCharacter : MonoBehaviour
         }
         else if (statToBuff == 2)
         {
-            attackSpeed = attackSpeed + 1;
+            attackSpeed = attackSpeed + 5;
             spawnLevelUpText(level, "Attack Speed");
         }
         else if (statToBuff == 3)
         {
-            cooldownReduction = cooldownReduction + 1;
+            cooldownReduction = cooldownReduction + 5;
             spawnLevelUpText(level, "CDR");
         }
         else if (statToBuff == 4)
         {
-            armour = armour + 1;
+            armour = armour + 5;
             spawnLevelUpText(level, "Armour");
         }
         else if (statToBuff == 5)
         {
-            power = power + 1;
+            power = power + 5;
             spawnLevelUpText(level, "Power");
         }
         else if (statToBuff == 6)
         {
-            bonusRange = bonusRange + 1;
+            bonusRange = bonusRange + 5;
             spawnLevelUpText(level, "Range");
         }
         else if (statToBuff == 7)
         {
-            bonusArea = bonusArea + 1;
+            bonusArea = bonusArea + 5;
             spawnLevelUpText(level, "AoE");
         }
         else if (statToBuff == 8)
         {
-            bonusProjectileSpeed = bonusProjectileSpeed + 1;
+            bonusProjectileSpeed = bonusProjectileSpeed + 5;
             spawnLevelUpText(level, "Projectile Speed");
         }
         else if (statToBuff == 9)
         {
-            bonusDuration = bonusDuration + 1;
+            bonusDuration = bonusDuration + 5;
             spawnLevelUpText(level, "Duration");
         }
 
@@ -484,8 +492,9 @@ public class baseCharacter : MonoBehaviour
                 ability.offensive = false;
             }
         }
+        /*
         //select a targeting method and type
-        int targetingInt = Random.Range(1, 3);
+        int targetingInt = Random.Range(1, 1);
         if (targetingInt == 0)
         {
             ability.targeting = "pointAndClick";
@@ -493,11 +502,40 @@ public class baseCharacter : MonoBehaviour
         }
         else if (targetingInt == 1)
         {
+        */
             ability.targeting = "direction";
             ability.type = "projectile";
 
+            int projectilesOdds = Random.Range(1, 101);
+            if (projectilesOdds <= 70)
+            {
+                ability.projectileCount = 1;
+            }
+            else if (projectilesOdds > 70 && projectilesOdds <= 85)
+            {
+                ability.projectileCount = 2;
+            }
+            else if (projectilesOdds > 85 && projectilesOdds <= 95)
+            {
+                ability.projectileCount = 3;
+            }
+            else if (projectilesOdds > 95 && projectilesOdds<=99) 
+            {
+                ability.projectileCount = 4;
+            }
+            else if(projectilesOdds==100)
+            {
+                ability.projectileCount = 5;
+            }
+
+            if(ability.projectileCount >1)
+            {
+                ability.projectileSpread = Random.Range(1, 15);
+            }
+            
+
             //sets if the projectile is piercing
-            int piercingInt = Random.Range(0, 2);
+             int piercingInt = Random.Range(0, 2);
             if (piercingInt == 0)
             {
                 ability.piercing = false;
@@ -518,18 +556,19 @@ public class baseCharacter : MonoBehaviour
             }
 
             int homingInt = Random.Range(0, 2);
-            if (returningInt == 0)
+            if (homingInt == 0)
             {
                 ability.homing = false;
             }
-            else if (returningInt == 1)
+            else if (homingInt == 1)
             {
                 ability.homing = true;
             }
 
             //set projectile size and speed
             ability.projectileSpeed = Random.Range(10, 50);
-            ability.projectileSize = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
+            ability.projectileSize = Mathf.Round(Random.Range(0.2f, 1f) * 10) * 0.1f;
+        /*
         }
         else if (targetingInt == 2)
         {
@@ -564,18 +603,25 @@ public class baseCharacter : MonoBehaviour
         //sets the aoe size and duration
         if (ability.type == "aoe")
         {
+        */
+        int aoeOnHitInt = Random.Range(0, 10);
+        if(aoeOnHitInt== 0)
+        {
+            ability.aoeOnHit = true;
             ability.aoeDuration = Random.Range(1, 5);
             ability.baseAoeRadius = Random.Range(5, 10);
         }
+            
+        //}
 
         //adds damage if offensive or healing if supportive
         if (ability.offensive == true)
         {
-            ability.baseDamage = Random.Range(0, 25);
+            ability.baseDamage = Random.Range(0, 15);
         }
         else if (ability.offensive == false)
         {
-            ability.baseHealing = Random.Range(0, 25);
+            ability.baseHealing = Random.Range(0, 15);
         }
 
         //adds a range value if not self-targeted
@@ -612,12 +658,12 @@ public class baseCharacter : MonoBehaviour
             {
                 if (ability.offensive == true && ability.dotDamage == 0)
                 {
-                    ability.dotDamage = Random.Range(10, 25);
+                    ability.dotDamage = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
                     effectsToAdd--;
                 }
                 else if (ability.offensive == false && ability.hotHealing == 0)
                 {
-                    ability.hotHealing = Random.Range(10, 25);
+                    ability.hotHealing = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
                     effectsToAdd--;
                 }
             }
@@ -760,7 +806,7 @@ public class baseCharacter : MonoBehaviour
                 }
             }
 
-            int stackInt = Random.Range(0, 2);
+            int stackInt = Random.Range(0, 1);
             if (stackInt == 0)
             {
                 ability.stackingEffect = false;
@@ -785,7 +831,7 @@ public class baseCharacter : MonoBehaviour
         {
             ability.offensive = false;
         }
-
+        /*
         //select a targeting method and type
         int targetingInt = Random.Range(1, 3);
         if (targetingInt == 0)
@@ -795,8 +841,37 @@ public class baseCharacter : MonoBehaviour
         }
         else if (targetingInt == 1)
         {
+        */
             ability.targeting = "direction";
             ability.type = "projectile";
+
+
+            int projectilesOdds = Random.Range(1, 101);
+            if (projectilesOdds <= 70)
+            {
+                ability.projectileCount = 1;
+            }
+            else if (projectilesOdds > 70 && projectilesOdds <= 85)
+            {
+                ability.projectileCount = 2;
+            }
+            else if (projectilesOdds > 85 && projectilesOdds <= 95)
+            {
+                ability.projectileCount = 3;
+            }
+            else if (projectilesOdds > 95 && projectilesOdds <= 99)
+            {
+                ability.projectileCount = 4;
+            }
+            else if (projectilesOdds == 100)
+            {
+                ability.projectileCount = 5;
+            }
+
+            if (ability.projectileCount > 1)
+            {
+                ability.projectileSpread = Random.Range(1, 15);
+            }
 
             //sets if the projectile is piercing
             int piercingInt = Random.Range(0, 2);
@@ -821,7 +896,9 @@ public class baseCharacter : MonoBehaviour
 
             //set projectile size and speed
             ability.projectileSpeed = Random.Range(10, 50);
-            ability.projectileSize = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
+            ability.projectileSize = Mathf.Round(Random.Range(0.2f, 1f) * 10) * 0.1f;
+
+        /*
         }
         else if (targetingInt == 2)
         {
@@ -856,18 +933,24 @@ public class baseCharacter : MonoBehaviour
         //sets the aoe size and duration
         if (ability.type == "aoe")
         {
+        */
+        int aoeOnHitInt = Random.Range(0, 10);
+        if (aoeOnHitInt == 0)
+        {
+            ability.aoeOnHit = true;
             ability.aoeDuration = Random.Range(1, 5);
             ability.baseAoeRadius = Random.Range(5, 10);
         }
+        // }
 
         //adds damage if offensive or healing if supportive
         if (ability.offensive == true)
         {
-            ability.baseDamage = Random.Range(0, 25);
+            ability.baseDamage = Random.Range(0, 15);
         }
         else if (ability.offensive == false)
         {
-            ability.baseHealing = Random.Range(0, 25);
+            ability.baseHealing = Random.Range(0, 15);
         }
 
         //adds a range value if not self-targeted
@@ -892,7 +975,7 @@ public class baseCharacter : MonoBehaviour
             ability.appliesEffect = true;
 
             //determines effect duration
-            ability.effectDuration = Random.Range(1, 10);
+            ability.effectDuration = Random.Range(5, 10);
         }
 
         //adds effects if any
@@ -904,15 +987,16 @@ public class baseCharacter : MonoBehaviour
             {
                 if (ability.offensive == true && ability.dotDamage == 0)
                 {
-                    ability.dotDamage = Random.Range(10, 25);
+                    ability.dotDamage = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
                     effectsToAdd--;
                 }
                 else if (ability.offensive == false && ability.hotHealing == 0)
                 {
-                    ability.hotHealing = Random.Range(10, 25);
+                    ability.hotHealing = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
                     effectsToAdd--;
                 }
             }
+            //percent mods removed as i have opted to keep stats quite low for fair and balanced gameplay, making % mods often too weak
             /*
             else if (effectInt == 1 && ability.percentArmourMod == 0)
             {
@@ -1052,7 +1136,8 @@ public class baseCharacter : MonoBehaviour
                 }
             }
 
-            int stackInt = Random.Range(0, 2);
+            //stacking effects removed as they rewarded too much power
+            int stackInt = Random.Range(0, 1);
             if (stackInt == 0)
             {
                 ability.stackingEffect = false;

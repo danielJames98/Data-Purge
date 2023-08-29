@@ -61,7 +61,11 @@ public class baseAbilityScript : MonoBehaviour
     public bool homing = false;
     public GameObject frontFirePoint;
     public float projectileSize = 0;
+    public int projectileCount=0;
+    public int projectileSpread = 0;
 
+
+    public bool aoeOnHit=false;
     public float aoeDuration=0;
     public bool offensive=true;
     public bool stun=false;
@@ -367,20 +371,31 @@ public class baseAbilityScript : MonoBehaviour
         parentCharacterScript.casting = false;
         parentCharacterScript.weapon.SetActive(false);
         parentCharacterAnimator.SetBool("casting", false);
-        GameObject projectile = Instantiate(Resources.Load("projectile", typeof(GameObject)), frontFirePoint.transform.position, frontFirePoint.transform.rotation) as GameObject;
-        projectile.transform.localScale = new Vector3(projectileSize * (1 + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)));
-        projectileScript projectileScriptRef = projectile.GetComponent<projectileScript>();
-        projectileScriptRef.range = baseRange * (1 + (parentCharacterScript.bonusRange / 100));
-        projectileScriptRef.abilityAppliedBy = this;
-        projectileScriptRef.charAppliedBy = parentCharacterScript;
-        projectileScriptRef.speed = projectileSpeed * (1 + (parentCharacterScript.bonusProjectileSpeed / 100));
-        projectileScriptRef.piercing = piercing;
-        projectileScriptRef.returning= returning;
-        projectileScriptRef.homing = homing;
-        projectileScriptRef.damage = baseDamage * (1 + (parentCharacterScript.power / 100));
-        projectileScriptRef.healing = baseHealing * (1 + (parentCharacterScript.power / 100));
-        projectileScriptRef.offensive = offensive;
-        projectileScriptRef.readyToFire();
+        int projectilesToSpawn = projectileCount;
+        while(projectilesToSpawn>0)
+        {
+            GameObject projectile = Instantiate(Resources.Load("projectile", typeof(GameObject)), frontFirePoint.transform.position, frontFirePoint.transform.rotation) as GameObject;
+            projectile.transform.localScale = new Vector3(projectileSize * (1 + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)));
+            projectileScript projectileScriptRef = projectile.GetComponent<projectileScript>();
+            parentCharacterScript.ownProjectiles.Add(projectileScriptRef);
+            projectile.tag=this.tag;
+            projectileScriptRef.range = baseRange * (1 + (parentCharacterScript.bonusRange / 100));
+            projectileScriptRef.abilityAppliedBy = this;
+            projectileScriptRef.charAppliedBy = parentCharacterScript;
+            projectileScriptRef.speed = projectileSpeed * (1 + (parentCharacterScript.bonusProjectileSpeed / 100));
+            projectileScriptRef.piercing = piercing;
+            projectileScriptRef.returning = returning;
+            projectileScriptRef.homing = homing;
+            projectileScriptRef.aoeOnHit = aoeOnHit;
+            projectile.transform.Rotate(new Vector3(0,Random.Range(projectileSpread * -1, projectileSpread),0));
+            projectileScriptRef.damage = baseDamage * (1 + (parentCharacterScript.power / 100));
+            projectileScriptRef.healing = baseHealing * (1 + (parentCharacterScript.power / 100));
+            projectileScriptRef.offensive = offensive;
+            projectileScriptRef.readyToFire();
+            projectilesToSpawn--;
+            yield return new WaitForSeconds(0.05f);
+        }
+
         parentCharacterScript.castingCoroutine = null;
         parentCharacterScript.castingAbility = null;
         parentCharacterScript.castBarUpdate();
@@ -420,8 +435,9 @@ public class baseAbilityScript : MonoBehaviour
         }
     }
 
-    IEnumerator spawnAoe()
+    public void spawnAoe(Vector3 point)
     {
+        /*
         Vector3 point;
         if(parentCharacter.tag=="enemy")
         {
@@ -447,6 +463,7 @@ public class baseAbilityScript : MonoBehaviour
         parentCharacterAnimator.SetBool("casting", false);
         parentCharacterScript.weapon.SetActive(false);
         parentCharacterScript.casting = false;
+             */
         GameObject aoe = Instantiate(Resources.Load("aoe", typeof(GameObject)), point, Quaternion.identity) as GameObject;
         aoe.transform.localScale = new Vector3(baseAoeRadius * (1 + (parentCharacterScript.bonusArea / 100)), 0.1f,baseAoeRadius * (1 + (parentCharacterScript.bonusArea / 100)));
         aoeScript aoeScriptRef = aoe.GetComponent<aoeScript>();
@@ -457,10 +474,14 @@ public class baseAbilityScript : MonoBehaviour
         aoeScriptRef.duration = aoeDuration;
         aoeScriptRef.offensive = offensive;
         aoeScriptRef.readyToActivate();
+        Debug.Log("spawned");
+        
+        /*
         parentCharacterScript.castingCoroutine = null;
         parentCharacterScript.castingAbility = null;
         parentCharacterScript.castBarUpdate();
         StartCoroutine("cooldown");
+        */
     }
 
     public void selfTarget()

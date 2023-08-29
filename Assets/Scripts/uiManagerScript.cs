@@ -283,6 +283,12 @@ public class uiManagerScript : MonoBehaviour
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
+        if (abilityScript.aoeOnHit == true)
+        {
+            toolTipText.text = toolTipText.text + "AoE: " + "Yes" + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
         if (abilityScript.baseAoeRadius > 0)
         {
             toolTipText.text = toolTipText.text + "AoE: " + abilityScript.baseAoeRadius + "<br>";
@@ -474,6 +480,19 @@ public class uiManagerScript : MonoBehaviour
             toolTipText.text = toolTipText.text + "Homing: " + "Yes" + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
+
+        if (abilityScript.projectileCount > 0 )
+        {
+            toolTipText.text = toolTipText.text + "Projectiles: " + abilityScript.projectileCount + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.projectileSpread >0)
+        {
+            toolTipText.text = toolTipText.text + "Proj Spread: " + abilityScript.projectileSpread + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
     }
     public void fillToolTipEquipped(int abilityNum)
     {
@@ -497,6 +516,12 @@ public class uiManagerScript : MonoBehaviour
         if (abilityScript.baseRange > 0)
         {
             toolTipText.text = toolTipText.text + "Range: " + abilityScript.baseRange + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.aoeOnHit == true)
+        {
+            toolTipText.text = toolTipText.text + "AoE: " + "Yes" + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
@@ -691,6 +716,18 @@ public class uiManagerScript : MonoBehaviour
             toolTipText.text = toolTipText.text + "Homing: " + "Yes" + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
+
+        if (abilityScript.projectileCount > 0)
+        {
+            toolTipText.text = toolTipText.text + "Projectiles: " + abilityScript.projectileCount + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.projectileSpread > 0)
+        {
+            toolTipText.text = toolTipText.text + "Proj Spread: " + abilityScript.projectileSpread + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
     }
 
     public void hideToolTip()
@@ -759,9 +796,12 @@ public class uiManagerScript : MonoBehaviour
                 tempAbilityScript.projectileSpeed = selectedAbilityScript.projectileSpeed;
                 tempAbilityScript.piercing = selectedAbilityScript.piercing;
                 tempAbilityScript.returning = selectedAbilityScript.returning;
-                tempAbilityScript.returning = selectedAbilityScript.homing;
+                tempAbilityScript.homing = selectedAbilityScript.homing;
                 tempAbilityScript.projectileSize = selectedAbilityScript.projectileSize;
+                tempAbilityScript.projectileCount = selectedAbilityScript.projectileCount;
+                tempAbilityScript.projectileSpread = selectedAbilityScript.projectileSpread;
                 tempAbilityScript.aoeDuration = selectedAbilityScript.aoeDuration;
+                tempAbilityScript.aoeOnHit = selectedAbilityScript.aoeOnHit;
                 tempAbilityScript.offensive = selectedAbilityScript.offensive;
                 tempAbilityScript.stun = selectedAbilityScript.stun;
 
@@ -806,7 +846,10 @@ public class uiManagerScript : MonoBehaviour
                 tempAbilityScript.returning = selectedAbilityScript.returning;
                 tempAbilityScript.homing = selectedAbilityScript.homing;
                 tempAbilityScript.projectileSize = selectedAbilityScript.projectileSize;
+                tempAbilityScript.projectileCount = selectedAbilityScript.projectileCount;
+                tempAbilityScript.projectileSpread = selectedAbilityScript.projectileSpread;
                 tempAbilityScript.aoeDuration = selectedAbilityScript.aoeDuration;
+                tempAbilityScript.aoeOnHit = selectedAbilityScript.aoeOnHit;
                 tempAbilityScript.offensive = selectedAbilityScript.offensive;
                 tempAbilityScript.stun = selectedAbilityScript.stun;
             }
@@ -854,7 +897,10 @@ public class uiManagerScript : MonoBehaviour
                 selectedAbilityScript.returning = targetAbilityScript.returning;
                 selectedAbilityScript.homing = targetAbilityScript.homing;
                 selectedAbilityScript.projectileSize = targetAbilityScript.projectileSize;
+                selectedAbilityScript.projectileCount = targetAbilityScript.projectileCount;
+                selectedAbilityScript.projectileSpread = targetAbilityScript.projectileSpread;
                 selectedAbilityScript.aoeDuration = targetAbilityScript.aoeDuration;
+                selectedAbilityScript.aoeOnHit = targetAbilityScript.aoeOnHit;
                 selectedAbilityScript.offensive = targetAbilityScript.offensive;
                 selectedAbilityScript.stun = targetAbilityScript.stun;
 
@@ -894,7 +940,10 @@ public class uiManagerScript : MonoBehaviour
                 targetAbilityScript.returning = tempAbilityScript.returning;
                 targetAbilityScript.homing = tempAbilityScript.homing;
                 targetAbilityScript.projectileSize = tempAbilityScript.projectileSize;
+                targetAbilityScript.projectileCount = tempAbilityScript.projectileCount;
+                targetAbilityScript.projectileSpread = tempAbilityScript.projectileSpread;
                 targetAbilityScript.aoeDuration = tempAbilityScript.aoeDuration;
+                targetAbilityScript.aoeOnHit = tempAbilityScript.aoeOnHit;
                 targetAbilityScript.offensive = tempAbilityScript.offensive;
                 targetAbilityScript.stun = tempAbilityScript.stun;
             }
@@ -938,7 +987,10 @@ public class uiManagerScript : MonoBehaviour
                 selectedAbilityScript.returning = targetAbilityScript.returning;
                 selectedAbilityScript.homing = targetAbilityScript.homing;
                 selectedAbilityScript.projectileSize = targetAbilityScript.projectileSize;
+                selectedAbilityScript.projectileCount = targetAbilityScript.projectileCount;
+                selectedAbilityScript.projectileSpread = targetAbilityScript.projectileSpread;
                 selectedAbilityScript.aoeDuration = targetAbilityScript.aoeDuration;
+                selectedAbilityScript.aoeOnHit = targetAbilityScript.aoeOnHit;
                 selectedAbilityScript.offensive = targetAbilityScript.offensive;
                 selectedAbilityScript.stun = targetAbilityScript.stun;
 
@@ -978,7 +1030,10 @@ public class uiManagerScript : MonoBehaviour
                 targetAbilityScript.returning = tempAbilityScript.returning;
                 targetAbilityScript.homing = tempAbilityScript.homing;
                 targetAbilityScript.projectileSize = tempAbilityScript.projectileSize;
+                targetAbilityScript.projectileCount = tempAbilityScript.projectileCount;
+                targetAbilityScript.projectileSpread = tempAbilityScript.projectileSpread;
                 targetAbilityScript.aoeDuration = tempAbilityScript.aoeDuration;
+                targetAbilityScript.aoeOnHit = tempAbilityScript.aoeOnHit;
                 targetAbilityScript.offensive = tempAbilityScript.offensive;
                 targetAbilityScript.stun = tempAbilityScript.stun;
             }
@@ -1025,7 +1080,10 @@ public class uiManagerScript : MonoBehaviour
         tempAbilityScript.returning = false;
         tempAbilityScript.homing = false;
         tempAbilityScript.projectileSize = 0;
+        tempAbilityScript.projectileCount = 0;
+        tempAbilityScript.projectileSpread = 0;
         tempAbilityScript.aoeDuration = 0;
+        tempAbilityScript.aoeOnHit = false;
         tempAbilityScript.offensive = true;
         tempAbilityScript.stun = false;
 
@@ -1091,7 +1149,10 @@ public class uiManagerScript : MonoBehaviour
             selectedAbilityScript.returning = false;
             selectedAbilityScript.homing = false;
             selectedAbilityScript.projectileSize = 0;
+            selectedAbilityScript.projectileCount = 0;
+            selectedAbilityScript.projectileSpread = 0;
             selectedAbilityScript.aoeDuration = 0;
+            selectedAbilityScript.aoeOnHit = false;
             selectedAbilityScript.offensive = true;
             selectedAbilityScript.stun = false;
 
@@ -1131,7 +1192,10 @@ public class uiManagerScript : MonoBehaviour
             tempAbilityScript.returning = false;
             tempAbilityScript.homing = false;
             tempAbilityScript.projectileSize = 0;
+            tempAbilityScript.projectileCount = 0;
+            tempAbilityScript.projectileSpread = 0;
             tempAbilityScript.aoeDuration = 0;
+            tempAbilityScript.aoeOnHit = false;
             tempAbilityScript.offensive = true;
             tempAbilityScript.stun = false;
 
