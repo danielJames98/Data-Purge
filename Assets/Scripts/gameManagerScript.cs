@@ -105,7 +105,6 @@ public class gameManagerScript : MonoBehaviour
     {
         gameComplete = true;
         inGameUI.GetComponent<uiManagerScript>().showFinalBossDefeatedDialogue();
-        inGameUI.GetComponent<uiManagerScript>().StartCoroutine("showNotLeavingDialogue");
         endGamePortal.SetActive(true);
         backToGamePortal.SetActive(true);
     }

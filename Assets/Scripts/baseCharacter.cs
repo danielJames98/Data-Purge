@@ -28,6 +28,7 @@ public class baseCharacter : MonoBehaviour
     public float bonusArea;
     public float bonusProjectileSpeed;
     public float bonusDuration;
+    public float dashRange;
 
     public float currentXP;
     public float maxXP;
@@ -39,12 +40,14 @@ public class baseCharacter : MonoBehaviour
     public GameObject ability2;
     public GameObject ability3;
     public GameObject ability4;
+    public GameObject warpAbility;
 
     public baseAbilityScript abilityScript0;
     public baseAbilityScript abilityScript1;
     public baseAbilityScript abilityScript2;
     public baseAbilityScript abilityScript3;
     public baseAbilityScript abilityScript4;
+    public baseAbilityScript warpAbilityScript;
 
     public GameObject targetCharacter;
     public GameObject overHeadCanvas;
@@ -63,6 +66,7 @@ public class baseCharacter : MonoBehaviour
     public GameObject aggroTarget;
 
     public GameObject frontFirePoint;
+    public GameObject aimLaserScaler;
 
     public Rigidbody rb;
 
@@ -220,7 +224,7 @@ public class baseCharacter : MonoBehaviour
             GameObject.Find("Main Camera(Clone)").GetComponent<ShaderEffect_CorruptedVram>().enabled = true;
             GameObject.Find("Main Camera(Clone)").GetComponent<ShaderEffect_CorruptedVram>().shift = 5;
             GameObject.Find("musicPlayer(Clone)").GetComponent<musicPlayerScript>().playDeathSound();
-            gameManager.GetComponent<gameManagerScript>().activeLevel.GetComponent<levelManagerScript>().killEnemies();
+            //gameManager.GetComponent<gameManagerScript>().activeLevel.GetComponent<levelManagerScript>().killEnemies();
             gameManager.GetComponent<gameManagerScript>().inGameUI.SetActive(false);
             yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("gameOverScene");
@@ -330,6 +334,8 @@ public class baseCharacter : MonoBehaviour
         animator.SetBool("casting", false);
         castingAbility = null;
         targetCharacter = null;
+        aimLaserScaler.transform.localScale = new Vector3(1, 1, 1);
+        aimLaserScaler.SetActive(false);
         castBar.GetComponent<Slider>().value = 0;
         casting = false;
         navMeshAgent.destination = transform.position;
@@ -475,6 +481,7 @@ public class baseCharacter : MonoBehaviour
 
     public void generateAbility(baseAbilityScript ability)
     {
+        /*
         //select if offensive or supportive
         if (this.gameObject.tag == "Enemy")
         {
@@ -492,7 +499,8 @@ public class baseCharacter : MonoBehaviour
                 ability.offensive = false;
             }
         }
-        /*
+        
+        
         //select a targeting method and type
         int targetingInt = Random.Range(1, 1);
         if (targetingInt == 0)
@@ -535,34 +543,34 @@ public class baseCharacter : MonoBehaviour
             
 
             //sets if the projectile is piercing
-             int piercingInt = Random.Range(0, 2);
+             int piercingInt = Random.Range(0, 5);
             if (piercingInt == 0)
-            {
-                ability.piercing = false;
-            }
-            else if (piercingInt == 1)
             {
                 ability.piercing = true;
             }
-
-            int returningInt = Random.Range(0, 2);
-            if (returningInt == 0)
+            else if (piercingInt == 1)
             {
-                ability.returning = false;
+                ability.piercing = false;
             }
-            else if (returningInt == 1)
+
+            int returningInt = Random.Range(0, 5);
+            if (returningInt == 0)
             {
                 ability.returning = true;
             }
+            else if (returningInt == 1)
+            {
+                ability.returning = false;
+            }
 
-            int homingInt = Random.Range(0, 2);
+            int homingInt = Random.Range(0, 5);
             if (homingInt == 0)
             {
-                ability.homing = false;
+                ability.homing = true;
             }
             else if (homingInt == 1)
             {
-                ability.homing = true;
+                ability.homing = false;
             }
 
             //set projectile size and speed
@@ -604,25 +612,42 @@ public class baseCharacter : MonoBehaviour
         if (ability.type == "aoe")
         {
         */
-        int aoeOnHitInt = Random.Range(0, 10);
+        int aoeOnHitInt = Random.Range(0, 5);
         if(aoeOnHitInt== 0)
         {
             ability.aoeOnHit = true;
-            ability.aoeDuration = Random.Range(1, 5);
+
+            int lingeringAoeInt = Random.Range(0, 4);
+            {
+                if(lingeringAoeInt==0)
+                {
+                    ability.aoeDuration = Random.Range(1, 5);
+                }
+                else
+                {
+                    ability.aoeDuration = 0.2f;
+                }
+            }
+            
             ability.baseAoeRadius = Random.Range(5, 10);
         }
             
         //}
 
         //adds damage if offensive or healing if supportive
-        if (ability.offensive == true)
+       // if (ability.offensive == true)
+       // {
+            ability.baseDamage = Random.Range(1, 15);
+        //  }
+        // else if (ability.offensive == false)
+        // {
+        int healOdds = Random.Range(0, 10);
+        if(healOdds == 0)
         {
-            ability.baseDamage = Random.Range(0, 15);
+            ability.baseHealing = Random.Range(1, 5);
         }
-        else if (ability.offensive == false)
-        {
-            ability.baseHealing = Random.Range(0, 15);
-        }
+            
+      //  }
 
         //adds a range value if not self-targeted
         if (ability.targeting != "self")
@@ -652,20 +677,27 @@ public class baseCharacter : MonoBehaviour
         //adds effects if any
         while (effectsToAdd > 0)
         {
-            int effectInt = Random.Range(0, 11);
-
-            if (effectInt == 0)
+            int effectInt = Random.Range(0, 12);
+            Debug.Log(effectInt);
+            if (effectInt == 0 && ability.dotDamage == 0)
             {
-                if (ability.offensive == true && ability.dotDamage == 0)
-                {
+               // if (ability.offensive == true && ability.dotDamage == 0)
+               // {
                     ability.dotDamage = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
                     effectsToAdd--;
+                /*
                 }
                 else if (ability.offensive == false && ability.hotHealing == 0)
                 {
                     ability.hotHealing = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
                     effectsToAdd--;
                 }
+                */
+            }
+            else if (effectInt==11 && ability.hotHealing == 0)
+            {
+                ability.hotHealing = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
+                effectsToAdd--;
             }
             /*
             else if (effectInt == 1 && ability.percentArmourMod == 0)
@@ -734,70 +766,113 @@ public class baseCharacter : MonoBehaviour
             */
             else if (effectInt == 1 && ability.flatArmourMod == 0)
             {
-
-                if (ability.offensive == true) { ability.flatArmourMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatArmourMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if(buffOdds!=0)
+                { ability.flatArmourMod = Random.Range(-1, -5); }
+               // else if (ability.offensive == false) 
+               else if(buffOdds==0)
+                { ability.flatArmourMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 2 && ability.flatPowerMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatPowerMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatPowerMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatPowerMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatPowerMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 3 && ability.flatAttackSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatAttackSpeedMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatAttackSpeedMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatAttackSpeedMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatAttackSpeedMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 4 && ability.flatMoveSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatMoveSpeedMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatMoveSpeedMod = Random.Range(1f, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatMoveSpeedMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatMoveSpeedMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 5 && ability.flatCdrMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatCdrMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatCdrMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatCdrMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatCdrMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 6 && ability.flatRangeMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatRangeMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatRangeMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatRangeMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatRangeMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 7 && ability.flatAoeMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatAoeMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatAoeMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatAoeMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatAoeMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 8 && ability.flatProjSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatProjSpeedMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatProjSpeedMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatProjSpeedMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatProjSpeedMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 9 && ability.flatDurationMod == 0)
             {
-
-                if (ability.offensive == true) { ability.flatDurationMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatDurationMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatDurationMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatDurationMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 10)
             {
-                if (ability.offensive == true && ability.stun == false)
+                if (ability.stun == false)
                 {
                     ability.stun = true;
                     ability.effectDuration = ability.effectDuration / 4;
@@ -805,7 +880,7 @@ public class baseCharacter : MonoBehaviour
                     effectsToAdd--;
                 }
             }
-
+            /*stacking removed due to too much impact
             int stackInt = Random.Range(0, 1);
             if (stackInt == 0)
             {
@@ -816,88 +891,107 @@ public class baseCharacter : MonoBehaviour
                 ability.stackingEffect = true;
                 ability.effectDuration = ability.effectDuration / 2;
             }
+            */
         }
     }
 
     public void generateAbilityCore(lootScript ability)
     {
-        //select if offensive or supportive
-        int offenseInt = Random.Range(0, 20);
-        if (offenseInt < 19)
-        {
-            ability.offensive = true;
-        }
-        else if (offenseInt == 19)
-        {
-            ability.offensive = false;
-        }
         /*
-        //select a targeting method and type
-        int targetingInt = Random.Range(1, 3);
-        if (targetingInt == 0)
+     //select if offensive or supportive
+     if (this.gameObject.tag == "Enemy")
+     {
+         ability.offensive = true;
+     }
+     else
+     {
+         int offenseInt = Random.Range(0, 21);
+         if (offenseInt < 19)
+         {
+             ability.offensive = true;
+         }
+         else if (offenseInt == 19)
+         {
+             ability.offensive = false;
+         }
+     }
+
+
+     //select a targeting method and type
+     int targetingInt = Random.Range(1, 1);
+     if (targetingInt == 0)
+     {
+         ability.targeting = "pointAndClick";
+         ability.type = "pointAndClick";
+     }
+     else if (targetingInt == 1)
+     {
+     */
+        ability.targeting = "direction";
+        ability.type = "projectile";
+
+        int projectilesOdds = Random.Range(1, 101);
+        if (projectilesOdds <= 70)
         {
-            ability.targeting = "pointAndClick";
-            ability.type = "pointAndClick";
+            ability.projectileCount = 1;
         }
-        else if (targetingInt == 1)
+        else if (projectilesOdds > 70 && projectilesOdds <= 85)
         {
-        */
-            ability.targeting = "direction";
-            ability.type = "projectile";
+            ability.projectileCount = 2;
+        }
+        else if (projectilesOdds > 85 && projectilesOdds <= 95)
+        {
+            ability.projectileCount = 3;
+        }
+        else if (projectilesOdds > 95 && projectilesOdds <= 99)
+        {
+            ability.projectileCount = 4;
+        }
+        else if (projectilesOdds == 100)
+        {
+            ability.projectileCount = 5;
+        }
+
+        if (ability.projectileCount > 1)
+        {
+            ability.projectileSpread = Random.Range(1, 15);
+        }
 
 
-            int projectilesOdds = Random.Range(1, 101);
-            if (projectilesOdds <= 70)
-            {
-                ability.projectileCount = 1;
-            }
-            else if (projectilesOdds > 70 && projectilesOdds <= 85)
-            {
-                ability.projectileCount = 2;
-            }
-            else if (projectilesOdds > 85 && projectilesOdds <= 95)
-            {
-                ability.projectileCount = 3;
-            }
-            else if (projectilesOdds > 95 && projectilesOdds <= 99)
-            {
-                ability.projectileCount = 4;
-            }
-            else if (projectilesOdds == 100)
-            {
-                ability.projectileCount = 5;
-            }
+        //sets if the projectile is piercing
+        int piercingInt = Random.Range(0, 5);
+        if (piercingInt == 0)
+        {
+            ability.piercing = true;
+        }
+        else if (piercingInt == 1)
+        {
+            ability.piercing = false;
+        }
 
-            if (ability.projectileCount > 1)
-            {
-                ability.projectileSpread = Random.Range(1, 15);
-            }
+        int returningInt = Random.Range(0, 5);
+        if (returningInt == 0)
+        {
+            ability.returning = true;
+        }
+        else if (returningInt == 1)
+        {
+            ability.returning = false;
+        }
 
-            //sets if the projectile is piercing
-            int piercingInt = Random.Range(0, 2);
-            if (piercingInt == 0)
-            {
-                ability.piercing = false;
-            }
-            else if (piercingInt == 1)
-            {
-                ability.piercing = true;
-            }
+        int homingInt = Random.Range(0, 5);
+        if (homingInt == 0)
+        {
+            ability.homing = true;
+        }
+        else if (homingInt == 1)
+        {
+            ability.homing = false;
+        }
 
-            int returningInt = Random.Range(0, 2);
-            if (returningInt == 0)
-            {
-                ability.returning = false;
-            }
-            else if (returningInt == 1)
-            {
-                ability.returning = true;
-            }
-
-            //set projectile size and speed
-            ability.projectileSpeed = Random.Range(10, 50);
-            ability.projectileSize = Mathf.Round(Random.Range(0.2f, 1f) * 10) * 0.1f;
-
+        //set projectile size and speed
+        ability.projectileSpeed = Random.Range(10, 50);
+        ability.projectileSize = Mathf.Round(Random.Range(0.2f, 1f) * 10) * 0.1f;
         /*
         }
         else if (targetingInt == 2)
@@ -934,24 +1028,41 @@ public class baseCharacter : MonoBehaviour
         if (ability.type == "aoe")
         {
         */
-        int aoeOnHitInt = Random.Range(0, 10);
+        int aoeOnHitInt = Random.Range(0, 5);
         if (aoeOnHitInt == 0)
         {
             ability.aoeOnHit = true;
-            ability.aoeDuration = Random.Range(1, 5);
+            int lingeringAoeInt = Random.Range(0, 4);
+            {
+                if (lingeringAoeInt == 0)
+                {
+                    ability.aoeDuration = Random.Range(1, 5);
+                }
+                else
+                {
+                    ability.aoeDuration = 0.2f;
+                }
+            }
+
             ability.baseAoeRadius = Random.Range(5, 10);
         }
-        // }
+
+        //}
 
         //adds damage if offensive or healing if supportive
-        if (ability.offensive == true)
+        // if (ability.offensive == true)
+        // {
+        ability.baseDamage = Random.Range(1, 15);
+        //  }
+        // else if (ability.offensive == false)
+        // {
+        int healOdds = Random.Range(0, 10);
+        if (healOdds == 0)
         {
-            ability.baseDamage = Random.Range(0, 15);
+            ability.baseHealing = Random.Range(1, 5);
         }
-        else if (ability.offensive == false)
-        {
-            ability.baseHealing = Random.Range(0, 15);
-        }
+
+        //  }
 
         //adds a range value if not self-targeted
         if (ability.targeting != "self")
@@ -975,28 +1086,35 @@ public class baseCharacter : MonoBehaviour
             ability.appliesEffect = true;
 
             //determines effect duration
-            ability.effectDuration = Random.Range(5, 10);
+            ability.effectDuration = Random.Range(1, 10);
         }
 
         //adds effects if any
         while (effectsToAdd > 0)
         {
-            int effectInt = Random.Range(0, 11);
+            int effectInt = Random.Range(0, 12);
+            Debug.Log(effectInt);
 
-            if (effectInt == 0)
+            if (effectInt == 0 && ability.dotDamage == 0)
             {
-                if (ability.offensive == true && ability.dotDamage == 0)
-                {
-                    ability.dotDamage = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
-                    effectsToAdd--;
+                // if (ability.offensive == true && ability.dotDamage == 0)
+                // {
+                ability.dotDamage = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
+                effectsToAdd--;
+                /*
                 }
                 else if (ability.offensive == false && ability.hotHealing == 0)
                 {
                     ability.hotHealing = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
                     effectsToAdd--;
                 }
+                */
             }
-            //percent mods removed as i have opted to keep stats quite low for fair and balanced gameplay, making % mods often too weak
+            else if (effectInt == 11 && ability.hotHealing == 0)
+            {
+                ability.hotHealing = Mathf.Round(Random.Range(0.5f, 1f) * 10) * 0.1f;
+                effectsToAdd--;
+            }
             /*
             else if (effectInt == 1 && ability.percentArmourMod == 0)
             {
@@ -1064,70 +1182,113 @@ public class baseCharacter : MonoBehaviour
             */
             else if (effectInt == 1 && ability.flatArmourMod == 0)
             {
-
-                if (ability.offensive == true) { ability.flatArmourMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatArmourMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatArmourMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatArmourMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 2 && ability.flatPowerMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatPowerMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatPowerMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatPowerMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatPowerMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 3 && ability.flatAttackSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatAttackSpeedMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatAttackSpeedMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatAttackSpeedMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatAttackSpeedMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 4 && ability.flatMoveSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatMoveSpeedMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatMoveSpeedMod = Random.Range(1f, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatMoveSpeedMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatMoveSpeedMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 5 && ability.flatCdrMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatCdrMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatCdrMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatCdrMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatCdrMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 6 && ability.flatRangeMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatRangeMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatRangeMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatRangeMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatRangeMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 7 && ability.flatAoeMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatAoeMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatAoeMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatAoeMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatAoeMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 8 && ability.flatProjSpeedMod == 0)
             {
 
-                if (ability.offensive == true) { ability.flatProjSpeedMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatProjSpeedMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatProjSpeedMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatProjSpeedMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 9 && ability.flatDurationMod == 0)
             {
-
-                if (ability.offensive == true) { ability.flatDurationMod = Random.Range(-1, -5); }
-                else if (ability.offensive == false) { ability.flatDurationMod = Random.Range(1, 5); }
+                int buffOdds = Random.Range(0, 5);
+                //if (ability.offensive == true) 
+                if (buffOdds != 0)
+                { ability.flatDurationMod = Random.Range(-1, -5); }
+                // else if (ability.offensive == false) 
+                else if (buffOdds == 0)
+                { ability.flatDurationMod = Random.Range(1, 5); }
                 effectsToAdd--;
             }
             else if (effectInt == 10)
             {
-                if (ability.offensive == true && ability.stun == false)
+                if (ability.stun == false)
                 {
                     ability.stun = true;
                     ability.effectDuration = ability.effectDuration / 4;
@@ -1135,8 +1296,7 @@ public class baseCharacter : MonoBehaviour
                     effectsToAdd--;
                 }
             }
-
-            //stacking effects removed as they rewarded too much power
+            /*stacking removed due to too much impact
             int stackInt = Random.Range(0, 1);
             if (stackInt == 0)
             {
@@ -1147,6 +1307,7 @@ public class baseCharacter : MonoBehaviour
                 ability.stackingEffect = true;
                 ability.effectDuration = ability.effectDuration / 2;
             }
+            */
         }
     }
 

@@ -67,7 +67,7 @@ public class baseAbilityScript : MonoBehaviour
 
     public bool aoeOnHit=false;
     public float aoeDuration=0;
-    public bool offensive=true;
+   public bool offensive=true;
     public bool stun=false;
 
     public List<AudioClip> abilitySounds;
@@ -147,6 +147,10 @@ public class baseAbilityScript : MonoBehaviour
             else if(targeting == "self")
             {
                 selfTarget();
+            }
+            else if(targeting=="warp")
+            {
+                warp();
             }
         }
     }
@@ -259,6 +263,7 @@ public class baseAbilityScript : MonoBehaviour
 
     public void createEffect(GameObject targetCharacter)
     {
+        /*
         if (stackingEffect==true)
         {
             GameObject effect = Instantiate(Resources.Load("effect", typeof(GameObject))) as GameObject;
@@ -271,6 +276,7 @@ public class baseAbilityScript : MonoBehaviour
         }
         else
         {
+        */
             bool alreadyApplied=false;
 
             foreach(Transform child in targetCharacter.transform)
@@ -294,10 +300,11 @@ public class baseAbilityScript : MonoBehaviour
                 effectScript effectScriptRef = effect.GetComponent<effectScript>();
                 effectScriptRef.duration = effectDuration * (1 + (parentCharacterScript.bonusDuration / 100));
                 effectScriptRef.abilityAppliedBy = this;
+                effect.tag = tag;
                 effectScriptRef.charAppliedBy = parentCharacterScript;
                 effectScriptRef.readyToApply();
             }
-        }
+        //}
     }
 
     public void moveIntoRange(GameObject targetCharacter)
@@ -365,12 +372,16 @@ public class baseAbilityScript : MonoBehaviour
         parentCharacterScript.castingAbility = this;
         parentCharacterAnimator.SetBool("casting", true);
         parentCharacterScript.weapon.SetActive(true);
+        parentCharacterScript.aimLaserScaler.SetActive(true);
+        parentCharacterScript.aimLaserScaler.transform.localScale = new Vector3(1, 1, baseRange * (1 + (parentCharacterScript.bonusRange / 100)));
         playCastSound();
         yield return new WaitForSeconds(baseCastTime / (1 + (parentCharacterScript.attackSpeed / 100)));
         playAbilitySound();
         parentCharacterScript.casting = false;
         parentCharacterScript.weapon.SetActive(false);
         parentCharacterAnimator.SetBool("casting", false);
+        parentCharacterScript.aimLaserScaler.transform.localScale = new Vector3(1, 1, 1);
+        parentCharacterScript.aimLaserScaler.SetActive(false);
         int projectilesToSpawn = projectileCount;
         while(projectilesToSpawn>0)
         {
@@ -469,6 +480,7 @@ public class baseAbilityScript : MonoBehaviour
         aoeScript aoeScriptRef = aoe.GetComponent<aoeScript>();
         aoeScriptRef.abilityAppliedBy = this;
         aoeScriptRef.charAppliedBy = parentCharacterScript;
+        aoe.tag = tag;
         aoeScriptRef.damage = baseDamage * (1 + (parentCharacterScript.power / 100));
         aoeScriptRef.healing = baseHealing * (1 + (parentCharacterScript.power / 100));
         aoeScriptRef.duration = aoeDuration;
@@ -498,9 +510,19 @@ public class baseAbilityScript : MonoBehaviour
         }
     }
 
-    public void aimDash()
+    public void warp()
     {
-        StartCoroutine(dash(parentCharacter.transform.position + parentCharacter.transform.forward * (baseRange * (1+(parentCharacterScript.bonusRange/100)))));
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable")))
+        {
+            if (Vector3.Distance(transform.position, hit.point) <= (baseRange * (1 + (parentCharacterScript.bonusRange / 100))))
+            {
+                //parentCharacterScript.interruptCast();
+                parentCharacterScript.navMeshAgent.Warp(hit.point);
+                StartCoroutine("cooldown");
+            }
+        }
     }
 
     IEnumerator cooldown()
@@ -510,19 +532,6 @@ public class baseAbilityScript : MonoBehaviour
         yield return new WaitForSeconds(baseCooldown/(1+(parentCharacterScript.cooldownReduction/100)));
         onCooldown= false;
         StopCoroutine("cooldown");
-    }
-
-    IEnumerator dash(Vector3 targetPosition)
-    {
-        parentCharacterNav.enabled = false;
-
-        parentCharacterScript.rb.velocity=parentCharacter.transform.forward * parentCharacterScript.moveSpeed*baseRange*parentCharacterScript.bonusRange;
-
-        yield return new WaitForSeconds(0.1f);
-
-        parentCharacterNav.enabled = true;
-        parentCharacterScript.rb.angularVelocity = new Vector3(0, 0, 0);
-        parentCharacterScript.rb.velocity = new Vector3(0, 0, 0);
     }
 
     public void playCastSound()

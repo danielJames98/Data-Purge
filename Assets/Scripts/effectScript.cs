@@ -36,6 +36,16 @@ public class effectScript : MonoBehaviour
     public float flatProjSpeedMod;
     public float flatDurationMod;
 
+    public bool flatArmourModApplied;
+    public bool flatPowerModApplied;
+    public bool flatAttackSpeedModApplied;
+    public bool flatMoveSpeedModApplied;
+    public bool flatCdrModApplied;
+    public bool flatRangeModApplied;
+    public bool flatAoeModApplied;
+    public bool flatProjSpeedModApplied;
+    public bool flatDurationModApplied;
+
     public float damage;
     public float healing;
     public bool stun;
@@ -47,7 +57,10 @@ public class effectScript : MonoBehaviour
     public void readyToApply()
     {
         charAppliedTo = transform.parent.gameObject.GetComponent<baseCharacter>();
-
+        if (tag!=charAppliedBy.tag)
+        {
+            tag = charAppliedBy.tag;
+        }
         percentArmourMod = abilityAppliedBy.percentArmourMod * (1+(charAppliedBy.power/100));
         percentPowerMod = abilityAppliedBy.percentPowerMod * (1 + (charAppliedBy.power / 100));
         percentAttackSpeedMod = abilityAppliedBy.percentAttackSpeedMod * (1 + (charAppliedBy.power / 100));
@@ -74,12 +87,12 @@ public class effectScript : MonoBehaviour
 
         modStats();
 
-        if (damage > 0)
+        if (damage > 0 && charAppliedTo.tag!=tag)
         {
             StartCoroutine("DoT");
         }
 
-        if (healing > 0)
+        if (healing > 0 && charAppliedTo.tag==tag)
         {
             StartCoroutine("HoT");
         }
@@ -103,14 +116,14 @@ public class effectScript : MonoBehaviour
 
     public void modStats()
     {
-        if(stun==true)
+        if(stun==true && charAppliedTo.tag!=tag)
         {
             charAppliedTo.interruptCast();
             charAppliedTo.stunned = true;
             charAppliedTo.stuns++;
             charAppliedTo.spawnCombatText((duration), "Stun");
         }
-
+        /*
         if (percentArmourMod != 0)
         {
             armourModApplied = charAppliedTo.armour * (percentArmourMod/100);
@@ -173,61 +186,69 @@ public class effectScript : MonoBehaviour
             charAppliedTo.bonusDuration = charAppliedTo.bonusDuration + (charAppliedTo.bonusDuration * (percentDurationMod / 100));
             charAppliedTo.spawnCombatText((charAppliedTo.bonusDuration * (percentDurationMod / 100)), "Duration");
         }
-
-        if (flatArmourMod != 0)
+        */
+        if ((flatArmourMod < 0 && charAppliedTo.tag != tag) || (flatArmourMod > 0 && charAppliedTo.tag == tag))
         {
             charAppliedTo.armour = charAppliedTo.armour + flatArmourMod;
             charAppliedTo.spawnCombatText(flatArmourMod, "Armour");
+            flatArmourModApplied = true;
         }
 
-        if (flatPowerMod != 0)
+        if ((flatPowerMod < 0 && charAppliedTo.tag != tag) || (flatPowerMod > 0 && charAppliedTo.tag == tag))
         {
             charAppliedTo.power = charAppliedTo.power + flatPowerMod;
             charAppliedTo.spawnCombatText(flatPowerMod, "Power");
+            flatPowerModApplied = true;
         }
 
-        if (flatAttackSpeedMod != 0)
+        if ((flatAttackSpeedMod < 0 && charAppliedTo.tag != tag) || (flatAttackSpeedMod > 0 && charAppliedTo.tag == tag))
         {
             charAppliedTo.attackSpeed = charAppliedTo.attackSpeed + flatAttackSpeedMod;
             charAppliedTo.spawnCombatText(flatAttackSpeedMod, "Attack Speed");
+            flatAttackSpeedModApplied = true;
         }
 
-        if (flatMoveSpeedMod != 0)
+        if ((flatMoveSpeedMod < 0 && charAppliedTo.tag != tag) || (flatMoveSpeedMod > 0 && charAppliedTo.tag == tag))
         {
             charAppliedTo.moveSpeed = charAppliedTo.moveSpeed + flatMoveSpeedMod;
             charAppliedTo.spawnCombatText(flatMoveSpeedMod, "Move Speed");
+            flatMoveSpeedModApplied = true;
         }
 
-        if (flatCdrMod != 0)
+        if ((flatCdrMod < 0 && charAppliedTo.tag != tag) || (flatCdrMod > 0 && charAppliedTo.tag == tag))
         {
             charAppliedTo.cooldownReduction = charAppliedTo.cooldownReduction + flatCdrMod;
             charAppliedTo.spawnCombatText(flatCdrMod, "CDR");
+            flatCdrModApplied = true;
         }
 
-        if (flatRangeMod != 0)
+        if ((flatRangeMod < 0 && charAppliedTo.tag != tag) || (flatRangeMod > 0 && charAppliedTo.tag == tag))
         {
             charAppliedTo.bonusRange = charAppliedTo.bonusRange + flatRangeMod;
             charAppliedTo.spawnCombatText(flatRangeMod, "Range");
+            flatRangeModApplied = true;
         }
 
-        if (flatAoeMod != 0)
+        if ((flatAoeMod < 0 && charAppliedTo.tag != tag) || (flatAoeMod > 0 && charAppliedTo.tag == tag))
         {
             charAppliedTo.bonusArea = charAppliedTo.bonusArea + flatAoeMod;
             charAppliedTo.spawnCombatText(flatAoeMod, "AoE");
+            flatAoeModApplied = true;
         }
 
-        if (flatProjSpeedMod != 0)
+        if ((flatProjSpeedMod < 0 && charAppliedTo.tag != tag) || (flatProjSpeedMod > 0 && charAppliedTo.tag == tag))
         {
             charAppliedTo.bonusProjectileSpeed = charAppliedTo.bonusProjectileSpeed + flatProjSpeedMod;
             charAppliedTo.spawnCombatText(flatProjSpeedMod, "Projectile Speed");
+            flatProjSpeedModApplied = true;
         }
 
-        if (flatDurationMod != 0)
+        if ((flatDurationMod < 0 && charAppliedTo.tag != tag) || (flatDurationMod > 0 && charAppliedTo.tag == tag))
         {
             charAppliedTo.bonusDuration = charAppliedTo.bonusDuration + flatDurationMod;
             charAppliedTo.spawnCombatText(flatDurationMod, "Duration");
+            flatDurationModApplied = true;
         }
-
     }
 
     public void removeEffect()
@@ -240,7 +261,7 @@ public class effectScript : MonoBehaviour
                 charAppliedTo.stunned = false;
             }
         }
-
+        /*
         if (percentArmourMod != 0)
         {
             charAppliedTo.armour = charAppliedTo.armour - armourModApplied;
@@ -282,56 +303,56 @@ public class effectScript : MonoBehaviour
             charAppliedTo.bonusArea = charAppliedTo.bonusArea - aoeModApplied;
             charAppliedTo.spawnCombatText(aoeModApplied * -1, "AoE");
         }
-
-        if (flatArmourMod != 0)
+        */
+        if (flatArmourMod != 0 && flatArmourModApplied == true)
         {
             charAppliedTo.armour = charAppliedTo.armour - flatArmourMod;
             charAppliedTo.spawnCombatText(flatArmourMod * -1, "Armour");
         }
 
-        if (flatPowerMod != 0)
+        if (flatPowerMod != 0 && flatPowerModApplied == true)
         {
             charAppliedTo.power = charAppliedTo.power - flatPowerMod;
             charAppliedTo.spawnCombatText(flatPowerMod * -1, "Power");
         }
 
-        if (flatAttackSpeedMod != 0)
+        if (flatAttackSpeedMod != 0 && flatAttackSpeedModApplied == true)
         {
             charAppliedTo.attackSpeed = charAppliedTo.attackSpeed - flatAttackSpeedMod;
             charAppliedTo.spawnCombatText(flatAttackSpeedMod * -1, "Attack Speed");
         }
 
-        if (flatMoveSpeedMod != 0)
+        if (flatMoveSpeedMod != 0 && flatMoveSpeedModApplied == true)
         {
             charAppliedTo.moveSpeed = charAppliedTo.moveSpeed - flatMoveSpeedMod;
             charAppliedTo.spawnCombatText(flatMoveSpeedMod * -1, "Move Speed");
         }
 
-        if (flatCdrMod != 0)
+        if (flatCdrMod != 0 && flatCdrModApplied == true)
         {
             charAppliedTo.cooldownReduction = charAppliedTo.cooldownReduction - flatCdrMod;
             charAppliedTo.spawnCombatText(flatCdrMod * -1, "CDR");
         }
 
-        if (flatRangeMod != 0)
+        if (flatRangeMod != 0 && flatRangeModApplied == true)
         {
             charAppliedTo.bonusRange = charAppliedTo.bonusRange - flatRangeMod;
             charAppliedTo.spawnCombatText(flatRangeMod * -1, "Range");
         }
 
-        if (flatAoeMod != 0)
+        if (flatAoeMod != 0 && flatAoeModApplied == true)
         {
             charAppliedTo.bonusArea = charAppliedTo.bonusArea - flatAoeMod;
             charAppliedTo.spawnCombatText(flatAoeMod * -1, "AoE");
         }
 
-        if (flatProjSpeedMod != 0)
+        if (flatProjSpeedMod != 0 && flatProjSpeedModApplied == true)
         {
             charAppliedTo.bonusProjectileSpeed = charAppliedTo.bonusProjectileSpeed - flatProjSpeedMod;
             charAppliedTo.spawnCombatText(flatProjSpeedMod * -1, "Projectile Speed");
         }
 
-        if (flatDurationMod != 0)
+        if (flatDurationMod != 0 && flatDurationModApplied == true)
         {
             charAppliedTo.bonusDuration = charAppliedTo.bonusDuration - flatDurationMod;
             charAppliedTo.spawnCombatText(flatDurationMod * -1, "Duration");

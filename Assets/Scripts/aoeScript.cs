@@ -49,8 +49,12 @@ public class aoeScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject != null)
+        if (other.gameObject != null && other.gameObject.GetComponent<baseCharacter>() != null)
         {
+            charsInAoe.Add(other.gameObject.GetComponent<baseCharacter>());
+            other.gameObject.GetComponent<baseCharacter>().aoesColliding.Add(this);
+
+            /*
             if (offensive == true && other.tag != charAppliedByTag)
             {
                 if (other.gameObject.GetComponent<baseCharacter>() != null)
@@ -64,6 +68,7 @@ public class aoeScript : MonoBehaviour
                 charsInAoe.Add(other.gameObject.GetComponent<baseCharacter>());
                 other.gameObject.GetComponent<baseCharacter>().aoesColliding.Add(this);
             }
+            */
         }
     }
 
@@ -89,17 +94,17 @@ public class aoeScript : MonoBehaviour
             {
                 if (character!=null)
                 {
-                    if (damage > 0)
+                    if (damage > 0 && character.tag!=tag)
                     {
                         character.takeDamage(damage/2);
                     }
 
-                    if (healing > 0)
+                    if (healing > 0 && character.tag==tag)
                     {
                         character.GetComponent<baseCharacter>().takeHealing(healing/2);
                     }
 
-                    if (abilityAppliedBy.stun == true)
+                    if (abilityAppliedBy.stun == true && character.tag!=tag)
                     {
                         abilityAppliedBy.createEffect(character.gameObject);
                     }

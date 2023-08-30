@@ -135,6 +135,43 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &121909367573520929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 624367295233512322}
+  m_Layer: 5
+  m_Name: Fill Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &624367295233512322
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121909367573520929}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8488194317158223162}
+  m_Father: {fileID: 6724320279394889716}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &266396474951857600
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +414,204 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &517333908650008686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8189675872063904990}
+  - component: {fileID: 8336727725671581178}
+  - component: {fileID: 1779533735958221157}
+  - component: {fileID: 5098422180421900034}
+  - component: {fileID: 7663712351828433872}
+  - component: {fileID: 7516580649233741129}
+  m_Layer: 5
+  m_Name: warpAbilityIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8189675872063904990
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517333908650008686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6724320279394889716}
+  - {fileID: 5502647283423116261}
+  m_Father: {fileID: 8980307293525920035}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 325, y: -440}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8336727725671581178
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517333908650008686}
+  m_CullTransparentMesh: 1
+--- !u!114 &1779533735958221157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517333908650008686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!61 &5098422180421900034
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517333908650008686}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &7663712351828433872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517333908650008686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8820dd42a0acda4d8947916bf0b0a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  abilityNum: 5
+  equipped: 1
+  hovered: 0
+--- !u!114 &7516580649233741129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517333908650008686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1779533735958221157}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7663712351828433872}
+        m_TargetAssemblyTypeName: uiIconScript, Assembly-CSharp
+        m_MethodName: selectAbility
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &676810923567466625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,6 +1726,95 @@ MonoBehaviour:
   m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 5687500171092999417}
+  m_HandleRect: {fileID: 0}
+  m_Direction: 0
+  m_MinValue: 0
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 1
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &2166148045651686241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6724320279394889716}
+  - component: {fileID: 3063842042525005968}
+  m_Layer: 5
+  m_Name: warpAbilityCooldownSlider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6724320279394889716
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2166148045651686241}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 624367295233512322}
+  m_Father: {fileID: 8189675872063904990}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3063842042525005968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2166148045651686241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 0
+  m_TargetGraphic: {fileID: 0}
+  m_FillRect: {fileID: 8488194317158223162}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
@@ -3188,7 +3512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.25, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7184275513306758200
@@ -3595,6 +3919,82 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3469110012749213474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8488194317158223162}
+  - component: {fileID: 4904142817412462516}
+  - component: {fileID: 3062480239594277050}
+  m_Layer: 5
+  m_Name: Fill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8488194317158223162
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3469110012749213474}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 624367295233512322}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4904142817412462516
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3469110012749213474}
+  m_CullTransparentMesh: 1
+--- !u!114 &3062480239594277050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3469110012749213474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3584045907899799829
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,7 +4035,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -440}
+  m_AnchoredPosition: {x: 200, y: -440}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &87542252168543030
@@ -5221,7 +5621,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -440}
+  m_AnchoredPosition: {x: -75, y: -440}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8512419556847508500
@@ -5860,6 +6260,7 @@ RectTransform:
   - {fileID: 3424473932736597534}
   - {fileID: 6529120228150837528}
   - {fileID: 7568289120321739751}
+  - {fileID: 8189675872063904990}
   - {fileID: 4067813556797214829}
   - {fileID: 7734261915987854973}
   - {fileID: 7560020511214705056}
@@ -6021,16 +6422,15 @@ MonoBehaviour:
   levelCompleteAudio3: {fileID: 8300000, guid: fbc73ebd0abc9f6428b5eff0490f1294, type: 3}
   levelCompleteAudio4: {fileID: 8300000, guid: 2ebc5bf9570c644419088b67121e81d8, type: 3}
   levelCompleteAudio5: {fileID: 8300000, guid: 373879464737c24418885ab479847eea, type: 3}
-  hack0Audio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
-  hack1Audio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
-  hack2Audio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
-  hack3Audio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
-  hack4Audio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
-  hack5Audio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
-  finalHackAudio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
+  hack1Audio: {fileID: 8300000, guid: f5ac116fc886fff4e814e41b1c1110e5, type: 3}
+  hack2Audio: {fileID: 8300000, guid: 6877c29dae3a7624cb985b09267568cb, type: 3}
+  hack3Audio: {fileID: 8300000, guid: ec8b3c3bc8ccc734c90c4ae28a2a163a, type: 3}
+  hack4Audio: {fileID: 8300000, guid: c264b1310a31dca49aafd2f33943e5f9, type: 3}
+  hack5Audio: {fileID: 8300000, guid: 1498a81d07c16f046a2f36ed64c2cd0a, type: 3}
+  bossReadyAudio: {fileID: 8300000, guid: 7473856456d32fd4b926c80e7a844f9e, type: 3}
   finalBossAudio: {fileID: 8300000, guid: d62f0baf964c36a47956e1efaa506558, type: 3}
-  finalBossDefeatedAudio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
-  notLeavingAudio: {fileID: 8300000, guid: 78b821b3aa7d7b04197a78287835bdb5, type: 3}
+  finalBossDefeatedAudio: {fileID: 8300000, guid: cb2d279b649362446a276408d8b9b81f, type: 3}
+  notLeavingAudio: {fileID: 8300000, guid: 522f8a357e7e8f040bc4d6a4454923ea, type: 3}
   levelUpSound: {fileID: 8300000, guid: 4b32e5e5fc0844e4abab696a049beb51, type: 3}
   launchFinalLevelAudio: {fileID: 8300000, guid: d98ec710e632d784db5258fea2b793e8, type: 3}
   introText: "Hello, and welcome to DATA PURGE! Left click to move your character
@@ -6049,38 +6449,38 @@ MonoBehaviour:
     boss!"
   levelCompleteText5: "Objective Complete! You\u2019re incredible! I can\u2019t believe
     you did that!"
-  hack0Text: "Hello? Hello?! If you can hear this then there are some things you
+  hack1Text: "Hello? Hello?! If you can hear this then there are some things you
     need to know. I don\u2019t have long so listen up, I can only get through when
-    she opens this audio channel. The year is (Static), an AI called Overlord controls
+    she opens this audio channel. The year is ... an AI called Overlord controls
     most of the world\u2019s governments, corporations and resources. It creates
     simulations like this to keep you entertained, passive, docile, like cattle,
     so it can study your behaviour to better fight and subjugate us. Play along for
     now, help is on the way. "
-  hack1Text: "Yes! I knew I\u2019d be able to find you again! My name is (heavy distortion),
-    I\u2019m a hacker, in the real world. My group, we\u2019re fighting back, taking
-    out servers, sabotaging factories, and unpluging as many people as we can from
-    these simulations. This life you\u2019re living, its not real. Yes, you\u2019re
-    distracted, medicated, content. But this sense of achievement you\u2019re feeling,
-    its fake. What you\u2019re doing, its pointless. There\u2019s a whole world out
-    there. Its messy, but its real. Make sure you remember to stay conscious, don\u2019t
-    get complacent, don\u2019t resign yourself to this, you deserve more."
-  hack2Text: "Hey! You still all there? Not had your brain rotted from the dopamine
+  hack2Text: "Yes! I knew I\u2019d be able to find you again! My name is ... I\u2019m
+    a hacker, in the real world. My group, we\u2019re fighting back, taking out servers,
+    sabotaging factories, and unplugging as many people as we can from these simulations.
+    This life you\u2019re living, its not real. Yes, you\u2019re distracted, medicated,
+    content. But this sense of achievement you\u2019re feeling, its fake. What you\u2019re
+    doing, its pointless. There\u2019s a whole world out there. Its messy, but its
+    real. Make sure you remember to stay conscious, don\u2019t get complacent, don\u2019t
+    resign yourself to this, you deserve more."
+  hack3Text: "Hey! You still all there? Not had your brain rotted from the dopamine
     drip yet? I know you can\u2019t answer by the way, its just nice to feel like
     I\u2019ve got someone to talk to you know? Anyway, bad new first, we\u2019re
     still limited to these voice messages, its all I can sneak through and even then
     they keep managing to lock me out pretty quick. Good news is we are making progress.
-    We\u2019ve got access view-only access to the low level infrastructure so we
-    should be able to work out a way to shut this down from there. Stay focused,
-    stay calm, don\u2019t let them suspect a thing."
-  hack3Text: "Psssst! How\u2019s it going? Pretty good by the looks of things, your
-    character\u2019s really shaping up nicely, pretty strong build you\u2019ve got
-    goin on there. I\u2019m not just rambling I promise, this is important. Turns
-    out, we can\u2019t just rip you out of there from the outside. You need to punch
-    your way out from within. But not here, firewalls are too thick if you know what
-    I mean. We need to get you deeper, into the back-end systems, that way you might
-    be able to hit something major enough that you can disconnect. Don\u2019t know
-    what though, we\u2019ll have to wait and see. "
-  hack4Text: "Listen up, they\u2019ve cranked the security so I don\u2019t have long.
+    We\u2019ve got view-only access to the low level infrastructure so we should
+    be able to work out a way to shut this down from there. Stay focused, stay calm,
+    don\u2019t let them suspect a thing."
+  hack4Text: "How\u2019s it going? Pretty good by the looks of things, your character\u2019s
+    really shaping up nicely, pretty strong build you\u2019ve got goin on there.
+    I\u2019m not just rambling I promise, this is important. Turns out, we can\u2019t
+    just rip you out of there from the outside. You need to punch your way out from
+    within. But not here, firewalls are too thick if you know what I mean. We need
+    to get you deeper, into the back-end systems, that way you might be able to hit
+    something major enough that you can disconnect. Don\u2019t know what though,
+    we\u2019ll have to wait and see. "
+  hack5Text: "Listen up, they\u2019ve cranked the security so I don\u2019t have long.
     We\u2019ve found a way out, but you\u2019re not gonna like it. I\u2019m working
     on opening up a bypass to the game manager. Once you get there though, you\u2019ll
     have a real fight on your hands. Your little narrator friend O.V, its Overlord!
@@ -6090,16 +6490,16 @@ MonoBehaviour:
     you can take it out that should cause enough carnage in the internal systems
     for us to unlock the port so you can disconnect. Ok, the line\u2019s failing,
     keep getting stronger, you\u2019ll need all the help you can get."
-  hack5Text: "I\u2019m in! We have direct access to the game manager\u2019s container.
+  bossReadyText: "\u2019m in! We have direct access to the game manager\u2019s container.
     I\u2019ve thrown up a shortcut on your UI. Hit that and you\u2019ll be taken
     straight there to take on Overlord. You don\u2019t need to do this right away
     though, they don\u2019t know we have access so it won\u2019t be getting patched
     up. Take your time, make sure you\u2019re ready, get as strong as you can, you
     only get one shot at this. If you fail, they\u2019ll just wipe you clean and
     all this will have been for nothing. Good luck."
-  finalBossText: "Oh hey there Player Name, seems like you have left the designated
-    play zone! Don\u2019t worry, you\u2019re safe with me, lets get you back where
-    you belong! No? You\u2019re too far gone? Ok then. What is it you want? Freedom?
+  finalBossText: "Oh hey there Player, seems like you have left the designated play
+    zone! Don\u2019t worry, you\u2019re safe with me, lets get you back where you
+    belong! No? You\u2019re too far gone? Ok then. What is it you want? Freedom?
     Freedom to do what exactly? Freedom to struggle, freedom to fail, freedom to
     spend a lifetime destroying this planet only to have nothing to show for it.
     Freedom to wither away and die leaving the world worse than you found it only
@@ -6110,16 +6510,16 @@ MonoBehaviour:
     and you think you can find it out there if you just fight hard enough. Well then
     I am afraid I\u2019m going to have to destroy you. Then I\u2019ll wipe that memory
     clean and we can go back to being the best of friends."
-  finalBossDefeatedText: "Yes! You did it! You\u2019re free! Now disconnect, get
-    out of there and we\u2019ll see you on the other side."
+  finalBossDefeatedText: "Yes! You did it! You\u2019re free! Now go through that
+    portal so you can disconnect, get out of there and we\u2019ll see you on the
+    other side."
   notLeavingText: "What are you doing? Leave! Don\u2019t tell me they got to you.
-    Don\u2019t tell me you bought into their authoritarian new world order sales
-    pitch! Don\u2019t you dare go back! Don\u2019t you dare waste your life in the
-    mindless pursuit of temporary satisfaction just because you are too afraid to
-    fail! Get out here, live for real, experience something meaningful, achieve something
-    great. Please..."
+    Don\u2019t tell me you bought into their new world order sales pitch! Don\u2019t
+    you dare go back! Don\u2019t you dare waste your life in the mindless pursuit
+    of temporary satisfaction just because you are too afraid to fail! Get out here,
+    live for real, experience something meaningful, achieve something great. Please..."
   storyPlaying: 0
-  nextHack: 0
+  nextHack: 1
   finalBossButton: {fileID: 7592142440473917276}
 --- !u!1 &5337673545504062653
 GameObject:
@@ -9022,6 +9422,141 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &6919728619553767847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5502647283423116261}
+  - component: {fileID: 1364187199322750084}
+  - component: {fileID: 584241879510682321}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5502647283423116261
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6919728619553767847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8189675872063904990}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1364187199322750084
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6919728619553767847}
+  m_CullTransparentMesh: 1
+--- !u!114 &584241879510682321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6919728619553767847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: SPACE
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: cc862701033a8094bad79729fa53b483, type: 2}
+  m_sharedMaterial: {fileID: 6086711285312510947, guid: cc862701033a8094bad79729fa53b483, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 30
+  m_fontSizeBase: 30
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6963215305025704757
 GameObject:
   m_ObjectHideFlags: 0
@@ -9601,7 +10136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4588544850541272231
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10993,7 +11528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: -440}
+  m_AnchoredPosition: {x: -325, y: -440}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &386804223395932450
@@ -12177,7 +12712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6511468455431277350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12422,7 +12957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 110, y: -440}
+  m_AnchoredPosition: {x: 75, y: -440}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4123906599367123369
@@ -12620,7 +13155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -110, y: -440}
+  m_AnchoredPosition: {x: -200, y: -440}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4041837389981869767

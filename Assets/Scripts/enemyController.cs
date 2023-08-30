@@ -47,12 +47,10 @@ public class enemyController : baseCharacter
 
         generateAbility(abilityScript0);
         generateAbility(abilityScript1);
-         if(gameObject.name=="overlord")
-        {
-            generateAbility(abilityScript2);
-            generateAbility(abilityScript3);
-            generateAbility(abilityScript4);
-        }
+        generateAbility(abilityScript2);
+        generateAbility(abilityScript3);
+        generateAbility(abilityScript4);
+        
 
         
         if(gameObject.name!="overlord")
@@ -170,7 +168,7 @@ public class enemyController : baseCharacter
                 castBarUpdate();
                 if (targetCharacter != null)
                 {
-                    transform.forward = targetCharacter.transform.position - transform.position;
+                    //transform.forward = targetCharacter.transform.position - transform.position;
                 }
             }
             else if (casting == false && castBarActive == true)
@@ -233,6 +231,6 @@ public class enemyController : baseCharacter
         levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level);
 
         this.transform.localScale = new Vector3(2f, 2f, 2f);
-        this.gameObject.GetComponent<SphereCollider>().radius = 7.5f;
+        this.gameObject.GetComponent<SphereCollider>().radius = this.gameObject.GetComponent<SphereCollider>().radius / 2;
     }
 }

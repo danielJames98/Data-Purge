@@ -86,13 +86,12 @@ public class uiManagerScript : MonoBehaviour
     public AudioClip levelCompleteAudio3;
     public AudioClip levelCompleteAudio4;
     public AudioClip levelCompleteAudio5;
-    public AudioClip hack0Audio;
     public AudioClip hack1Audio;
     public AudioClip hack2Audio;
     public AudioClip hack3Audio;
     public AudioClip hack4Audio;
     public AudioClip hack5Audio;
-    public AudioClip finalHackAudio;
+    public AudioClip bossReadyAudio;
     public AudioClip finalBossAudio;
     public AudioClip finalBossDefeatedAudio;
     public AudioClip notLeavingAudio;
@@ -105,19 +104,19 @@ public class uiManagerScript : MonoBehaviour
     public string levelCompleteText3;
     public string levelCompleteText4;
     public string levelCompleteText5;
-    public string hack0Text;
     public string hack1Text;
     public string hack2Text;
     public string hack3Text;
     public string hack4Text;
     public string hack5Text;
+    public string bossReadyText;
     public string finalBossText;
     public string finalBossDefeatedText;
     public string notLeavingText;
 
     public bool storyPlaying;
 
-    public int nextHack;
+    public int nextHack=1;
 
     public GameObject finalBossButton;
 
@@ -238,7 +237,13 @@ public class uiManagerScript : MonoBehaviour
     {
         if (equipped == true)
         {
-            if (player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>().type != "")
+            if(abilityNum==5)
+            {
+                toolTipActive = true;
+                toolTip.SetActive(true);
+                fillToolTipWarp();
+            }
+            else if (player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>().type != "")
             {
                 toolTipActive = true;
                 toolTip.SetActive(true);
@@ -265,19 +270,19 @@ public class uiManagerScript : MonoBehaviour
         toolTipText.text = toolTipText.text + "Targeting: " + abilityScript.targeting + "<br>";
 
 
-        if (abilityScript.baseDamage > 0)
+        if (abilityScript.baseDamage != 0)
         {
             toolTipText.text = toolTipText.text + "Damage: " + abilityScript.baseDamage + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.baseHealing > 0)
+        if (abilityScript.baseHealing != 0)
         {
             toolTipText.text = toolTipText.text + "Healing: " + abilityScript.baseHealing + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.baseRange > 0)
+        if (abilityScript.baseRange != 0)
         {
             toolTipText.text = toolTipText.text + "Range: " + abilityScript.baseRange + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
@@ -289,25 +294,25 @@ public class uiManagerScript : MonoBehaviour
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.baseAoeRadius > 0)
+        if (abilityScript.baseAoeRadius != 0)
         {
-            toolTipText.text = toolTipText.text + "AoE: " + abilityScript.baseAoeRadius + "<br>";
+            toolTipText.text = toolTipText.text + "AoE Size: " + abilityScript.baseAoeRadius + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.aoeDuration > 0)
+        if (abilityScript.aoeDuration != 0)
         {
             toolTipText.text = toolTipText.text + "AoE Duration: " + abilityScript.aoeDuration + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.baseCastTime > 0)
+        if (abilityScript.baseCastTime != 0)
         {
             toolTipText.text = toolTipText.text + "Cast Time: " + abilityScript.baseCastTime + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.baseCooldown > 0)
+        if (abilityScript.baseCooldown != -1)
         {
             toolTipText.text = toolTipText.text + "Cooldown: " + abilityScript.baseCooldown + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
@@ -325,19 +330,19 @@ public class uiManagerScript : MonoBehaviour
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.dotDamage > 0)
+        if (abilityScript.dotDamage != 0)
         {
             toolTipText.text = toolTipText.text + "DoT: " + abilityScript.dotDamage + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.hotHealing > 0)
+        if (abilityScript.hotHealing != 0)
         {
             toolTipText.text = toolTipText.text + "HoT: " + abilityScript.hotHealing + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.effectDuration > 0)
+        if (abilityScript.effectDuration != 0)
         {
             toolTipText.text = toolTipText.text + "Effect Duration: " + abilityScript.effectDuration + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
@@ -397,67 +402,67 @@ public class uiManagerScript : MonoBehaviour
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.flatArmourMod > 0)
+        if (abilityScript.flatArmourMod != 0)
         {
             toolTipText.text = toolTipText.text + "Armour Mod: " + abilityScript.flatArmourMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.flatPowerMod > 0)
+        if (abilityScript.flatPowerMod != 0)
         {
             toolTipText.text = toolTipText.text + "Power Mod: " + abilityScript.flatPowerMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.flatAttackSpeedMod > 0)
+        if (abilityScript.flatAttackSpeedMod != 0)
         {
             toolTipText.text = toolTipText.text + "Attack Speed Mod: " + abilityScript.flatAttackSpeedMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.flatCdrMod > 0)
+        if (abilityScript.flatCdrMod != 0)
         {
             toolTipText.text = toolTipText.text + "CDR Mod: " + abilityScript.flatCdrMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.flatMoveSpeedMod > 0)
+        if (abilityScript.flatMoveSpeedMod != 0)
         {
             toolTipText.text = toolTipText.text + "Move Speed Mod: " + abilityScript.flatMoveSpeedMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.flatRangeMod > 0)
+        if (abilityScript.flatRangeMod != 0)
         {
             toolTipText.text = toolTipText.text + "Range Mod: " + abilityScript.flatRangeMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.flatAoeMod > 0)
+        if (abilityScript.flatAoeMod != 0)
         {
             toolTipText.text = toolTipText.text + "AoE Mod: " + abilityScript.flatAoeMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.flatProjSpeedMod > 0)
+        if (abilityScript.flatProjSpeedMod != 0)
         {
             toolTipText.text = toolTipText.text + "Projectile Speed Mod: " + abilityScript.flatProjSpeedMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.flatDurationMod > 0)
+        if (abilityScript.flatDurationMod != 0)
         {
             toolTipText.text = toolTipText.text + "Duration Mod: " + abilityScript.flatDurationMod + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.projectileSize > 0)
+        if (abilityScript.projectileSize != 0)
         {
             toolTipText.text = toolTipText.text + "Proj Size: " + abilityScript.projectileSize + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.projectileSpeed > 0)
+        if (abilityScript.projectileSpeed != 0)
         {
             toolTipText.text = toolTipText.text + "Proj Speed: " + abilityScript.projectileSpeed + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
@@ -487,7 +492,7 @@ public class uiManagerScript : MonoBehaviour
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.projectileSpread >0)
+        if (abilityScript.projectileSpread > -1)
         {
             toolTipText.text = toolTipText.text + "Proj Spread: " + abilityScript.projectileSpread + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
@@ -501,19 +506,19 @@ public class uiManagerScript : MonoBehaviour
         toolTipText.text = "Type: " + abilityScript.type + "<br>";
         toolTipText.text = toolTipText.text + "Targeting: " + abilityScript.targeting + "<br>";
 
-        if (abilityScript.baseDamage > 0)
+        if (abilityScript.baseDamage != 0)
         {
             toolTipText.text = toolTipText.text + "Damage: " + abilityScript.baseDamage + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.baseHealing > 0)
+        if (abilityScript.baseHealing != 0)
         {
             toolTipText.text = toolTipText.text + "Healing: " + abilityScript.baseHealing + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.baseRange > 0)
+        if (abilityScript.baseRange != 0)
         {
             toolTipText.text = toolTipText.text + "Range: " + abilityScript.baseRange + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
@@ -525,25 +530,25 @@ public class uiManagerScript : MonoBehaviour
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.baseAoeRadius > 0)
+        if (abilityScript.baseAoeRadius != 0)
         {
-            toolTipText.text = toolTipText.text + "AoE: " + abilityScript.baseAoeRadius + "<br>";
+            toolTipText.text = toolTipText.text + "AoE Size: " + abilityScript.baseAoeRadius + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.aoeDuration > 0)
+        if (abilityScript.aoeDuration != 0)
         {
             toolTipText.text = toolTipText.text + "AoE Duration: " + abilityScript.aoeDuration + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.baseCastTime > 0)
+        if (abilityScript.baseCastTime != 0)
         {
             toolTipText.text = toolTipText.text + "Cast Time: " + abilityScript.baseCastTime + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.baseCooldown > 0)
+        if (abilityScript.baseCooldown != 0)
         {
             toolTipText.text = toolTipText.text + "Cooldown: " + abilityScript.baseCooldown + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
@@ -561,19 +566,19 @@ public class uiManagerScript : MonoBehaviour
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.dotDamage > 0)
+        if (abilityScript.dotDamage != 0)
         {
             toolTipText.text = toolTipText.text + "DoT: " + abilityScript.dotDamage + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.hotHealing > 0)
+        if (abilityScript.hotHealing != 0)
         {
             toolTipText.text = toolTipText.text + "HoT: " + abilityScript.hotHealing + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.effectDuration > 0)
+        if (abilityScript.effectDuration != 0)
         {
             toolTipText.text = toolTipText.text + "Effect Duration: " + abilityScript.effectDuration + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
@@ -723,11 +728,32 @@ public class uiManagerScript : MonoBehaviour
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
 
-        if (abilityScript.projectileSpread > 0)
+        if (abilityScript.projectileSpread > -1)
         {
             toolTipText.text = toolTipText.text + "Proj Spread: " + abilityScript.projectileSpread + "<br>";
             toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
         }
+    }
+
+    public void fillToolTipWarp()
+    {
+        baseAbilityScript abilityScript = player.transform.Find("warpAbility").gameObject.GetComponent<baseAbilityScript>();
+        toolTipTitle.text = "Warp";
+
+        if (abilityScript.baseRange > 0)
+        {
+            toolTipText.text = "Range: " + abilityScript.baseRange + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        if (abilityScript.baseCooldown > 0)
+        {
+            toolTipText.text = toolTipText.text + "Cooldown: " + abilityScript.baseCooldown + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+        }
+
+        toolTipText.text = toolTipText.text + "Instantly teleport to the target location";
+        
     }
 
     public void hideToolTip()
@@ -1270,11 +1296,7 @@ public class uiManagerScript : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
 
-        if (nextHack == 0)
-        {
-            showHack0Dialogue();
-        }
-        else if (nextHack == 1)
+        if (nextHack == 1)
         {
             showHack1Dialogue();
         }
@@ -1294,18 +1316,12 @@ public class uiManagerScript : MonoBehaviour
         {
             showHack5Dialogue();
         }
+        else if (nextHack == 6)
+        {
+            showBossReadyDialogue();
+        }
 
         nextHack++;
-    }
-
-    public void showHack0Dialogue()
-    {
-        dialogueDisplay.SetActive(true);
-        dialogueText.text = hack0Text;
-        dialogueSpeakerName.text = "Hacker";
-        dialogueAudioSource.clip = hack0Audio;
-        dialogueAudioSource.Play();
-        storyPlaying = true;
     }
 
     public void showHack1Dialogue()
@@ -1351,10 +1367,20 @@ public class uiManagerScript : MonoBehaviour
     public void showHack5Dialogue()
     {
         dialogueDisplay.SetActive(true);
-        finalBossButton.SetActive(true);
         dialogueText.text = hack5Text;
         dialogueSpeakerName.text = "Hacker";
         dialogueAudioSource.clip = hack5Audio;
+        dialogueAudioSource.Play();
+        storyPlaying = true;
+    }
+
+        public void showBossReadyDialogue()
+    {
+        dialogueDisplay.SetActive(true);
+        finalBossButton.SetActive(true);
+        dialogueText.text = hack5Text;
+        dialogueSpeakerName.text = "Hacker";
+        dialogueAudioSource.clip = bossReadyAudio;
         dialogueAudioSource.Play();
         storyPlaying = true;
     }
@@ -1377,11 +1403,12 @@ public class uiManagerScript : MonoBehaviour
         dialogueAudioSource.clip = finalBossDefeatedAudio;
         dialogueAudioSource.Play();
         storyPlaying = true;
+        StartCoroutine("showNotLeavingDialogue");
     }
 
     IEnumerator showNotLeavingDialogue()
     {
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(Random.Range(30,60));
         dialogueDisplay.SetActive(true);
         dialogueText.text = notLeavingText;
         dialogueSpeakerName.text = "Hacker";

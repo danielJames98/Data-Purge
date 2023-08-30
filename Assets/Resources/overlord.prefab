@@ -129,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088489313190741500}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.19813156, z: 0.4617325}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -221,8 +221,13 @@ MonoBehaviour:
   flatDurationMod: 0
   projectileSpeed: 0
   piercing: 0
+  returning: 0
+  homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0
@@ -438,8 +443,13 @@ MonoBehaviour:
   flatDurationMod: 0
   projectileSpeed: 0
   piercing: 0
+  returning: 0
+  homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0
@@ -655,8 +665,13 @@ MonoBehaviour:
   flatDurationMod: 0
   projectileSpeed: 0
   piercing: 0
+  returning: 0
+  homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0
@@ -831,6 +846,7 @@ Transform:
   - {fileID: 1804613764262227410}
   - {fileID: 3497641674945120984}
   - {fileID: 5574486240135717531}
+  - {fileID: 5504390299340032627}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -975,8 +991,8 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   levelManager: {fileID: 0}
   level: 0
-  currentHealth: 250
-  maxHealth: 250
+  currentHealth: 100
+  maxHealth: 100
   moveSpeed: 10
   attackSpeed: 0
   cooldownReduction: 0
@@ -986,6 +1002,7 @@ MonoBehaviour:
   bonusArea: 50
   bonusProjectileSpeed: 0
   bonusDuration: 0
+  dashRange: 0
   currentXP: 0
   maxXP: 0
   boss: 0
@@ -994,11 +1011,13 @@ MonoBehaviour:
   ability2: {fileID: 0}
   ability3: {fileID: 0}
   ability4: {fileID: 0}
+  warpAbility: {fileID: 0}
   abilityScript0: {fileID: 0}
   abilityScript1: {fileID: 0}
   abilityScript2: {fileID: 0}
   abilityScript3: {fileID: 0}
   abilityScript4: {fileID: 0}
+  warpAbilityScript: {fileID: 0}
   targetCharacter: {fileID: 0}
   overHeadCanvas: {fileID: 0}
   healthBar: {fileID: 0}
@@ -1010,6 +1029,7 @@ MonoBehaviour:
   inCombat: 0
   aggroTarget: {fileID: 0}
   frontFirePoint: {fileID: 0}
+  aimLaserScaler: {fileID: 7651901735664155618}
   rb: {fileID: 0}
   casting: 0
   healthBarActive: 0
@@ -1070,6 +1090,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f0bba60dd1813bd40af826dbaa99b983, type: 3}
   - {fileID: 8300000, guid: d4aee29185389894b9cc0d8873904a49, type: 3}
   aoesColliding: []
+  projectilesHoming: []
+  ownProjectiles: []
   charactersInRange: []
 --- !u!135 &9211600342772161315
 SphereCollider:
@@ -1188,6 +1210,111 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &3726559338386502534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039329369086764129}
+  - component: {fileID: 8186433702354910882}
+  - component: {fileID: 5414323954713399514}
+  - component: {fileID: 4785593652349988243}
+  m_Layer: 0
+  m_Name: aimLaser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1039329369086764129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726559338386502534}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5504390299340032627}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8186433702354910882
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726559338386502534}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5414323954713399514
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726559338386502534}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f04834d856ebac743909256a55b5676f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4785593652349988243
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726559338386502534}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6036980301616265541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,8 +1400,13 @@ MonoBehaviour:
   flatDurationMod: 0
   projectileSpeed: 0
   piercing: 0
+  returning: 0
+  homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0
@@ -1490,8 +1622,13 @@ MonoBehaviour:
   flatDurationMod: 0
   projectileSpeed: 0
   piercing: 0
+  returning: 0
+  homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0
@@ -1622,6 +1759,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &7651901735664155618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5504390299340032627}
+  m_Layer: 0
+  m_Name: aimLaserScaler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5504390299340032627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7651901735664155618}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1039329369086764129}
+  m_Father: {fileID: 879183303045143181}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2819603340039148227
 PrefabInstance:
   m_ObjectHideFlags: 0

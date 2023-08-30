@@ -88,6 +88,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -97,6 +100,38 @@ MonoBehaviour:
   cooldownStartTime: 0
   timeSinceCooldownStart: 0
   cooldownLeft: 0
+--- !u!1 &356894168812385720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3714747022620467881}
+  m_Layer: 0
+  m_Name: aimLaserScaler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3714747022620467881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356894168812385720}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 597380860131296618}
+  m_Father: {fileID: 8469441896723429078}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &620713826464239188
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +220,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -451,6 +489,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -548,6 +589,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -646,6 +690,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0
@@ -864,6 +911,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -961,6 +1011,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -1012,9 +1065,11 @@ Transform:
   - {fileID: 4083621681942335895}
   - {fileID: 2994598848468063284}
   - {fileID: 4817099542435780227}
+  - {fileID: 7897114320786504941}
   - {fileID: 1983328728237592491}
   - {fileID: 6118995888694922669}
   - {fileID: 7808128716834276198}
+  - {fileID: 3714747022620467881}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1087,17 +1142,18 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   levelManager: {fileID: 0}
   level: 0
-  currentHealth: 500
-  maxHealth: 500
+  currentHealth: 100
+  maxHealth: 100
   moveSpeed: 10
-  attackSpeed: 10
-  cooldownReduction: 10
-  armour: 10
-  power: 10
-  bonusRange: 10
-  bonusArea: 10
-  bonusProjectileSpeed: 10
-  bonusDuration: 10
+  attackSpeed: 0
+  cooldownReduction: 0
+  armour: 0
+  power: 0
+  bonusRange: 0
+  bonusArea: 0
+  bonusProjectileSpeed: 0
+  bonusDuration: 0
+  dashRange: 0
   currentXP: 0
   maxXP: 0
   boss: 0
@@ -1106,11 +1162,13 @@ MonoBehaviour:
   ability2: {fileID: 0}
   ability3: {fileID: 0}
   ability4: {fileID: 0}
+  warpAbility: {fileID: 0}
   abilityScript0: {fileID: 0}
   abilityScript1: {fileID: 0}
   abilityScript2: {fileID: 0}
   abilityScript3: {fileID: 0}
   abilityScript4: {fileID: 0}
+  warpAbilityScript: {fileID: 0}
   targetCharacter: {fileID: 0}
   overHeadCanvas: {fileID: 0}
   healthBar: {fileID: 0}
@@ -1122,6 +1180,7 @@ MonoBehaviour:
   inCombat: 0
   aggroTarget: {fileID: 0}
   frontFirePoint: {fileID: 0}
+  aimLaserScaler: {fileID: 356894168812385720}
   rb: {fileID: 0}
   casting: 0
   healthBarActive: 0
@@ -1182,6 +1241,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f0bba60dd1813bd40af826dbaa99b983, type: 3}
   - {fileID: 8300000, guid: d4aee29185389894b9cc0d8873904a49, type: 3}
   aoesColliding: []
+  projectilesHoming: []
+  ownProjectiles: []
   cam: {fileID: 0}
   inventoryItems:
   - {fileID: 0}
@@ -1472,6 +1533,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -1481,6 +1545,228 @@ MonoBehaviour:
   cooldownStartTime: 0
   timeSinceCooldownStart: 0
   cooldownLeft: 0
+--- !u!1 &4497727026032155161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7897114320786504941}
+  - component: {fileID: 3907532649293090353}
+  - component: {fileID: 8760290757351064460}
+  m_Layer: 0
+  m_Name: warpAbility
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7897114320786504941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497727026032155161}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8469441896723429078}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3907532649293090353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497727026032155161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca1d052935726d4fa1fc73e2e58da27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  targeting: warp
+  baseDamage: 0
+  baseHealing: 0
+  baseRange: 10
+  baseAoeRadius: 0
+  baseCastTime: 0
+  baseCooldown: 10
+  cam: {fileID: 0}
+  appliesEffect: 0
+  dotDamage: 0
+  hotHealing: 0
+  effectDuration: 0
+  stackingEffect: 0
+  parentCharacter: {fileID: 0}
+  parentCharacterScript: {fileID: 0}
+  parentCharacterNav: {fileID: 0}
+  parentCharacterAnimator: {fileID: 0}
+  audioSource: {fileID: 0}
+  onCooldown: 0
+  percentArmourMod: 0
+  percentPowerMod: 0
+  percentAttackSpeedMod: 0
+  percentMoveSpeedMod: 0
+  percentCdrMod: 0
+  percentRangeMod: 0
+  percentAoeMod: 0
+  percentProjSpeedMod: 0
+  percentDurationMod: 0
+  flatArmourMod: 0
+  flatPowerMod: 0
+  flatAttackSpeedMod: 0
+  flatMoveSpeedMod: 0
+  flatCdrMod: 0
+  flatRangeMod: 0
+  flatAoeMod: 0
+  flatProjSpeedMod: 0
+  flatDurationMod: 0
+  projectileSpeed: 0
+  piercing: 0
+  returning: 0
+  homing: 0
+  frontFirePoint: {fileID: 0}
+  projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
+  aoeDuration: 0
+  offensive: 0
+  stun: 0
+  abilitySounds:
+  - {fileID: 8300000, guid: 08f78eba48bb21c44ac5a74ca84efc83, type: 3}
+  - {fileID: 8300000, guid: 3dc7b4438e9f788479f2eba0e75191b1, type: 3}
+  - {fileID: 8300000, guid: e196615aab553a14ab4e1aeb462c195c, type: 3}
+  - {fileID: 8300000, guid: 159aa6b3153429349b06479ba4bcb8fc, type: 3}
+  - {fileID: 8300000, guid: 92d35fe1c59bbd14eaee9e3d3b54cea7, type: 3}
+  - {fileID: 8300000, guid: 5207b2a445fcb144281ab5395fe95c1d, type: 3}
+  - {fileID: 8300000, guid: 1e940d15337ad1e43b0cc1b2430d7c06, type: 3}
+  - {fileID: 8300000, guid: 70c97e425596b8142b7b9163256c0868, type: 3}
+  - {fileID: 8300000, guid: 947719fd38845824ba3638af9d8e4e54, type: 3}
+  - {fileID: 8300000, guid: ee4ef2f8f89f0834d8c92266456d0922, type: 3}
+  - {fileID: 8300000, guid: 97b5820b1e079ab4bbbe90e89bd4db5d, type: 3}
+  - {fileID: 8300000, guid: 7e950513b9c6d734e8130770598861f3, type: 3}
+  - {fileID: 8300000, guid: 7b889162724f05c4f95da46adbd50ef7, type: 3}
+  - {fileID: 8300000, guid: b9bcff787e03ea4448419527c126e177, type: 3}
+  - {fileID: 8300000, guid: b39ec697f76aec04fb8081c0c4f6dbae, type: 3}
+  - {fileID: 8300000, guid: 6c641842185384646b603322cc7e7559, type: 3}
+  - {fileID: 8300000, guid: 929fd214252d7034d93c9463bf63e091, type: 3}
+  - {fileID: 8300000, guid: 73b0e478c9b0c4242bc3c687a6869e81, type: 3}
+  - {fileID: 8300000, guid: e87fb2e782bcac14d82191fa02c2c841, type: 3}
+  - {fileID: 8300000, guid: 25d8a6b3073dcbf40b0133fdbfeb55ce, type: 3}
+  castSounds:
+  - {fileID: 8300000, guid: 6a32a0d49cd240b4cb9934adf37a49a5, type: 3}
+  - {fileID: 8300000, guid: 2868e580baee45d449931dc35a5ace81, type: 3}
+  - {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
+  - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
+  - {fileID: 8300000, guid: 0eb673dc31e22fd4a8f158be386c8053, type: 3}
+  cooldownSlider: {fileID: 0}
+  cooldownStartTime: 0
+  timeSinceCooldownStart: 0
+  cooldownLeft: 0
+--- !u!82 &8760290757351064460
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497727026032155161}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4715084883421355475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,6 +1855,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -1666,6 +1955,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -1763,6 +2055,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -1796,7 +2091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5887483177471492839}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1891,6 +2186,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -1988,6 +2286,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -2085,6 +2386,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -2183,6 +2487,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0
@@ -2313,6 +2620,111 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &6925876542263482517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 597380860131296618}
+  - component: {fileID: 2769324097305341488}
+  - component: {fileID: 6184905678438115383}
+  - component: {fileID: 6830120470258655846}
+  m_Layer: 0
+  m_Name: aimLaser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &597380860131296618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6925876542263482517}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3714747022620467881}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2769324097305341488
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6925876542263482517}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6184905678438115383
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6925876542263482517}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 830f7f06668ced04c811e32e4b415652, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6830120470258655846
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6925876542263482517}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6976141939301830641
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,6 +2813,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -2499,6 +2914,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0
@@ -2717,6 +3135,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -2814,6 +3235,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -2911,6 +3335,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -3009,6 +3436,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0
@@ -3227,6 +3657,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -3324,6 +3757,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -3421,6 +3857,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 1
   stun: 0
@@ -3519,6 +3958,9 @@ MonoBehaviour:
   homing: 0
   frontFirePoint: {fileID: 0}
   projectileSize: 0
+  projectileCount: 0
+  projectileSpread: 0
+  aoeOnHit: 0
   aoeDuration: 0
   offensive: 0
   stun: 0

@@ -38,12 +38,12 @@ public class projectileScript : MonoBehaviour
                 startPoint = transform.position;
                 returning = false;
             }
-            else if (returning == true && homing == true && charAppliedBy.gameObject != null)
+            else if (returning == true && homing == true && charAppliedBy!=null && charAppliedBy.gameObject != null)
             {
                 homingTarget=charAppliedBy.gameObject;
                 charAppliedBy.GetComponent<baseCharacter>().projectilesHoming.Add(this);
             }
-            else if (returning==true && homing == true && charAppliedBy.gameObject == null)
+            else if (returning==true && homing == true && (charAppliedBy==null || charAppliedBy.gameObject == null))
             {
                 homingTarget = null;
                 homing = false;
@@ -79,14 +79,13 @@ public class projectileScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject != null && offensive == true && other.tag != tag && other.gameObject.GetComponent<baseCharacter>() != null)
+        if (other.gameObject != null && other.gameObject.GetComponent<baseCharacter>() != null)
         {
-            if (damage>0)
+            if (other.tag != tag && damage > 0)
             {
                 other.GetComponent<baseCharacter>().takeDamage(damage);
             }
-
-            if (healing > 0)
+            else if (other.tag == tag && healing > 0)
             {
                 other.GetComponent<baseCharacter>().takeHealing(healing);
             }
@@ -96,32 +95,9 @@ public class projectileScript : MonoBehaviour
                 abilityAppliedBy.createEffect(other.gameObject);
             }
 
-            if(aoeOnHit==true)
+            if(aoeOnHit==true&& other.tag!=tag)
             {
                 abilityAppliedBy.spawnAoe(new Vector3(transform.position.x, transform.position.y-1, transform.position.z));
-            }
-        }
-
-        else if (other.gameObject != null && offensive == false && other.tag == tag && other.gameObject.GetComponent<baseCharacter>() != null)
-        {
-            if (damage > 0)
-            {
-                other.GetComponent<baseCharacter>().takeDamage(damage);
-            }
-
-            if (healing > 0)
-            {
-                other.GetComponent<baseCharacter>().takeHealing(healing);
-            }
-
-            if (abilityAppliedBy.appliesEffect)
-            {
-                abilityAppliedBy.createEffect(other.gameObject);
-            }
-
-            if (aoeOnHit == true)
-            {
-                abilityAppliedBy.spawnAoe(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z));
             }
         }
 
@@ -139,7 +115,7 @@ public class projectileScript : MonoBehaviour
             destroySelf();
         }
 
-        if (piercing == false && other.gameObject.layer==3)
+        if (piercing == false && other.gameObject.layer==3 && other.tag!=tag)
         {
             destroySelf();
         }

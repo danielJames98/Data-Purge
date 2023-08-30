@@ -69,12 +69,14 @@ public class playerController : baseCharacter
         ability2 = transform.Find("ability2").gameObject;
         ability3 = transform.Find("ability3").gameObject;
         ability4 = transform.Find("ability4").gameObject;
+        warpAbility = transform.Find("warpAbility").gameObject;
 
         abilityScript0 = ability0.GetComponent<baseAbilityScript>();
         abilityScript1 = ability1.GetComponent<baseAbilityScript>();
         abilityScript2 = ability2.GetComponent<baseAbilityScript>();
         abilityScript3 = ability3.GetComponent<baseAbilityScript>();
         abilityScript4 = ability4.GetComponent<baseAbilityScript>();
+        warpAbilityScript = warpAbility.GetComponent<baseAbilityScript>();
 
         generateAbility(abilityScript0);
         generateAbility(abilityScript1);
@@ -149,6 +151,11 @@ public class playerController : baseCharacter
             if (Input.GetButtonDown("4") && casting == false && stunned == false)
             {
                 activateAbility(abilityScript4);
+            }
+
+            if (Input.GetButtonDown("space") && stunned == false)
+            {
+                activateAbility(warpAbilityScript);
             }
 
             if (castingAbility != null && movingToRange == true)
@@ -251,4 +258,7 @@ public class playerController : baseCharacter
             }
         }
     }
+
+
+
 }
