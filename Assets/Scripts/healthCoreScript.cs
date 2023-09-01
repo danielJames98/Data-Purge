@@ -37,7 +37,7 @@ public class healthCoreScript : MonoBehaviour
 
     public void pickUp(playerController pc)
     {
-        AudioSource.PlayClipAtPoint(pickUpSound, this.transform.position, 1f);
+        AudioSource.PlayClipAtPoint(pickUpSound, this.transform.position, 0.2f);
         pc.takeHealing(pc.maxHealth/4);
         Destroy(canvas);
         Destroy(this.gameObject);

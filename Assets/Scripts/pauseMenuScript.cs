@@ -24,6 +24,7 @@ public class pauseMenuScript : MonoBehaviour
 
     public void newGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("generatedScene");
     }
 
@@ -34,6 +35,7 @@ public class pauseMenuScript : MonoBehaviour
 
     public void mainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("mainMenu");
     }
 

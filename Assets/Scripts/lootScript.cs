@@ -86,7 +86,7 @@ public class lootScript : MonoBehaviour
 
     public void pickUp(playerController pc, baseAbilityScript slot)
     {
-        AudioSource.PlayClipAtPoint(pickUpSound, this.transform.position, 1f);
+        AudioSource.PlayClipAtPoint(pickUpSound, this.transform.position, 0.2f);
         slot.type = type;
         slot.targeting = targeting;
         slot.baseDamage = baseDamage;

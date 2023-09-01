@@ -105,9 +105,9 @@ GameObject:
   - component: {fileID: 3922632223944542998}
   - component: {fileID: 8846253485929981765}
   - component: {fileID: 4088287852915676445}
-  - component: {fileID: 8880229269484117259}
   - component: {fileID: 4576204844100085391}
   - component: {fileID: 4002113347391350634}
+  - component: {fileID: 1071561950451180988}
   m_Layer: 6
   m_Name: projectile
   m_TagString: Untagged
@@ -124,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 6137821034780490132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8013939807555026060}
@@ -181,27 +181,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8880229269484117259
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6137821034780490132}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4576204844100085391
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -258,3 +237,27 @@ MonoBehaviour:
   offensive: 0
   enemyMat: {fileID: 2100000, guid: 660444433a0f5b947bca655fc6351a62, type: 2}
   maxLifeTime: 5
+  aoeOnHit: 0
+--- !u!136 &1071561950451180988
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137821034780490132}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}

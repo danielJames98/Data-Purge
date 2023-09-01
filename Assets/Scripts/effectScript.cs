@@ -81,8 +81,8 @@ public class effectScript : MonoBehaviour
         flatProjSpeedMod = abilityAppliedBy.flatProjSpeedMod * (1 + (charAppliedBy.power / 100));
         flatDurationMod = abilityAppliedBy.flatDurationMod * (1 + (charAppliedBy.power / 100));
 
-        damage = abilityAppliedBy.dotDamage * charAppliedBy.power;
-        healing= abilityAppliedBy.hotHealing * charAppliedBy.power;
+        damage = abilityAppliedBy.dotDamage * (1 + (charAppliedBy.power / 100));
+        healing= abilityAppliedBy.hotHealing * (1 + (charAppliedBy.power / 100));
         stun = abilityAppliedBy.stun;
 
         modStats();

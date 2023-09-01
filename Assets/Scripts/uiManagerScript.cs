@@ -125,6 +125,7 @@ public class uiManagerScript : MonoBehaviour
         gameObject.GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera(Clone)").GetComponent<Camera>();
         gameManager = GameObject.Find("gameManager").GetComponent<gameManagerScript>();
         gameManager.inGameUI = this.gameObject;
+        gameManager.uiScript = this;
 
         healthBar = transform.Find("playerHealthBar").gameObject;
         xpBar = transform.Find("playerHealthBar").gameObject;
@@ -178,40 +179,50 @@ public class uiManagerScript : MonoBehaviour
     {
         if (Input.GetButtonDown("c"))
         {
-            if (statPageActive == false)
-            {
-                statPageActive = true;
-                statPage.SetActive(true);
-                fillStatPage();
-            }
-            else if (statPageActive == true)
-            {
-                statPageActive = false;
-                statPage.SetActive(false);
-            }
+            cPress();
         }
 
         if (Input.GetButtonDown("i"))
         {
-            if (inventoryUIActive == false)
-            {
-                inventoryUIActive = true;
-                inventoryUI.SetActive(true);
-                fillInventoryUI();
-                playerScript.inventoryOpen = true;
-            }
-            else if (inventoryUIActive == true)
-            {
-                inventoryUIActive = false;
-                inventoryUI.SetActive(false);
-                hideToolTip();
-                playerScript.inventoryOpen = false;
-            }
+            iPress();
         }
 
         if (storyPlaying == true && dialogueAudioSource.isPlaying == false)
         {
             storySceneDone();
+        }
+    }
+
+    public void cPress()
+    {
+        if (statPageActive == false)
+        {
+            statPageActive = true;
+            statPage.SetActive(true);
+            fillStatPage();
+        }
+        else if (statPageActive == true)
+        {
+            statPageActive = false;
+            statPage.SetActive(false);
+        }
+    }
+
+    public void iPress()
+    {
+        if (inventoryUIActive == false)
+        {
+            inventoryUIActive = true;
+            inventoryUI.SetActive(true);
+            fillInventoryUI();
+            playerScript.inventoryOpen = true;
+        }
+        else if (inventoryUIActive == true)
+        {
+            inventoryUIActive = false;
+            inventoryUI.SetActive(false);
+            hideToolTip();
+            playerScript.inventoryOpen = false;
         }
     }
 
@@ -266,236 +277,236 @@ public class uiManagerScript : MonoBehaviour
     {
         baseAbilityScript abilityScript = player.transform.Find("inventory").transform.Find("inventorySlot" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
 
-        toolTipText.text = "Type: " + abilityScript.type + "<br>";
+        toolTipText.text = "<br>" + "<br>" + "Type: " + abilityScript.type + "<br>";
         toolTipText.text = toolTipText.text + "Targeting: " + abilityScript.targeting + "<br>";
 
 
         if (abilityScript.baseDamage != 0)
         {
             toolTipText.text = toolTipText.text + "Damage: " + abilityScript.baseDamage + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseHealing != 0)
         {
             toolTipText.text = toolTipText.text + "Healing: " + abilityScript.baseHealing + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseRange != 0)
         {
             toolTipText.text = toolTipText.text + "Range: " + abilityScript.baseRange + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.aoeOnHit == true)
         {
             toolTipText.text = toolTipText.text + "AoE: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseAoeRadius != 0)
         {
             toolTipText.text = toolTipText.text + "AoE Size: " + abilityScript.baseAoeRadius + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.aoeDuration != 0)
         {
             toolTipText.text = toolTipText.text + "AoE Duration: " + abilityScript.aoeDuration + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseCastTime != 0)
         {
             toolTipText.text = toolTipText.text + "Cast Time: " + abilityScript.baseCastTime + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseCooldown != -1)
         {
             toolTipText.text = toolTipText.text + "Cooldown: " + abilityScript.baseCooldown + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.appliesEffect == true)
         {
             toolTipText.text = toolTipText.text + "Effect: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.stackingEffect == true)
         {
             toolTipText.text = toolTipText.text + "Stacking: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.dotDamage != 0)
         {
             toolTipText.text = toolTipText.text + "DoT: " + abilityScript.dotDamage + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.hotHealing != 0)
         {
             toolTipText.text = toolTipText.text + "HoT: " + abilityScript.hotHealing + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.effectDuration != 0)
         {
             toolTipText.text = toolTipText.text + "Effect Duration: " + abilityScript.effectDuration + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentArmourMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Armour Mod: " + abilityScript.percentArmourMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentPowerMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Power Mod: " + abilityScript.percentPowerMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentAttackSpeedMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Attack Speed Mod: " + abilityScript.percentAttackSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentCdrMod > 0)
         {
             toolTipText.text = toolTipText.text + "% CDR Mod: " + abilityScript.percentCdrMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentMoveSpeedMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Move Speed Mod: " + abilityScript.percentMoveSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentRangeMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Range Mod: " + abilityScript.percentRangeMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentAoeMod > 0)
         {
             toolTipText.text = toolTipText.text + "% AoE Mod: " + abilityScript.percentAoeMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentProjSpeedMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Projectile Speed Mod: " + abilityScript.percentProjSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentDurationMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Duration Mod: " + abilityScript.percentDurationMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatArmourMod != 0)
         {
             toolTipText.text = toolTipText.text + "Armour Mod: " + abilityScript.flatArmourMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatPowerMod != 0)
         {
             toolTipText.text = toolTipText.text + "Power Mod: " + abilityScript.flatPowerMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatAttackSpeedMod != 0)
         {
             toolTipText.text = toolTipText.text + "Attack Speed Mod: " + abilityScript.flatAttackSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatCdrMod != 0)
         {
             toolTipText.text = toolTipText.text + "CDR Mod: " + abilityScript.flatCdrMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatMoveSpeedMod != 0)
         {
             toolTipText.text = toolTipText.text + "Move Speed Mod: " + abilityScript.flatMoveSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatRangeMod != 0)
         {
             toolTipText.text = toolTipText.text + "Range Mod: " + abilityScript.flatRangeMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatAoeMod != 0)
         {
             toolTipText.text = toolTipText.text + "AoE Mod: " + abilityScript.flatAoeMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatProjSpeedMod != 0)
         {
             toolTipText.text = toolTipText.text + "Projectile Speed Mod: " + abilityScript.flatProjSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatDurationMod != 0)
         {
             toolTipText.text = toolTipText.text + "Duration Mod: " + abilityScript.flatDurationMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.projectileSize != 0)
         {
             toolTipText.text = toolTipText.text + "Proj Size: " + abilityScript.projectileSize + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.projectileSpeed != 0)
         {
             toolTipText.text = toolTipText.text + "Proj Speed: " + abilityScript.projectileSpeed + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.piercing == true)
         {
             toolTipText.text = toolTipText.text + "Piercing: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.returning == true)
         {
             toolTipText.text = toolTipText.text + "Returning: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.homing == true)
         {
             toolTipText.text = toolTipText.text + "Homing: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.projectileCount > 0 )
         {
             toolTipText.text = toolTipText.text + "Projectiles: " + abilityScript.projectileCount + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.projectileSpread > -1)
         {
             toolTipText.text = toolTipText.text + "Proj Spread: " + abilityScript.projectileSpread + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
     }
@@ -503,235 +514,235 @@ public class uiManagerScript : MonoBehaviour
     {
         baseAbilityScript abilityScript = player.transform.Find("ability" + abilityNum.ToString()).gameObject.GetComponent<baseAbilityScript>();
 
-        toolTipText.text = "Type: " + abilityScript.type + "<br>";
+        toolTipText.text = "<br>" + "<br>" + "Type: " + abilityScript.type + "<br>";
         toolTipText.text = toolTipText.text + "Targeting: " + abilityScript.targeting + "<br>";
 
         if (abilityScript.baseDamage != 0)
         {
             toolTipText.text = toolTipText.text + "Damage: " + abilityScript.baseDamage + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseHealing != 0)
         {
             toolTipText.text = toolTipText.text + "Healing: " + abilityScript.baseHealing + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseRange != 0)
         {
             toolTipText.text = toolTipText.text + "Range: " + abilityScript.baseRange + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.aoeOnHit == true)
         {
             toolTipText.text = toolTipText.text + "AoE: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseAoeRadius != 0)
         {
             toolTipText.text = toolTipText.text + "AoE Size: " + abilityScript.baseAoeRadius + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.aoeDuration != 0)
         {
             toolTipText.text = toolTipText.text + "AoE Duration: " + abilityScript.aoeDuration + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseCastTime != 0)
         {
             toolTipText.text = toolTipText.text + "Cast Time: " + abilityScript.baseCastTime + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseCooldown != 0)
         {
             toolTipText.text = toolTipText.text + "Cooldown: " + abilityScript.baseCooldown + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.appliesEffect == true)
         {
             toolTipText.text = toolTipText.text + "Effect: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.stackingEffect == true)
         {
             toolTipText.text = toolTipText.text + "Stacking: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.dotDamage != 0)
         {
             toolTipText.text = toolTipText.text + "DoT: " + abilityScript.dotDamage + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.hotHealing != 0)
         {
             toolTipText.text = toolTipText.text + "HoT: " + abilityScript.hotHealing + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.effectDuration != 0)
         {
             toolTipText.text = toolTipText.text + "Effect Duration: " + abilityScript.effectDuration + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentArmourMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Armour Mod: " + abilityScript.percentArmourMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentPowerMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Power Mod: " + abilityScript.percentPowerMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentAttackSpeedMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Attack Speed Mod: " + abilityScript.percentAttackSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentCdrMod > 0)
         {
             toolTipText.text = toolTipText.text + "% CDR Mod: " + abilityScript.percentCdrMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentMoveSpeedMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Move Speed Mod: " + abilityScript.percentMoveSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentRangeMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Range Mod: " + abilityScript.percentRangeMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentAoeMod > 0)
         {
             toolTipText.text = toolTipText.text + "% AoE Mod: " + abilityScript.percentAoeMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentProjSpeedMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Projectile Speed Mod: " + abilityScript.percentProjSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.percentDurationMod > 0)
         {
             toolTipText.text = toolTipText.text + "% Duration Mod: " + abilityScript.percentDurationMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatArmourMod != 0)
         {
             toolTipText.text = toolTipText.text + "Armour Mod: " + abilityScript.flatArmourMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatPowerMod != 0)
         {
             toolTipText.text = toolTipText.text + "Power Mod: " + abilityScript.flatPowerMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatAttackSpeedMod != 0)
         {
             toolTipText.text = toolTipText.text + "Attack Speed Mod: " + abilityScript.flatAttackSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatCdrMod != 0)
         {
             toolTipText.text = toolTipText.text + "CDR Mod: " + abilityScript.flatCdrMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatMoveSpeedMod != 0)
         {
             toolTipText.text = toolTipText.text + "Move Speed Mod: " + abilityScript.flatMoveSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatRangeMod != 0)
         {
             toolTipText.text = toolTipText.text + "Range Mod: " + abilityScript.flatRangeMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatAoeMod != 0)
         {
             toolTipText.text = toolTipText.text + "AoE Mod: " + abilityScript.flatAoeMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatProjSpeedMod != 0)
         {
             toolTipText.text = toolTipText.text + "Proj Speed Mod: " + abilityScript.flatProjSpeedMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.flatDurationMod != 0)
         {
             toolTipText.text = toolTipText.text + "Duration Mod: " + abilityScript.flatDurationMod + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.projectileSize != 0)
         {
             toolTipText.text = toolTipText.text + "Proj Size: " + abilityScript.projectileSize + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.projectileSpeed != 0)
         {
             toolTipText.text = toolTipText.text + "Proj Speed: " + abilityScript.projectileSpeed + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.piercing == true)
         {
             toolTipText.text = toolTipText.text + "Piercing: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.returning == true)
         {
             toolTipText.text = toolTipText.text + "Returning: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.homing == true)
         {
             toolTipText.text = toolTipText.text + "Homing: " + "Yes" + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.projectileCount > 0)
         {
             toolTipText.text = toolTipText.text + "Projectiles: " + abilityScript.projectileCount + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.projectileSpread > -1)
         {
             toolTipText.text = toolTipText.text + "Proj Spread: " + abilityScript.projectileSpread + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
     }
 
@@ -742,23 +753,23 @@ public class uiManagerScript : MonoBehaviour
 
         if (abilityScript.baseRange > 0)
         {
-            toolTipText.text = "Range: " + abilityScript.baseRange + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipText.text =  "<br>" + "<br>" + "Range: " + abilityScript.baseRange + "<br>";
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         if (abilityScript.baseCooldown > 0)
         {
             toolTipText.text = toolTipText.text + "Cooldown: " + abilityScript.baseCooldown + "<br>";
-            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 23);
+            toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
         }
 
         toolTipText.text = toolTipText.text + "Instantly teleport to the target location";
-        
+        toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, toolTip.GetComponent<RectTransform>().sizeDelta.y + 13);
     }
 
     public void hideToolTip()
     {
-        toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, 95);
+        toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, 45);
         toolTipActive = false;
         toolTip.SetActive(false);
     }
@@ -1123,9 +1134,9 @@ public class uiManagerScript : MonoBehaviour
     {
         toolTipActive = true;
         toolTip.SetActive(true);
-        toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, 200);
+        toolTipTransform.sizeDelta = new Vector2(toolTipTransform.sizeDelta.x, 85);
         toolTipTitle.text = "Bin";
-        toolTipText.text = "Left click to drop the selected ability in the bin, destroying it but granting 5XP.";
+        toolTipText.text = "<br>" + "<br>" + "Left click to drop the selected ability in the bin, destroying it but granting 5XP.";
     }
 
     public void hideBinToolTip()

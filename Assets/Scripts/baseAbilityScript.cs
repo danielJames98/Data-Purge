@@ -386,9 +386,10 @@ public class baseAbilityScript : MonoBehaviour
         while(projectilesToSpawn>0)
         {
             GameObject projectile = Instantiate(Resources.Load("projectile", typeof(GameObject)), frontFirePoint.transform.position, frontFirePoint.transform.rotation) as GameObject;
-            projectile.transform.localScale = new Vector3(projectileSize * (1 + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)));
+            projectile.transform.localScale = new Vector3(projectileSize * (0.35f + (parentCharacterScript.bonusArea / 100)), projectileSize * (0.35f + (parentCharacterScript.bonusArea / 100)), projectileSize * (1 + (parentCharacterScript.bonusArea / 100)));
             projectileScript projectileScriptRef = projectile.GetComponent<projectileScript>();
             parentCharacterScript.ownProjectiles.Add(projectileScriptRef);
+            playAbilitySound();
             projectile.tag=this.tag;
             projectileScriptRef.range = baseRange * (1 + (parentCharacterScript.bonusRange / 100));
             projectileScriptRef.abilityAppliedBy = this;
@@ -543,6 +544,6 @@ public class baseAbilityScript : MonoBehaviour
     public void playAbilitySound()
     {
         audioSource.Stop();
-        AudioSource.PlayClipAtPoint(abilitySounds[Random.Range(0, abilitySounds.Count)], parentCharacter.transform.position);
+        AudioSource.PlayClipAtPoint(abilitySounds[Random.Range(0, abilitySounds.Count)], parentCharacter.transform.position,0.2f);
     }
 }

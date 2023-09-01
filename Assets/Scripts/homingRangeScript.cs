@@ -14,7 +14,7 @@ public class homingRangeScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != transform.parent.GetComponent<projectileScript>().charAppliedBy.tag && other.gameObject.GetComponent<baseCharacter>() != null && transform.parent.GetComponent<projectileScript>().homingTarget==null)
+        if (other.gameObject !=null && other.tag != transform.parent.tag && other.gameObject.GetComponent<baseCharacter>() != null && transform.parent.GetComponent<projectileScript>().homingTarget==null)
         {
             transform.parent.GetComponent<projectileScript>().homingTarget=other.gameObject;
             gameObject.GetComponent<SphereCollider>().enabled = false;

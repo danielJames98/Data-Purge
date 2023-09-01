@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,7 @@ public class gameManagerScript : MonoBehaviour
     public GameObject player;
     public GameObject activeLevel;
     public GameObject inGameUI;
+    public uiManagerScript uiScript;
     public GameObject cam;
     public GameObject pauseMenu;
     public GameObject endGamePortal;
@@ -35,7 +37,22 @@ public class gameManagerScript : MonoBehaviour
     {
         if(Input.GetButtonDown("Cancel"))
         {
-            pauseGame();
+            if(uiScript.inventoryUIActive==false && uiScript.statPageActive == false)
+            {
+                pauseGame();
+            }
+            else
+            {
+                if(uiScript.statPageActive == true)
+                {
+                    uiScript.cPress();
+                }
+
+                if(uiScript.inventoryUIActive==true)
+                {
+                    uiScript.iPress();
+                }
+            }
         }
     }
 
