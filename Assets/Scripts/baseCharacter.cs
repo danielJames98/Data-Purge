@@ -1036,7 +1036,7 @@ public class baseCharacter : MonoBehaviour
             {
                 if (lingeringAoeInt == 0)
                 {
-                    ability.aoeDuration = Random.Range(1, 5);
+                    ability.aoeDuration = Random.Range(1, 6);
                 }
                 else
                 {
