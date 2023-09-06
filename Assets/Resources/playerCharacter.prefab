@@ -1594,10 +1594,10 @@ MonoBehaviour:
   targeting: warp
   baseDamage: 0
   baseHealing: 0
-  baseRange: 10
+  baseRange: 3
   baseAoeRadius: 0
   baseCastTime: 0
-  baseCooldown: 10
+  baseCooldown: 5
   cam: {fileID: 0}
   appliesEffect: 0
   dotDamage: 0

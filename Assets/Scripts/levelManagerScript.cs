@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class levelManagerScript : MonoBehaviour
@@ -55,32 +56,32 @@ public class levelManagerScript : MonoBehaviour
             objectiveComplete = true;
             objectiveText.GetComponent<TMPro.TextMeshProUGUI>().text = "Objective Complete";
 
-            var overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x + 52, this.transform.position.y, this.transform.position.z), 1);
+            var overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x + 55, this.transform.position.y, this.transform.position.z), 1);
 
             if(overlaps.Length==0)
             {
-                GameObject newLevel0 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()), new Vector3(this.transform.position.x + 100, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+                GameObject newLevel0 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 10).ToString()), new Vector3(this.transform.position.x + 100, this.transform.position.y, this.transform.position.z), Quaternion.identity);
             }
 
-            overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x - 52, this.transform.position.y, this.transform.position.z), 1);
+            overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x - 55, this.transform.position.y, this.transform.position.z), 1);
 
             if (overlaps.Length == 0)
             {
-                GameObject newLevel1 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()), new Vector3(this.transform.position.x - 100, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+                GameObject newLevel1 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 10).ToString()), new Vector3(this.transform.position.x - 100, this.transform.position.y, this.transform.position.z), Quaternion.identity);
             }
 
-            overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 52), 1);
+            overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 55), 1);
 
             if (overlaps.Length == 0)
             {
-                GameObject newLevel2 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 100), Quaternion.identity);
+                GameObject newLevel2 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 10).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 100), Quaternion.identity);
             }
 
-            overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 52), 1);
+            overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 55), 1);
 
             if (overlaps.Length == 0)
             {
-                GameObject newLevel3 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 100), Quaternion.identity);
+                GameObject newLevel3 = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 10).ToString()), new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 100), Quaternion.identity);
             }
 
             gameManager.StartCoroutine("unlock");
@@ -104,7 +105,11 @@ public class levelManagerScript : MonoBehaviour
         {
             foreach (GameObject enemy in enemyList)
             {
-                enemy.GetComponent<enemyController>().StartCoroutine("Die");               
+                if (enemy.gameObject != null && enemy.GetComponent<enemyController>() != null)
+                {
+                    enemy.GetComponent<enemyController>().StartCoroutine("Die");
+                }
+                            
             }
             enemyList.Clear();
         }
@@ -113,6 +118,7 @@ public class levelManagerScript : MonoBehaviour
     public void lockDown()
     {
         locked = true;
+
         spawnEnemies();
         gameManager.StartCoroutine("lockdown");
     }

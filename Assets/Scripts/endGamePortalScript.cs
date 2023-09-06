@@ -21,7 +21,7 @@ public class endGamePortalScript : MonoBehaviour
     {
         if (other.gameObject.tag=="Player")
         {
-            SceneManager.LoadScene("creditsScene");
+            SceneManager.LoadScene("mainMenu");
         }
     }
 }

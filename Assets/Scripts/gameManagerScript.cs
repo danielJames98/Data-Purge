@@ -26,7 +26,7 @@ public class gameManagerScript : MonoBehaviour
 
     void Start()
     {
-        startingLevel = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 7).ToString()));
+        startingLevel = Instantiate(Resources.Load<GameObject>("levels/level" + Random.Range(0, 10).ToString()));
         activeLevel = startingLevel;
         player = Instantiate(Resources.Load<GameObject>("PlayerCharacter"), new Vector3(-48,1.5f,0), Quaternion.identity);
         player.transform.Rotate(0, 90, 0);
@@ -62,6 +62,7 @@ public class gameManagerScript : MonoBehaviour
         {
             firewall.GetComponent<NavMeshLink>().enabled = false;
             firewall.GetComponent<MeshRenderer>().material.color = Color.red;
+            firewall.GetComponent<BoxCollider>().enabled = true;
         }
     }
 
@@ -72,6 +73,7 @@ public class gameManagerScript : MonoBehaviour
         {
             firewall.GetComponent<NavMeshLink>().enabled = true;
             firewall.GetComponent<MeshRenderer>().material.color=Color.green;
+            firewall.GetComponent<BoxCollider>().enabled = false;
         }
     }
 

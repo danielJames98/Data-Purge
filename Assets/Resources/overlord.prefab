@@ -997,9 +997,9 @@ MonoBehaviour:
   attackSpeed: 0
   cooldownReduction: 0
   armour: 0
-  power: 50
-  bonusRange: 50
-  bonusArea: 50
+  power: 0
+  bonusRange: 0
+  bonusArea: 0
   bonusProjectileSpeed: 0
   bonusDuration: 0
   dashRange: 0

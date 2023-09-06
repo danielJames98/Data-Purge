@@ -55,11 +55,11 @@ public class enemyController : baseCharacter
         
         if(gameObject.name!="overlord")
         {
-            levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level * 2);
+            levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level + 5);
         }
         else
         {
-            levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level + 50);
+            levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level + 20);
         }
 
 
@@ -98,9 +98,9 @@ public class enemyController : baseCharacter
                 aiSelectAbility();
             }
 
-            if (targetCharacter != null && casting == false && stunned == false && castingAbility != null)
-            {
 
+            if (movingToRange==true)
+            {
                 if (navMeshAgent.destination != targetCharacter.transform.position)
                 {
                     navMeshAgent.destination = targetCharacter.transform.position;
@@ -201,23 +201,23 @@ public class enemyController : baseCharacter
         {
             int abilityNumber = Random.Range(0, 4);
 
-            if (abilityNumber == 0 && abilityScript0.onCooldown == false)
+            if (abilityNumber == 0 && abilityScript0.onCooldown == false && abilityScript0.baseDamage>0)
             {
                 activateAbility(abilityScript0);
             }
-            else if (abilityNumber == 1 && abilityScript1.onCooldown == false)
+            else if (abilityNumber == 1 && abilityScript1.onCooldown == false && abilityScript1.baseDamage > 0)
             {
                 activateAbility(abilityScript1);
             }
-            else if (abilityNumber == 2 && abilityScript2.onCooldown == false)
+            else if (abilityNumber == 2 && abilityScript2.onCooldown == false && abilityScript2.baseDamage > 0)
             {
                 activateAbility(abilityScript2);
             }
-            else if (abilityNumber == 3 && abilityScript3.onCooldown == false)
+            else if (abilityNumber == 3 && abilityScript3.onCooldown == false && abilityScript3.baseDamage > 0)
             {
                 activateAbility(abilityScript3);
             }
-            else if (abilityNumber == 4 && abilityScript4.onCooldown == false)
+            else if (abilityNumber == 4 && abilityScript4.onCooldown == false && abilityScript4.baseDamage > 0)
             {
                 activateAbility(abilityScript4);
             }
@@ -228,7 +228,7 @@ public class enemyController : baseCharacter
     {
         boss = true;
 
-        levelUp(GameObject.Find("playerCharacter(Clone)").GetComponent<playerController>().level);
+        levelUp(5);
 
         this.transform.localScale = new Vector3(2f, 2f, 2f);
         this.gameObject.GetComponent<SphereCollider>().radius = this.gameObject.GetComponent<SphereCollider>().radius / 2;

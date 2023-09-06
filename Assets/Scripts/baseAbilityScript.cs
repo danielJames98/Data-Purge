@@ -517,7 +517,7 @@ public class baseAbilityScript : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100, 1 << LayerMask.NameToLayer("Walkable")))
         {
-            if (Vector3.Distance(transform.position, hit.point) <= (baseRange * (1 + (parentCharacterScript.bonusRange / 100))))
+            if (Vector3.Distance(transform.position, hit.point) <= baseRange)
             {
                 //parentCharacterScript.interruptCast();
                 parentCharacterScript.navMeshAgent.Warp(hit.point);
