@@ -183,7 +183,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Left Click on the ground to walk to that location.\n\nAbilities Fire towards
     the cursor when pressing 1, 2, 3, 4 & Right Mouse Button.\n\nPress Space Bar
-    to Warp to thethe cursor position if in range.\n\nLeft Click Health Cores dropped
+    to Warp to the cursor position if in range.\n\nLeft Click Health Cores dropped
     by enemies to heal yourself.\n\nLeft Click Ability Cores dropped by enemies to
     pick them up.\n\nPress \"I\" to open your inventory. \n\nClick on an ability
     in an ability slot or in your inventory and then click on another to swap them.
