@@ -479,7 +479,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1719789780442921685, guid: 0f874cc378f7c9b4f8c0b13cb02e5134, type: 3}
       propertyPath: m_EndPoint.x
-      value: -1
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1719789780442921685, guid: 0f874cc378f7c9b4f8c0b13cb02e5134, type: 3}
       propertyPath: m_AutoUpdatePosition
@@ -2954,7 +2954,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1719789780442921685, guid: 0f874cc378f7c9b4f8c0b13cb02e5134, type: 3}
       propertyPath: m_EndPoint.x
-      value: -1
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1719789780442921685, guid: 0f874cc378f7c9b4f8c0b13cb02e5134, type: 3}
       propertyPath: m_AutoUpdatePosition
@@ -3169,7 +3169,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1719789780442921685, guid: 0f874cc378f7c9b4f8c0b13cb02e5134, type: 3}
       propertyPath: m_EndPoint.x
-      value: -1
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1719789780442921685, guid: 0f874cc378f7c9b4f8c0b13cb02e5134, type: 3}
       propertyPath: m_AutoUpdatePosition

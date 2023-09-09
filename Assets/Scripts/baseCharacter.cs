@@ -411,7 +411,7 @@ public class baseCharacter : MonoBehaviour
         }
         else if (statToBuff == 1)
         {
-            moveSpeed = moveSpeed + 1;
+            moveSpeed = moveSpeed + 0.5f;
             spawnLevelUpText(level, "Move Speed");
         }
         else if (statToBuff == 2)
